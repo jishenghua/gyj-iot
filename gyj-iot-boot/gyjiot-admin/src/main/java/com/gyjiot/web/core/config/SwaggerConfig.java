@@ -113,9 +113,9 @@ public class SwaggerConfig
         // 用ApiInfoBuilder进行定制
         return new ApiInfoBuilder()
                 // 设置标题
-                .title("FastBee物联网平台接口文档")
+                .title("管伊佳物联网平台接口文档")
                 // 描述
-                .description("描述：FastBee物联网平台")
+                .description("描述：管伊佳物联网平台")
                 // 作者信息
                 .contact(new Contact(ruoyiConfig.getName(), null, null))
                 // 版本

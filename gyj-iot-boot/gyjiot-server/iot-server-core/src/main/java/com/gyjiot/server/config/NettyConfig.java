@@ -82,7 +82,7 @@ public class NettyConfig {
         if (type == ServerType.TCP){
             ObjectUtil.checkNotNull(maxFrameLength, GyjConstant.SERVER.MAXFRAMELENGTH);
             ObjectUtil.checkPositive(maxFrameLength, GyjConstant.SERVER.MAXFRAMELENGTH);
-            // ObjectUtil.checkNotNull(delimiters,FastBeeConstant.SERVER.DELIMITERS);
+            // ObjectUtil.checkNotNull(delimiters,GyjConstant.SERVER.DELIMITERS);
 
         }
         /*获取核数*/

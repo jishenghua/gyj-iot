@@ -128,7 +128,7 @@ public class ClientManager {
                 String clientId = session.getClientId();
                 if (!validClient(clientId)) {
                     ///*ws的客户端不正常断开连接后，直接移除所有信息*/
-                    //if (session.getClientId().startsWith(FastBeeConstant.SERVER.WS_PREFIX)) {
+                    //if (session.getClientId().startsWith(GyjiotConstant.SERVER.WS_PREFIX)) {
                     //    log.debug("=>移除ws客户端,clientId={}", session);
                     //    remove(clientId);
                     //}
