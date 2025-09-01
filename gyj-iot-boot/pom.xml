@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.gyjiot</groupId>
+    <artifactId>gyjiot</artifactId>
+    <version>${gyjiot.version}</version>
+
+    <name>gyjiot</name>
+    <url>http://iot.gyjerp.com</url>
+    <description>管伊佳物联网平台</description>
+
+    <properties>
+        <ruoyi.version>3.8.9</ruoyi.version>
+        <gyjiot.version>2.1.0</gyjiot.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <spring-boot.version>2.5.15</spring-boot.version>
+
+        <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
+        <bitwalker.version>1.21</bitwalker.version>
+        <swagger.version>3.0.0</swagger.version>
+        <io.swagger.version>1.6.2</io.swagger.version>
+        <kaptcha.version>2.3.3</kaptcha.version>
+        <mybatis-spring-boot.version>2.2.0</mybatis-spring-boot.version>
+        <oshi.version>6.6.5</oshi.version>
+        <jna.version>5.13.0</jna.version>
+        <commons.fileupload.version>1.4</commons.fileupload.version>
+        <commons.collections.version>3.2.2</commons.collections.version>
+        <poi.version>4.1.2</poi.version>
+        <velocity.version>2.3</velocity.version>
+        <jwt.version>0.9.1</jwt.version>
+        <justAuth.version>1.16.5</justAuth.version>
+        <forest.version>1.5.36</forest.version>
+        <lombok.version>1.18.22</lombok.version>
+        <rocketmq.version>2.2.1</rocketmq.version>
+        <hutool.version>5.8.20</hutool.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <mybatis-plus.version>3.5.3.1</mybatis-plus.version>
+        <mybatis-plus-generator.version>3.5.3.1</mybatis-plus-generator.version>
+        <dynamic-datasource.version>4.3.1</dynamic-datasource.version>
+        <tdengine.version>2.0.38</tdengine.version>
+        <guava.version>32.0.1-jre</guava.version>
+        <lock4j.version>2.2.3</lock4j.version>
+        <easyexcel.version>3.3.1</easyexcel.version>
+        <liteflow.version>2.12.2</liteflow.version>
+        <commons.text.version>1.10.0</commons.text.version>
+        <paho.mqtt.version>1.2.5</paho.mqtt.version>
+
+        <druid.version>1.2.23</druid.version>
+        <pagehelper.boot.version>1.4.7</pagehelper.boot.version>
+        <fastjson.version>2.0.53</fastjson.version>
+        <oshi.version>6.6.5</oshi.version>
+        <commons.io.version>2.13.0</commons.io.version>
+        <!-- override dependency version -->
+        <tomcat.version>9.0.102</tomcat.version>
+        <logback.version>1.2.13</logback.version>
+        <spring-security.version>5.7.12</spring-security.version>
+        <spring-framework.version>5.3.39</spring-framework.version>
+        <anyline.version>8.7.2-20241022</anyline.version>
+    </properties>
+
+    <!-- 依赖声明 -->
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- SpringFramework的依赖配置-->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringSecurity的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${spring-security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SpringBoot的依赖配置-->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 覆盖logback的依赖配置-->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+
+            <!-- 覆盖tomcat的依赖配置-->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-core</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-websocket</artifactId>
+                <version>${tomcat.version}</version>
+            </dependency>
+
+            <!-- 阿里数据库连接池 -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!-- 解析客户端操作系统、浏览器等 -->
+            <dependency>
+                <groupId>eu.bitwalker</groupId>
+                <artifactId>UserAgentUtils</artifactId>
+                <version>${bitwalker.version}</version>
+            </dependency>
+
+            <!-- SpringBoot集成mybatis框架 -->
+<!--            <dependency>-->
+<!--                <groupId>org.mybatis.spring.boot</groupId>-->
+<!--                <artifactId>mybatis-spring-boot-starter</artifactId>-->
+<!--                <version>${mybatis-spring-boot.version}</version>-->
+<!--            </dependency>-->
+
+            <!-- mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus-generator.version}</version>
+            </dependency>
+
+            <!-- 动态数据源 -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
+                <version>${dynamic-datasource.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.eclipse.paho</groupId>
+                <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+                <version>${paho.mqtt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${io.swagger.version}</version>
+            </dependency>
+
+            <!-- pagehelper 分页插件 -->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mybatis</groupId>
+                        <artifactId>mybatis</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- 获取系统信息 -->
+            <dependency>
+                <groupId>com.github.oshi</groupId>
+                <artifactId>oshi-core</artifactId>
+                <version>${oshi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.java.dev.jna</groupId>
+                <artifactId>jna</artifactId>
+                <version>${jna.version}</version>
+            </dependency>
+
+            <!-- Swagger3依赖 -->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!-- io常用工具类 -->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+
+            <!-- 文件上传工具类 -->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileupload.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons.text.version}</version>
+            </dependency>
+
+            <!-- excel工具 -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+
+            <!-- velocity代码生成使用模板 -->
+            <dependency>
+                <groupId>org.apache.velocity</groupId>
+                <artifactId>velocity-engine-core</artifactId>
+                <version>${velocity.version}</version>
+            </dependency>
+
+            <!-- collections工具类 -->
+            <dependency>
+                <groupId>commons-collections</groupId>
+                <artifactId>commons-collections</artifactId>
+                <version>${commons.collections.version}</version>
+            </dependency>
+
+            <!--lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!-- 阿里JSON解析器 -->
+            <dependency>
+                <groupId>com.alibaba.fastjson2</groupId>
+                <artifactId>fastjson2</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!-- Token生成与解析-->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jwt.version}</version>
+            </dependency>
+
+            <!-- 验证码 -->
+            <dependency>
+                <groupId>pro.fessional</groupId>
+                <artifactId>kaptcha</artifactId>
+                <version>${kaptcha.version}</version>
+            </dependency>
+
+            <!--rocket-mq-->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-spring-boot-starter</artifactId>
+                <version>${rocketmq.version}</version>
+            </dependency>
+
+            <!--Hutool Java工具包-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!-- 核心模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-framework</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!-- 通用工具-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-common</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!--网关模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-gateway</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!--服务层模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-server</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!--工具插件管理类-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-plugs</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-iot-service</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-system-service</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!--定时模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-quartz</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--代码生成模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-generator</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!--基于netty的MqttBroker-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>mqtt-broker</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>sip-server</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--协议层模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-protocol</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--controller层模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-open-api</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--modbus协议模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-protocol-collect</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--服务核心模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>iot-server-core</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--服务基础模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>base-server</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--mq模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-mq</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+            <!--服务启动模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>boot-strap</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <!--网关启动模块-->
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gateway-boot</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-ruleEngine</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.gyjiot</groupId>
+                <artifactId>gyjiot-mqtt-client</artifactId>
+                <version>${gyjiot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId> <!-- use mapstruct-jdk8 for Java 8 or higher -->
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-jdk8</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>org.redisson</groupId>-->
+<!--                <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--                <version>${redisson.version}</version>-->
+<!--            </dependency>-->
+
+<!--            <dependency>-->
+<!--                <groupId>com.baomidou</groupId>-->
+<!--                <artifactId>lock4j-redisson-spring-boot-starter</artifactId>-->
+<!--                <version>${lock4j.version}</version>-->
+<!--                <exclusions>-->
+<!--                    <exclusion>-->
+<!--                        <artifactId>redisson-spring-boot-starter</artifactId>-->
+<!--                        <groupId>org.redisson</groupId>-->
+<!--                    </exclusion>-->
+<!--                </exclusions>-->
+<!--            </dependency>-->
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>easyexcel-core</artifactId>
+                <version>${easyexcel.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <modules>
+        <module>gyjiot-admin</module>
+        <module>gyjiot-framework</module>
+        <module>gyjiot-plugs</module>
+        <module>gyjiot-common</module>
+        <module>gyjiot-gateway</module>
+        <module>gyjiot-server</module>
+        <module>gyjiot-protocol</module>
+        <module>gyjiot-open-api</module>
+        <module>gyjiot-service</module>
+    </modules>
+    <packaging>pom</packaging>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>public</id>
+            <name>aliyun nexus</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+
+</project>

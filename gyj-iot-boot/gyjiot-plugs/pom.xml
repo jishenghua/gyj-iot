@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>gyjiot</artifactId>
+        <groupId>com.gyjiot</groupId>
+        <version>${gyjiot.version}</version>
+    </parent>
+
+    <packaging>pom</packaging>
+    <artifactId>gyjiot-plugs</artifactId>
+    <description>插件工具类整合</description>
+
+    <modules>
+        <module>gyjiot-quartz</module>
+        <module>gyjiot-generator</module>
+        <module>gyjiot-http</module>
+        <module>gyjiot-mqtt-client</module>
+        <module>gyjiot-ruleEngine</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gyjiot</groupId>
+            <artifactId>gyjiot-common</artifactId>
+        </dependency>
+    </dependencies>
+
+
+</project>

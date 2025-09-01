@@ -1,0 +1,102 @@
+# 数据源配置
+spring:
+  datasource:
+    dynamic:
+      druid:
+        initial-size: 5
+        min-idle: 10
+        max-wait: 60000
+        max-active: 20
+        timeBetweenEvictionRunsMillis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+        minEvictableIdleTimeMillis: 300000    # 配置一个连接在池中最小生存的时间，单位是毫秒
+        maxEvictableIdleTimeMillis: 900000    # 配置一个连接在池中最大生存的时间，单位是毫秒
+        validation-query: 'SELECT 1'
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+      datasource:
+        master:
+          type: com.alibaba.druid.pool.DruidDataSource
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/gyj_iot?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+          username: gyj_iot
+          password: Cj2znjtn6BT2LBRD
+          druid:
+            filters: stat,wall
+            stat:
+              # 慢SQL记录
+              log-slow-sql: true
+              slow-sql-millis: 1000
+              merge-sql: true
+            wall:
+              none-base-statement-allow: true
+  #        slave:
+  #          type: com.alibaba.druid.pool.DruidDataSource
+  #          driver-class-name: com.mysql.cj.jdbc.Driver
+  #          url: jdbc:mysql://localhost:3306/gyjiot1?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+  #          username: root
+  #          password: gyjiot
+
+  # redis 配置
+  redis:
+    host: localhost                         # 地址
+    port: 6379                              # 端口，默认为6379
+    database: 0                             # 数据库索引
+    password: 1234abcd                       # 密码
+    timeout: 10s                            # 连接超时时间
+    lettuce:
+      pool:
+        min-idle: 0                         # 连接池中的最小空闲连接
+        max-idle: 8                         # 连接池中的最大空闲连接
+        max-active: 8                       # 连接池的最大数据库连接数
+        max-wait: -1ms                      # 连接池最大阻塞等待时间（使用负值表示没有限制）
+
+# sip 配置
+sip:
+  enabled: true                             # 是否启用视频监控SIP，true为启用
+  ## 本地调试时，绑定网卡局域网IP，设备在同一局域网，设备接入IP填写绑定IP
+  ## 部署服务端时，默认绑定容器IP，设备接入IP填写服务器公网IP
+  ip: 177.7.0.12
+  port: 5061                                # SIP端口(保持默认)
+  domain: 3402000000                        # 由省级、市级、区级、基层编号组成
+  id: 34020000002000000001                  # 同上，另外增加编号，(可保持默认)
+  password: 12345678                        # 监控设备接入的密码
+
+# 日志配置
+logging:
+  level:
+    com.gyjiot: error
+    org.springframework: warn
+
+# Swagger配置
+swagger:
+  enabled: true                             # 是否开启swagger
+  pathMapping: /prod-api                    # 请求前缀
+
+liteflow:
+  rule-source-ext-data-map:
+    # 应用名称，规则链和脚本组件名称需要一致，不要修改
+    applicationName: gyjiot
+    #是否开启SQL日志
+    sqlLogEnabled: true
+    # 规则多时，启用快速加载模式
+    fast-load: false
+    #是否开启SQL数据轮询自动刷新机制 默认不开启
+    pollingEnabled: false
+    pollingIntervalSeconds: 60
+    pollingStartSeconds: 60
+    #以下是chain表的配置
+    chainTableName: iot_scene
+    chainApplicationNameField: application_name
+    chainNameField: chain_name
+    elDataField: el_data
+    chainEnableField: enable
+    #以下是script表的配置
+    scriptTableName: iot_script
+    scriptApplicationNameField: application_name
+    scriptIdField: script_id
+    scriptNameField: script_name
+    scriptDataField: script_data
+    scriptTypeField: script_type
+    scriptLanguageField: script_language
+    scriptEnableField: enable

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>gyjiot</artifactId>
+		<groupId>com.gyjiot</groupId>
+		<version>${gyjiot.version}</version>
+	</parent>
+
+
+	<artifactId>gyjiot-open-api</artifactId>
+	<description>controller层接口</description>
+	<dependencies>
+
+		<dependency>
+			<groupId>com.gyjiot</groupId>
+			<artifactId>mqtt-broker</artifactId>
+		</dependency>
+        <dependency>
+            <groupId>com.gyjiot</groupId>
+            <artifactId>sip-server</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
+
+</project>

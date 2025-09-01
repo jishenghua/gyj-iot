@@ -1,0 +1,68 @@
+package com.gyjiot.bootstrap.mqtt;
+
+import com.gyjiot.mqtt.server.MqttServer;
+import com.gyjiot.mqtt.server.WebSocketServer;
+import com.gyjiot.server.Server;
+import com.gyjiot.server.config.NettyConfig;
+import com.gyjiot.common.enums.ServerType;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+
+/**
+ * MQTT-BROKER启动
+ * @author gyj.iot
+ * @date 2022/9/17 17:25
+ */
+@Order(10)
+@Configuration
+@ConfigurationProperties(value = "server.broker")
+@Data
+public class MQTTBootStrap {
+
+    @Autowired
+    private MqttServer mqttServer;
+    @Autowired
+    private WebSocketServer webSocketServer;
+    /*服务器集群节点*/
+    private String brokerNode;
+    /*端口*/
+    private int port;
+    /*心跳时间*/
+    private int keepAlive;
+    /*webSocket端口*/
+    private int websocketPort;
+    /*webSocket路由*/
+    private String websocketPath;
+
+
+    /**
+     * 启动mqttBroker
+     * @return server
+     */
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    public Server mqttBroker() {
+        return NettyConfig.custom()
+                .setIdleStateTime(0,0,keepAlive)
+                .setName(ServerType.MQTT.getDes())
+                .setType(ServerType.MQTT)
+                .setPort(port)
+                .setServer(mqttServer)
+                .build();
+    }
+
+    @Bean(initMethod = "start",destroyMethod = "stop")
+    public Server webSocket(){
+        return NettyConfig.custom()
+                .setIdleStateTime(0,0,keepAlive)
+                .setName(ServerType.WEBSOCKET.getDes())
+                .setType(ServerType.WEBSOCKET)
+                .setPort(websocketPort)
+                .setServer(webSocketServer)
+                .build();
+    }
+}

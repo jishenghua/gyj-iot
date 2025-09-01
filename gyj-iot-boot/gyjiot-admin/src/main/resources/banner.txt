@@ -1,0 +1,2 @@
+Application Version: ${gyjiot.version}
+Spring Boot Version: ${spring-boot.version}

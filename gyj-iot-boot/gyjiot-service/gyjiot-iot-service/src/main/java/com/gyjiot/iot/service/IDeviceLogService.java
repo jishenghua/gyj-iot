@@ -1,0 +1,35 @@
+package com.gyjiot.iot.service;
+
+import com.gyjiot.iot.domain.DeviceLog;
+import com.gyjiot.iot.model.HistoryModel;
+import com.gyjiot.iot.model.MonitorModel;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 设备日志Service接口
+ *
+ * @author ji-sheng-hua
+ * @date 2022-01-13
+ */
+public interface IDeviceLogService
+{
+
+    /**
+     * 查询设备监测数据
+     *
+     * @param deviceLog 设备日志
+     * @return 设备日志集合
+     */
+    public List<MonitorModel> selectMonitorList(DeviceLog deviceLog);
+
+    /**
+     * 查询设备日志列表
+     *
+     * @param deviceLog 设备日志
+     * @return 设备日志集合
+     */
+    public List<DeviceLog> selectDeviceLogList(DeviceLog deviceLog);
+
+}

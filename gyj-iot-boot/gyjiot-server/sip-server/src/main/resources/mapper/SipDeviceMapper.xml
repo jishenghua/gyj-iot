@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gyjiot.sip.mapper.SipDeviceMapper">
+
+    <resultMap type="SipDevice" id="SipDeviceResult">
+        <result property="deviceId" column="device_id"/>
+        <result property="productId" column="product_id"/>
+        <result property="productName" column="product_name"/>
+        <result property="deviceSipId" column="device_sip_id"/>
+        <result property="deviceName" column="device_name"/>
+        <result property="manufacturer" column="manufacturer"/>
+        <result property="model" column="model"/>
+        <result property="firmware" column="firmware"/>
+        <result property="transport" column="transport"/>
+        <result property="streamMode" column="stream_mode"/>
+        <result property="online" column="online"/>
+        <result property="registerTime" column="register_time"/>
+        <result property="lastConnectTime" column="last_connect_time"/>
+        <result property="activeTime" column="active_time"/>
+        <result property="ip" column="ip"/>
+        <result property="port" column="port"/>
+        <result property="hostAddress" column="host_address"/>
+        <result property="delFlag" column="del_flag"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectSipDeviceVo">
+        select device_id,
+               product_id,
+               product_name,
+               device_sip_id,
+               device_name,
+               manufacturer,
+               model,
+               firmware,
+               transport,
+               stream_mode,
+               online,
+               register_time,
+               last_connect_time,
+               active_time,
+               ip,
+               port,
+               host_address,
+               del_flag,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from sip_device
+    </sql>
+
+    <select id="selectSipDeviceList" parameterType="SipDevice" resultMap="SipDeviceResult">
+        <include refid="selectSipDeviceVo"/>
+        <where>
+            <if test="productId != null ">and product_id = #{productId}</if>
+            <if test="productName != null  and productName != ''">and product_name like concat('%', #{productName},
+                '%')
+            </if>
+            <if test="deviceSipId != null  and deviceSipId != ''">and device_sip_id = #{deviceSipId}</if>
+            <if test="deviceName != null  and deviceName != ''">and device_name like concat('%', #{deviceName}, '%')
+            </if>
+            <if test="manufacturer != null  and manufacturer != ''">and manufacturer = #{manufacturer}</if>
+            <if test="model != null  and model != ''">and model = #{model}</if>
+            <if test="firmware != null  and firmware != ''">and firmware = #{firmware}</if>
+            <if test="transport != null  and transport != ''">and transport = #{transport}</if>
+            <if test="streamMode != null  and streamMode != ''">and stream_mode = #{streamMode}</if>
+            <if test="online != null  and online != ''">and online = #{online}</if>
+            <if test="registerTime != null ">and register_time = #{registerTime}</if>
+            <if test="lastConnectTime != null ">and last_connect_time = #{lastConnectTime}</if>
+            <if test="activeTime != null ">and active_time = #{activeTime}</if>
+            <if test="ip != null  and ip != ''">and ip = #{ip}</if>
+            <if test="port != null ">and port = #{port}</if>
+            <if test="hostAddress != null  and hostAddress != ''">and host_address = #{hostAddress}</if>
+        </where>
+    </select>
+
+    <select id="selectSipDeviceByDeviceId" parameterType="Long" resultMap="SipDeviceResult">
+        <include refid="selectSipDeviceVo"/>
+        where device_id = #{deviceId}
+    </select>
+
+    <insert id="insertSipDevice" parameterType="SipDevice" useGeneratedKeys="true" keyProperty="deviceId">
+        insert into sip_device
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">product_id,</if>
+            <if test="productName != null and productName != ''">product_name,</if>
+            <if test="deviceSipId != null and deviceSipId != ''">device_sip_id,</if>
+            <if test="deviceName != null and deviceName != ''">device_name,</if>
+            <if test="manufacturer != null and manufacturer != ''">manufacturer,</if>
+            <if test="model != null and model != ''">model,</if>
+            <if test="firmware != null and firmware != ''">firmware,</if>
+            <if test="transport != null and transport != ''">transport,</if>
+            <if test="streamMode != null and streamMode != ''">stream_mode,</if>
+            <if test="online != null and online != ''">online,</if>
+            <if test="registerTime != null">register_time,</if>
+            <if test="lastConnectTime != null">last_connect_time,</if>
+            <if test="activeTime != null">active_time,</if>
+            <if test="ip != null">ip,</if>
+            <if test="port != null">port,</if>
+            <if test="hostAddress != null">host_address,</if>
+            <if test="delFlag != null and delFlag != ''">del_flag,</if>
+            <if test="createBy != null and createBy != ''">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="productId != null">#{productId},</if>
+            <if test="productName != null and productName != ''">#{productName},</if>
+            <if test="deviceSipId != null and deviceSipId != ''">#{deviceSipId},</if>
+            <if test="deviceName != null and deviceName != ''">#{deviceName},</if>
+            <if test="manufacturer != null and manufacturer != ''">#{manufacturer},</if>
+            <if test="model != null and model != ''">#{model},</if>
+            <if test="firmware != null and firmware != ''">#{firmware},</if>
+            <if test="transport != null and transport != ''">#{transport},</if>
+            <if test="streamMode != null and streamMode != ''">#{streamMode},</if>
+            <if test="online != null and online != ''">#{online},</if>
+            <if test="registerTime != null">#{registerTime},</if>
+            <if test="lastConnectTime != null">#{lastConnectTime},</if>
+            <if test="activeTime != null">#{activeTime},</if>
+            <if test="ip != null">#{ip},</if>
+            <if test="port != null">#{port},</if>
+            <if test="hostAddress != null">#{hostAddress},</if>
+            <if test="delFlag != null and delFlag != ''">#{delFlag},</if>
+            <if test="createBy != null and createBy != ''">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSipDevice" parameterType="SipDevice">
+        update sip_device
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productId != null">product_id = #{productId},</if>
+            <if test="productName != null and productName != ''">product_name = #{productName},</if>
+            <if test="deviceSipId != null and deviceSipId != ''">device_sip_id = #{deviceSipId},</if>
+            <if test="deviceName != null and deviceName != ''">device_name = #{deviceName},</if>
+            <if test="manufacturer != null and manufacturer != ''">manufacturer = #{manufacturer},</if>
+            <if test="model != null and model != ''">model = #{model},</if>
+            <if test="firmware != null and firmware != ''">firmware = #{firmware},</if>
+            <if test="transport != null and transport != ''">transport = #{transport},</if>
+            <if test="streamMode != null and streamMode != ''">stream_mode = #{streamMode},</if>
+            <if test="online != null and online != ''">online = #{online},</if>
+            <if test="registerTime != null">register_time = #{registerTime},</if>
+            <if test="lastConnectTime != null">last_connect_time = #{lastConnectTime},</if>
+            <if test="activeTime != null">active_time = #{activeTime},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="hostAddress != null">host_address = #{hostAddress},</if>
+            <if test="delFlag != null and delFlag != ''">del_flag = #{delFlag},</if>
+            <if test="createBy != null and createBy != ''">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where device_id = #{deviceId}
+    </update>
+
+    <delete id="deleteSipDeviceByDeviceId" parameterType="Long">
+        delete
+        from sip_device
+        where device_id = #{deviceId}
+    </delete>
+
+    <delete id="deleteSipDeviceByDeviceIds" parameterType="String">
+        delete from sip_device where device_id in
+        <foreach item="deviceId" collection="array" open="(" separator="," close=")">
+            #{deviceId}
+        </foreach>
+    </delete>
+
+    <update id="updateSipDeviceStatus" parameterType="SipDevice">
+        update sip_device
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="online != null">online = #{online},</if>
+            <if test="lastConnectTime != null">last_connect_time = #{lastConnectTime},</if>
+            <if test="activeTime != null">active_time = #{activeTime},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="hostAddress != null">host_address = #{hostAddress},</if>
+        </trim>
+        where device_sip_id = #{deviceSipId}
+    </update>
+
+    <select id="selectOfflineSipDevice" parameterType="Integer" resultMap="SipDeviceResult">
+        <include refid="selectSipDeviceVo"/>
+        <where>
+            ${checkTimeCondition}
+        </where>
+    </select>
+
+    <select id="selectSipDeviceBySipId" parameterType="String" resultMap="SipDeviceResult">
+        <include refid="selectSipDeviceVo"/>
+        where device_sip_id = #{deviceSipId}
+    </select>
+
+    <delete id="deleteSipDeviceByByDeviceSipId" parameterType="String">
+        delete
+        from sip_device
+        where device_sip_id = #{deviceSipId}
+    </delete>
+</mapper>
