@@ -167,7 +167,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="networkAddress != null  and networkAddress != ''"> and network_address like concat('%', #{networkAddress}, '%')</if>
             <if test="params.beginActiveTime != null and params.beginActiveTime != '' and params.endActiveTime != null and params.endActiveTime != ''"> and active_time between #{params.beginActiveTime} and #{params.endActiveTime}</if>
         </where>
-        order by create_time desc
+        order by is_sys desc, create_time desc
     </select>
 
     <select id="selectUnAuthDeviceList" parameterType="com.gyjiot.iot.domain.Device" resultMap="DeviceResult">
@@ -248,7 +248,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select d.device_id, d.device_name, p.product_id, p.product_name,p.device_type,
             d.user_id, d.user_name, d.tenant_id, d.tenant_name, d.serial_number,d.gw_dev_code,
             d.firmware_version, d.status,d.rssi,d.is_shadow,d.is_simulate ,d.location_way,
-            d.things_model_value, d.active_time,d.create_time,d.img_url,max(u.is_owner) as is_owner,
+            d.things_model_value, d.active_time,d.create_time,d.img_url,d.is_sys, max(u.is_owner) as is_owner,
         (select count(*) from iot_device d1 where d1.gw_dev_code = d.serial_number) as sub_device_count,
         p.protocol_code,p.transport
         from iot_device d
@@ -272,7 +272,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="params.beginActiveTime != null and params.beginActiveTime != '' and params.endActiveTime != null and params.endActiveTime != ''"> and d.active_time between #{params.beginActiveTime} and #{params.endActiveTime}</if>
         </where>
         group by d.device_id,d.user_id
-        order by d.create_time desc
+        order by d.is_sys desc, d.create_time desc
     </select>
 
     <select id="selectDeviceByDeviceId" parameterType="Long" resultMap="DeviceResult">

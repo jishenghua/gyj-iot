@@ -1,9 +1,9 @@
 package com.gyjiot.sip.service.impl;
 
-import com.gyjiot.common.core.domain.entity.SysUser;
 import com.gyjiot.common.core.redis.RedisCache;
 import com.gyjiot.common.core.redis.RedisKeyBuilder;
 import com.gyjiot.common.utils.DateUtils;
+import com.gyjiot.common.utils.PageUtils;
 import com.gyjiot.iot.domain.Product;
 import com.gyjiot.iot.service.IProductService;
 import com.gyjiot.sip.domain.SipDevice;
@@ -22,8 +22,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import static com.gyjiot.common.utils.SecurityUtils.getLoginUser;
 
 /**
  * 监控设备通道信息Service业务层处理
@@ -95,14 +93,14 @@ public class SipDeviceChannelServiceImpl implements ISipDeviceChannelService {
 //            sipDeviceChannel.setTenantId(user.getUserId());
 //        }
 //        sipDeviceChannel.setTenantId(user.getUserId());
+        PageUtils.startPage();
         List<SipDeviceChannel> list = sipDeviceChannelMapper.selectSipDeviceChannelList(sipDeviceChannel);
-        List<SipDeviceChannel> newList = new ArrayList<>();
         if (list != null && list.size() > 0) {
             for (SipDeviceChannel channel : list) {
-                newList.add(updateChannelStatus(channel));
+                updateChannelStatus(channel);
             }
         }
-        return newList;
+        return list;
     }
 
     public SipDeviceChannel updateChannelStatus(SipDeviceChannel channel) {

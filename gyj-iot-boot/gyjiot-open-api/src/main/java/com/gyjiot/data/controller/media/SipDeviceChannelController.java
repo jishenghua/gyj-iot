@@ -39,7 +39,6 @@ public class SipDeviceChannelController extends BaseController
     @GetMapping("/list")
     public TableDataInfo list(SipDeviceChannel sipDeviceChannel)
     {
-        startPage();
         List<SipDeviceChannel> list = sipDeviceChannelService.selectSipDeviceChannelList(sipDeviceChannel);
         return getDataTable(list);
     }
