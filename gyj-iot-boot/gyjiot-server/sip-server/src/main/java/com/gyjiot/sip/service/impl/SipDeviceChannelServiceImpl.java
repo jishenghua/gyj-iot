@@ -88,13 +88,13 @@ public class SipDeviceChannelServiceImpl implements ISipDeviceChannelService {
      */
     @Override
     public List<SipDeviceChannel> selectSipDeviceChannelList(SipDeviceChannel sipDeviceChannel) {
-        SysUser user = getLoginUser().getUser();
+//        SysUser user = getLoginUser().getUser();
 //        List<SysRole> roles=user.getRoles();
         // 租户
 //        if(roles.stream().anyMatch(a->a.getRoleKey().equals("tenant"))){
 //            sipDeviceChannel.setTenantId(user.getUserId());
 //        }
-        sipDeviceChannel.setTenantId(user.getUserId());
+//        sipDeviceChannel.setTenantId(user.getUserId());
         List<SipDeviceChannel> list = sipDeviceChannelMapper.selectSipDeviceChannelList(sipDeviceChannel);
         List<SipDeviceChannel> newList = new ArrayList<>();
         if (list != null && list.size() > 0) {
