@@ -11,7 +11,7 @@
 
 数据库采用Mysql8.0.24；设备端支持ESP8266、Modbus、GB28181等。
 
-平台地址：http://iot.gyjerp.com  演示账号：gyj  密码：gyj123
+平台地址：http://iot.gyjerp.com  演示账号：gyj  密码：gyj123 欢迎进行试用体验！
 
 #### 软件架构
 * 服务端
