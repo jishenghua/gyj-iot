@@ -42,3 +42,20 @@
 4.  新建 Pull Request
 
 #### 系统截图
+* 首页
+![输入图片说明](gyj-iot-web/public/screen/1.png)
+* 通用物模型
+![输入图片说明](gyj-iot-web/public/screen/2.png)
+* 产品管理
+![输入图片说明](gyj-iot-web/public/screen/3.png)
+* 设备管理
+![输入图片说明](gyj-iot-web/public/screen/4.png)
+* 监控直播
+![输入图片说明](gyj-iot-web/public/screen/5.png)
+* 规则脚本
+![输入图片说明](gyj-iot-web/public/screen/6.png)
+* Mqtt统计
+![输入图片说明](gyj-iot-web/public/screen/7.png)
+* 权限管理
+![输入图片说明](gyj-iot-web/public/screen/8.png)
+
