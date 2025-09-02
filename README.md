@@ -1,7 +1,7 @@
 # 管伊佳物联
 
 #### 项目介绍
-管伊佳物联平台，简单易用，更适合中小企业和个人学习使用。
+管伊佳物联平台，简单易用，更适合中小企业和个人学习使用。喜欢就点个小星星哦！
 
 适用于智慧工业、智能家居、智慧景区、智慧社区、智慧校园、农业监测、水利监测等。
 
@@ -11,7 +11,7 @@
 
 数据库采用Mysql8.0.24；设备端支持ESP8266、Modbus、GB28181等。
 
-平台地址：http://iot.gyjerp.com  演示账号：gyj  密码：gyj123
+平台地址：http://iot.gyjerp.com  演示账号：gyj  密码：gyj123 欢迎进行试用体验！
 
 #### 软件架构
 * 服务端
@@ -40,4 +40,22 @@
 2.  新建 Feat_xxx 分支
 3.  提交代码
 4.  新建 Pull Request
+
+#### 系统截图
+* 首页
+![输入图片说明](gyj-iot-web/public/screen/1.png)
+* 通用物模型
+![输入图片说明](gyj-iot-web/public/screen/2.png)
+* 产品管理
+![输入图片说明](gyj-iot-web/public/screen/3.png)
+* 设备管理
+![输入图片说明](gyj-iot-web/public/screen/4.png)
+* 监控直播
+![输入图片说明](gyj-iot-web/public/screen/5.png)
+* 规则脚本
+![输入图片说明](gyj-iot-web/public/screen/6.png)
+* Mqtt统计
+![输入图片说明](gyj-iot-web/public/screen/7.png)
+* 权限管理
+![输入图片说明](gyj-iot-web/public/screen/8.png)
 
