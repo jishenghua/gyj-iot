@@ -60,7 +60,7 @@ public class DeviceRuntimeController extends BaseController {
      * }
      */
     @PostMapping("/service/invoke")
-    @PreAuthorize("@ss.hasPermi('iot:service:invoke')")
+    //@PreAuthorize("@ss.hasPermi('iot:service:invoke')")
     @ApiOperation(value = "服务下发", httpMethod = "POST", response = AjaxResult.class, notes = "服务下发")
     public AjaxResult invoke(@Valid @RequestBody InvokeReqDto reqDto) {
         reqDto.setValue(new JSONObject(reqDto.getRemoteCommand()));

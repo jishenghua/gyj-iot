@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gyjiot.sip.mapper.SipDeviceMapper">
 
-    <resultMap type="SipDevice" id="SipDeviceResult">
+    <resultMap type="com.gyjiot.sip.domain.SipDevice" id="SipDeviceResult">
         <result property="deviceId" column="device_id"/>
         <result property="productId" column="product_id"/>
         <result property="productName" column="product_name"/>

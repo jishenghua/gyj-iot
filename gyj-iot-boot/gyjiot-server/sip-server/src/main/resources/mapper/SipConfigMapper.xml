@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gyjiot.sip.mapper.SipConfigMapper">
 
-    <resultMap type="SipConfig" id="SipConfigResult">
+    <resultMap type="com.gyjiot.sip.domain.SipConfig" id="SipConfigResult">
         <result property="id" column="id"/>
         <result property="productId" column="product_id"/>
         <result property="productName" column="product_name"/>

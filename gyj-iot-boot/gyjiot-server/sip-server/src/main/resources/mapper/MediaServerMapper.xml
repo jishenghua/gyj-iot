@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gyjiot.sip.mapper.MediaServerMapper">
 
-    <resultMap type="MediaServer" id="MediaServerResult">
+    <resultMap type="com.gyjiot.sip.domain.MediaServer" id="MediaServerResult">
         <result property="id"    column="id"    />
         <result property="serverId"    column="server_id"    />
         <result property="tenantId"    column="tenant_id"    />
@@ -37,7 +37,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         select id, server_id, tenant_id, tenant_name, enabled, protocol, ip, domain, hookurl, secret, port_http, port_https, port_rtmp, port_rtsp, rtp_proxy_port, rtp_enable, rtp_port_range, record_port, auto_config, status, del_flag, create_by, create_time, update_by, update_time, remark from media_server
     </sql>
 
-    <select id="selectMediaServerList" parameterType="MediaServer" resultMap="MediaServerResult">
+    <select id="selectMediaServerList" parameterType="com.gyjiot.sip.domain.MediaServer" resultMap="MediaServerResult">
         <include refid="selectMediaServerVo"/>
         <where>
             <if test="serverId != null  and serverId != ''"> and server_id = #{serverId}</if>
@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         where id = #{id}
     </select>
 
-    <insert id="insertMediaServer" parameterType="MediaServer" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insertMediaServer" parameterType="com.gyjiot.sip.domain.MediaServer" useGeneratedKeys="true" keyProperty="id">
         insert into media_server
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="serverId != null and serverId != ''">server_id,</if>
@@ -125,7 +125,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </trim>
     </insert>
 
-    <update id="updateMediaServer" parameterType="MediaServer">
+    <update id="updateMediaServer" parameterType="com.gyjiot.sip.domain.MediaServer">
         update media_server
         <trim prefix="SET" suffixOverrides=",">
             <if test="serverId != null and serverId != ''">server_id = #{serverId},</if>
@@ -168,7 +168,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         </foreach>
     </delete>
 
-    <select id="selectMediaServer" resultMap="MediaServerResult" parameterType="MediaServer">
+    <select id="selectMediaServer" resultMap="MediaServerResult" parameterType="com.gyjiot.sip.domain.MediaServer">
         <include refid="selectMediaServerVo"/>
         <where>
             <if test="tenantId != null and tenantId != 0"> and tenant_id = #{tenantId}</if>

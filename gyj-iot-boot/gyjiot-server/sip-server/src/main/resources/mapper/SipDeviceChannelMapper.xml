@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gyjiot.sip.mapper.SipDeviceChannelMapper">
 
-    <resultMap type="SipDeviceChannel" id="SipDeviceChannelResult">
+    <resultMap type="com.gyjiot.sip.domain.SipDeviceChannel" id="SipDeviceChannelResult">
         <result property="id" column="id"/>
         <result property="tenantId" column="tenant_id"/>
         <result property="tenantName" column="tenant_name"/>
