@@ -229,6 +229,7 @@ const deviceList = ref([]);
 // 我的分组列表数据
 const myGroupList = ref([]);
 const isSubDev = ref(false);
+const ids = ref([]);
 
 const data = reactive({
     // 查询参数
@@ -410,7 +411,7 @@ function handleEditDevice(row, activeName) {
     let deviceId = 0;
     let isSubDev = 0;
     if (row != 0) {
-        deviceId = row.deviceId || this.ids;
+        deviceId = row.deviceId || ids.value;
         isSubDev = row.subDeviceCount > 0 ? 1 : 0;
     }
     proxy.$router.push({
@@ -455,7 +456,7 @@ function handleRunDevice(row) {
 }
 /** 删除按钮操作 */
 function handleDelete(row) {
-    const deviceIds = row.deviceId || this.ids;
+    const deviceIds = row.deviceId || ids.value;
     proxy.$modal.confirm('是否确认删除设备编号为"' + deviceIds + '"的数据项？').then(function () {
             if (row.deviceType === 3) {
                 delSipDeviceBySipId(row.serialNumber);
@@ -463,7 +464,7 @@ function handleDelete(row) {
             return delDevice(deviceIds);
         })
         .then(() => {
-            this.getList();
+            getList();
             proxy.$modal.msgSuccess('删除成功');
         })
         .catch(() => {});

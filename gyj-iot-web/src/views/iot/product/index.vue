@@ -122,6 +122,7 @@ const title = ref("");
 // 是否显示弹出层
 const open = ref(false);
 const uniqueId = ref("");
+const ids = ref([]);
 
 const data = reactive({
     // 查询参数
