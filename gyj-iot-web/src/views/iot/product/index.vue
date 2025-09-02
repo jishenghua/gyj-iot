@@ -264,7 +264,7 @@ function handleEditProduct(row) {
         productId = row.productId || ids.value
     }
     proxy.$router.push({
-        path: '/iot/product-edit',
+        path: '/prod/product-edit',
         query: {
             productId: productId,
             pageNum: queryParams.value.pageNum
@@ -275,7 +275,7 @@ function handleEditProduct(row) {
 function handleDeviceAuthorize(row) {
     let productId = row.productId
     proxy.$router.push({
-        path: '/iot/product-edit',
+        path: '/prod/product-edit',
         query: {
             productId: productId,
             tabPanelName: 'productAuthorize',

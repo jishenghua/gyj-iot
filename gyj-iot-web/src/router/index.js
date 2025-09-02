@@ -165,7 +165,7 @@ export const dynamicRoutes = [
     ]
   },
   {
-    path: '/iot',
+    path: '/prod',
     component: Layout,
     hidden: true,
     permissions: ['iot:device:add'],
@@ -174,8 +174,16 @@ export const dynamicRoutes = [
         path: 'product-edit',
         component: () => import('@/views/iot/product/product-edit'),
         name: 'ProductEdit',
-        meta: { title: '编辑产品', activeMenu: '/iot/product',nocache: true}
-      },
+        meta: { title: '编辑产品', activeMenu: '/prod/product',nocache: true}
+      }
+    ]
+  },
+  {
+    path: '/iot',
+    component: Layout,
+    hidden: true,
+    permissions: ['iot:device:add'],
+    children: [
       {
         path: 'device-edit',
         component: () => import('@/views/iot/device/device-edit'),

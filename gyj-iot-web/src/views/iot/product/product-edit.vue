@@ -301,7 +301,7 @@ function getShortCategory() {
 /** 返回按钮 */
 function goBack() {
     const obj = {
-        path: "/iot/product",
+        path: "/prod/product",
         query: {
             t: Date.now(),
             pageNum: proxy.$route.query.pageNum
