@@ -7,7 +7,9 @@
 
 深耕物联网行业多年，专业提供物联网解决方案，可信赖的智慧工业物联网伙伴。
 
-系统后端采用Spring boot2.5；前端采用Vue3.4；Mqtt服务端使用netty搭建；数据库采用Mysql8.0.24；设备端支持ESP8266、Modbus、GB28181等。
+系统后端采用Spring boot2.5；前端采用Vue3.4；Mqtt服务端使用netty搭建；
+
+数据库采用Mysql8.0.24；设备端支持ESP8266、Modbus、GB28181等。
 
 #### 软件架构
 * 服务端
