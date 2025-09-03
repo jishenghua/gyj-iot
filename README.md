@@ -13,6 +13,8 @@
 
 平台地址：http://iot.gyjerp.com  演示账号：gyj  密码：gyj123 欢迎进行试用体验！
 
+QQ技术交流群：818914680 欢迎加入，一起学习！
+
 #### 软件架构
 * 服务端
 - 相关技术：Spring boot2.5、MyBatis3.5、Spring Security、Mysql、Redis、Netty等
