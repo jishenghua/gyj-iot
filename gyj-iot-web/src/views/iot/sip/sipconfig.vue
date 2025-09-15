@@ -1,6 +1,6 @@
 <template>
   <div style="padding:6px;">
-    <el-form ref="form" :model="form" label-width="100px">
+    <el-form ref="sipConfigRef" :model="form" label-width="100px">
       <el-row :gutter="100">
         <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
           <el-form-item label="默认配置" prop="isdefault">
@@ -66,6 +66,7 @@ const sipconfigList = ref([]);
 const title = ref('');
 // 是否显示弹出层
 const open = ref(false);
+const productInfo = ref({});
 
 const data = reactive({
   // 查询参数
@@ -75,7 +76,15 @@ const data = reactive({
     productId: null,
   },
   // 表单参数
-  form: {},
+  form: {
+    id: null,
+    isdefault: 1,
+    ip: '',
+    domain: '',
+    password: '',
+    port: '',
+    serverSipid: ''
+  },
   // 表单校验
   rules: {
     domain: [{
@@ -108,6 +117,7 @@ const props = defineProps({
 // 获取到父组件传递的productId后，刷新列表
 watch(props.product, (newVal, oldVal) => {
   productInfo.value = newVal;
+  console.log(productInfo.value)
   if (productInfo.value && productInfo.value.productId != 0) {
     // 表单没有数据则获取默认配置
     if (!form.value.id) {
@@ -120,16 +130,16 @@ watch(props.product, (newVal, oldVal) => {
 function getSipconfigInfo(isDefault) {
   getSipconfig(productInfo.value.productId, isDefault).then(response => {
     form.value = response.data;
-    if (isDefault) {
+    if (!form.value.id) {
       submitForm();
     }
   });
 }
 /** 提交按钮 */
 function submitForm() {
-  proxy.$refs['form'].validate(valid => {
+  proxy.$refs['sipConfigRef'].validate(valid => {
     if (valid) {
-      form.value.productId = product.value.productId;
+      form.value.productId = props.product.productId;
       if (form.value.isdefault == null) {
         form.value.isdefault = 0;
       }
@@ -145,11 +155,6 @@ function submitForm() {
       }
     }
   });
-}
-
-productInfo.value = product.value;
-if (productInfo.value && productInfo.value.productId != 0) {
-  getSipconfigInfo(false);
 }
 </script>
 

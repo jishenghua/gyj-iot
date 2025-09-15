@@ -57,7 +57,7 @@ public class SipConfigServiceImpl implements ISipConfigService {
             sipConfig.setDomain(sysSipConfig.getDomain());
             sipConfig.setServerSipid(sysSipConfig.getId());
             sipConfig.setPassword(sysSipConfig.getPassword());
-            redisCache.setCacheObject(GyjConstant.REDIS.DEFAULT_SIP_CONFIG, temp);
+            redisCache.setCacheObject(GyjConstant.REDIS.DEFAULT_SIP_CONFIG, sipConfig);
         } else if (temp instanceof SipConfig){
             sipConfig = (SipConfig) temp;
             updateDefaultSipConfig((SipConfig) temp);

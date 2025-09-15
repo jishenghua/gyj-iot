@@ -242,12 +242,13 @@ const data = reactive({
     // 表单参数
     form: {
         networkMethod: 1,
-        deviceType: 1,
+        deviceType: 3,
         vertificateMethod: 3,
         transport: 'MQTT',
         imgUrl: "",
         protocolCode: "JSON",
         isAuthorize: 0,
+        productId: 0
     },
     // 表单校验
     rules: {

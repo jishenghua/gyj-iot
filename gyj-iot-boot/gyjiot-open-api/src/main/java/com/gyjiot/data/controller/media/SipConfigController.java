@@ -32,7 +32,10 @@ public class SipConfigController extends BaseController {
     @PreAuthorize("@ss.hasPermi('iot:video:query')")
     @GetMapping(value = "/{productId}/{isDefault}")
     public AjaxResult getInfo(@PathVariable("productId") Long productId, @PathVariable("isDefault") Boolean isDefault) {
-        SipConfig sipConfig = isDefault ? sipConfigService.GetDefaultSipConfig() : sipConfigService.selectSipConfigByProductId(productId);
+        SipConfig sipConfig = sipConfigService.selectSipConfigByProductId(productId);
+        if(sipConfig == null) {
+            sipConfig = sipConfigService.GetDefaultSipConfig();
+        }
         return AjaxResult.success(sipConfig);
     }
 
