@@ -56,7 +56,7 @@
     <pagination v-show="total > 0" :total="total" :page.sync="queryParams.pageNum" :limit.sync="queryParams.pageSize"
                 :pageSizes="[12, 24, 36, 60]" @pagination="getServerList" />
 
-    <mediaServerEdit ref="mediaServerEditRef" :edit-flag="editFlag"> </mediaServerEdit>
+    <mediaServerEdit ref="mediaServerEditRef" @show="getServerList" :edit-flag="editFlag"></mediaServerEdit>
   </div>
 </template>
 
@@ -143,15 +143,13 @@ function delay() {
 }
 function del(row) {
   const ids = row.id || ids.value;
-  this.$modal.confirm('是否确认删除流媒体服务器配置编号为"' + ids + '"的数据项？')
-          .then(function () {
-            delmediaServer(ids);
-          })
-          .then(() => {
-            getServerList();
-            proxy.$modal.msgSuccess('删除成功');
-          })
-          .catch(() => { });
+  proxy.$modal.confirm('是否确认删除流媒体服务器配置编号为"' + ids + '"的数据项？')
+  .then(function () {
+    delmediaServer(ids).then(() => {
+      getServerList();
+      proxy.$modal.msgSuccess('删除成功');
+    })
+  })
 }
 function getNumberByWidth() {
   let candidateNums = [1, 2, 3, 4, 6, 8, 12, 24];
@@ -172,10 +170,6 @@ function getNumberByWidth() {
   }
   return resultVal;
 }
-defineExpose({
-  getServerList,
-  delay
-});
 </script>
 
 <style scoped>

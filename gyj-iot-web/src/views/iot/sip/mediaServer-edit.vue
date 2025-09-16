@@ -2,7 +2,7 @@
   <div id="mediaServerEdit" v-loading="isLoging">
     <el-dialog title="流媒体服务器节点" :width="dialogWidth" top="2rem" :close-on-click-modal="false" v-model="showDialog" :destroy-on-close="true" @close="close()">
       <div id="formStep" style="margin-top: 1rem; margin-right: 20px">
-        <el-form v-if="currentStep == 1" ref="mediaServerForm" :rules="rules" :model="mediaServerForm" label-width="280px" style="width: 70%">
+        <el-form v-if="currentStep == 1" ref="mediaServerRef" :rules="rules" :model="mediaServerForm" label-width="280px" style="width: 70%">
 <!--          <el-form-item label="所属租户" prop="productName">-->
 <!--            <el-input readonly v-model="mediaServerForm.tenantName" placeholder="请选择所属租户">-->
 <!--              <el-button slot="append" @click="selectUser()">选择</el-button>-->
@@ -27,7 +27,7 @@
         </el-form>
         <el-row :gutter="24">
           <el-col :span="12">
-            <el-form v-if="currentStep === 2 || currentStep === 3" ref="mediaServerForm1" :rules="rules" :model="mediaServerForm" label-width="140px" :disabled="!editFlag">
+            <el-form v-if="currentStep === 2 || currentStep === 3" ref="mediaServerRef1" :rules="rules" :model="mediaServerForm" label-width="140px" :disabled="!editFlag">
               <el-form-item label="配置名称" prop="serverId">
                 <el-input v-model="mediaServerForm.serverId" placeholder="配置名称" clearable></el-input>
               </el-form-item>
@@ -108,6 +108,7 @@
 <script setup name="MediaServerEdit">
 import { addmediaServer, checkmediaServer, updatemediaServer } from '@/api/iot/mediaServer';
 import userList from '@/views/iot/sip/user-list.vue';
+import { inject } from 'vue';
 
 const { proxy } = getCurrentInstance();
 
@@ -228,7 +229,7 @@ function openDialog(param, callback) {
   }
 }
 function checkServer() {
-  proxy.$refs.mediaServerForm.validate((valid) => {
+  proxy.$refs["mediaServerRef"].validate((valid) => {
     if (valid) {
       btnLoading.value = true;
       serverCheck.value = 0;
@@ -300,16 +301,16 @@ function onSubmit() {
     updatemediaServer(mediaServerForm.value).then((response) => {
       proxy.$modal.msgSuccess('修改成功');
       showDialog.value = false;
+      proxy.$emit('show');
     });
   } else {
-    this.portRangeChange();
+    portRangeChange();
     addmediaServer(mediaServerForm.value).then((response) => {
       proxy.$modal.msgSuccess('新增成功');
       showDialog.value = false;
+      proxy.$emit('show');
     });
   }
-  proxy.$parent.getServerList();
-  proxy.$parent.delay();
 }
 function close() {
   showDialog.value = false;
