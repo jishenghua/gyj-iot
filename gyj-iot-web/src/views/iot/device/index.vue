@@ -380,7 +380,7 @@ function getList() {
     getGroupList();
     listDeviceShort(queryParams.value).then((response) => {
         deviceList.value = response.rows;
-        total.value = response.total - 1;
+        total.value = response.total;
         // 订阅消息
         if (deviceList.value && deviceList.value.length > 0) {
             mqttSubscribe(deviceList.value);
