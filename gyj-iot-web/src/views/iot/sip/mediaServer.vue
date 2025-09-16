@@ -6,7 +6,7 @@
                    v-hasPermi="['iot:video:add']">新增节点</el-button>
       </el-form-item>
       <el-form-item>
-        <el-button type="warning" plain icon="Refresh" @click="getServerList">刷新</el-button>
+        <el-button plain icon="Refresh" @click="getServerList">刷新</el-button>
       </el-form-item>
     </el-form>
 
