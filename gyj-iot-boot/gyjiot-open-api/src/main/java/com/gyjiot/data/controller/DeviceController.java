@@ -236,7 +236,7 @@ public class DeviceController extends BaseController
     /**
      * 生成设备编号
      */
-    @PreAuthorize("@ss.hasPermi('iot:device:edit')")
+    @PreAuthorize("@ss.hasPermi('iot:device:add')")
     @GetMapping("/generator")
     @ApiOperation("生成设备编号")
     public AjaxResult generatorDeviceNum(Integer type){
