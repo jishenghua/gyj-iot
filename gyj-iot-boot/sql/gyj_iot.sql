@@ -11,7 +11,7 @@
  Target Server Version : 80029
  File Encoding         : 65001
 
- Date: 26/09/2025 15:11:40
+ Date: 26/09/2025 15:16:30
 */
 
 SET NAMES utf8mb4;
@@ -1526,7 +1526,7 @@ INSERT INTO `sip_device` VALUES (13, 0, '', '11010200001320000017', '', '', '', 
 INSERT INTO `sip_device` VALUES (16, 0, '', '12010100001320000003', 'IP DOME', 'Hikvision', 'iDS-2DE2402IX-D3/W/XM', 'V5.7.4', 'UDP', 'UDP', '', '2023-04-11 21:08:07', '2023-04-11 21:13:16', NULL, '192.168.2.119', 5060, '192.168.2.119:5060', '0', '', NULL, '', NULL, NULL);
 INSERT INTO `sip_device` VALUES (18, 0, '', '13030100001320000001', '', 'ABCD', 'TEST001', 'V1.0', 'UDP', 'UDP', '', '2023-03-28 16:06:45', '2023-03-28 16:09:52', NULL, '192.168.205.250', 5063, '192.168.205.250:5063', '0', '', NULL, '', NULL, NULL);
 INSERT INTO `sip_device` VALUES (19, 0, '', '11010200001320000001', '海康威视摄像头', 'Hikvision', 'iDS-2DE2402IX-D3/W/XM', 'V5.7.4', 'UDP', 'UDP', '', '2024-01-08 22:08:27', '2024-01-08 22:16:32', NULL, '192.168.2.119', 5065, '192.168.2.119:5065', '0', '', NULL, '', NULL, NULL);
-INSERT INTO `sip_device` VALUES (20, 0, '', '32061200001180000006', '', '', '', '', 'UDP', 'UDP', '', '2025-09-26 15:03:19', '2025-09-26 15:11:17', NULL, '192.168.1.254', 5060, '192.168.1.254:5060', '0', '', NULL, '', NULL, NULL);
+INSERT INTO `sip_device` VALUES (20, 0, '', '32061200001180000006', '', '', '', '', 'UDP', 'UDP', '', '2025-09-26 15:03:19', '2025-09-26 15:16:16', NULL, '192.168.1.254', 5060, '192.168.1.254:5060', '0', '', NULL, '', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sip_device_channel
@@ -2106,7 +2106,7 @@ CREATE TABLE `sys_job_log`  (
   `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '异常信息',
   `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '定时任务调度日志表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_job_log
@@ -2127,6 +2127,8 @@ INSERT INTO `sys_job_log` VALUES (13, '设备定时同步', 'SYSTEM', 'deviceJob
 INSERT INTO `sys_job_log` VALUES (14, '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：2毫秒', '0', '', '2025-09-26 15:10:00');
 INSERT INTO `sys_job_log` VALUES (15, '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：36毫秒', '0', '', '2025-09-26 15:10:00');
 INSERT INTO `sys_job_log` VALUES (16, '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：2毫秒', '0', '', '2025-09-26 15:11:00');
+INSERT INTO `sys_job_log` VALUES (17, '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 15:16:00');
+INSERT INTO `sys_job_log` VALUES (18, '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：47毫秒', '0', '', '2025-09-26 15:16:00');
 
 -- ----------------------------
 -- Table structure for sys_logininfor
@@ -2170,7 +2172,7 @@ CREATE TABLE `sys_menu`  (
   `update_time` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3063 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 3064 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '菜单权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -2318,7 +2320,7 @@ INSERT INTO `sys_menu` VALUES (3057, '规则脚本删除', 3051, 4, '', NULL, NU
 INSERT INTO `sys_menu` VALUES (3058, '视频中心', 0, 2, 'video', NULL, NULL, 1, 0, 'M', '0', '0', '', 'live', 'admin', '2024-07-15 14:42:13', 'admin', '2025-09-26 15:09:23', '');
 INSERT INTO `sys_menu` VALUES (3059, '通道管理', 3058, 1, 'sip', 'iot/sip/index', NULL, 1, 0, 'C', '0', '0', 'iot:video:list', 'swagger', 'admin', '2024-07-15 14:43:22', '', NULL, '');
 INSERT INTO `sys_menu` VALUES (3060, '视频配置', 3058, 2, 'mediaServer', 'iot/sip/mediaServer', NULL, 1, 0, 'C', '0', '0', NULL, 'edit', 'admin', '2024-07-15 14:48:52', '', NULL, '');
-INSERT INTO `sys_menu` VALUES (3062, '大屏展示', 2000, 6, 'http://localhost/bigScreen', NULL, NULL, 0, 0, 'M', '0', '0', '', 'monitor-a', 'admin', '2025-03-19 15:07:39', 'admin', '2025-03-20 22:18:42', '');
+INSERT INTO `sys_menu` VALUES (3062, '大屏展示', 2000, 6, 'http://localhost:8001/bigScreen', NULL, NULL, 0, 0, 'M', '0', '0', '', 'monitor-a', 'admin', '2025-03-19 15:07:39', 'admin', '2025-09-26 15:16:11', '');
 INSERT INTO `sys_menu` VALUES (3063, '产品管理', 0, 0, 'prod', NULL, NULL, 1, 0, 'M', '0', '0', NULL, 'example', 'admin', '2025-09-26 15:10:06', '', NULL, '');
 
 -- ----------------------------
@@ -2371,7 +2373,7 @@ CREATE TABLE `sys_oper_log`  (
   INDEX `idx_sys_oper_log_bt`(`business_type`) USING BTREE,
   INDEX `idx_sys_oper_log_s`(`status`) USING BTREE,
   INDEX `idx_sys_oper_log_ot`(`oper_time`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 31 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '操作日志记录' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_oper_log
@@ -2406,6 +2408,7 @@ INSERT INTO `sys_oper_log` VALUES (27, '菜单管理', 2, 'com.gyjiot.web.contro
 INSERT INTO `sys_oper_log` VALUES (28, '菜单管理', 2, 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"iot/product/index\",\"createTime\":\"2021-12-16 00:41:18\",\"icon\":\"product\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2043,\"menuName\":\"产品管理\",\"menuType\":\"C\",\"orderNum\":3,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":3063,\"path\":\"product\",\"perms\":\"iot:product:list\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-09-26 15:10:37', 0);
 INSERT INTO `sys_oper_log` VALUES (29, '菜单管理', 2, 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2021-12-15 23:57:06\",\"icon\":\"device\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2000,\"menuName\":\"设备管理\",\"menuType\":\"M\",\"orderNum\":1,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"iot\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-09-26 15:10:55', 0);
 INSERT INTO `sys_oper_log` VALUES (30, '菜单管理', 2, 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"iot/device/index\",\"createTime\":\"2021-12-16 00:40:12\",\"icon\":\"iot\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2007,\"menuName\":\"设备管理\",\"menuType\":\"C\",\"orderNum\":5,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":2000,\"path\":\"device\",\"perms\":\"iot:device:list\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-09-26 15:11:09', 0);
+INSERT INTO `sys_oper_log` VALUES (31, '菜单管理', 2, 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', 1, 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2025-03-19 15:07:39\",\"icon\":\"monitor-a\",\"isCache\":\"0\",\"isFrame\":\"0\",\"menuId\":3062,\"menuName\":\"大屏展示\",\"menuType\":\"M\",\"orderNum\":6,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":2000,\"path\":\"http://localhost:8001/bigScreen\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', 0, NULL, '2025-09-26 15:16:11', 0);
 
 -- ----------------------------
 -- Table structure for sys_post
