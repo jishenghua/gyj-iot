@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 80029
 File Encoding         : 65001
 
-Date: 2025-09-26 14:04:32
+Date: 2025-09-26 14:23:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1547,10 +1547,10 @@ CREATE TABLE `sip_config` (
 -- ----------------------------
 -- Records of sip_config
 -- ----------------------------
-INSERT INTO `sip_config` VALUES ('38', '117', '', '1', '1', null, '3402000000', '34020000002000000001', '12345678', '177.7.0.13', '5061', '0', '', '2023-03-16 21:26:18', '', '2023-03-16 21:26:24', null);
-INSERT INTO `sip_config` VALUES ('39', '118', '', '1', '1', null, '3402000000', '34020000002000000001', '12345678', '177.7.0.13', '5061', '0', '', '2023-04-11 21:11:54', '', null, null);
-INSERT INTO `sip_config` VALUES ('41', '135', '', '1', '1', null, '3402000000', '34020000002000000001', '12345678', '177.7.0.13', '5061', '0', '', '2024-01-08 22:14:35', '', null, null);
-INSERT INTO `sip_config` VALUES ('42', '131', '', '0', '0', null, '3402000000', '34020000002000000001', '12345678', '192.168.5.27', '5061', '0', '', '2025-03-19 16:26:04', '', null, null);
+INSERT INTO `sip_config` VALUES ('38', '117', '', '1', '1', null, '3402000000', '34020000002000000001', '12345678', '0.0.0.0', '35060', '0', '', '2023-03-16 21:26:18', '', '2023-03-16 21:26:24', null);
+INSERT INTO `sip_config` VALUES ('39', '118', '', '1', '1', null, '3402000000', '34020000002000000001', '12345678', '0.0.0.0', '35060', '0', '', '2023-04-11 21:11:54', '', null, null);
+INSERT INTO `sip_config` VALUES ('41', '135', '', '1', '1', null, '3402000000', '34020000002000000001', '12345678', '0.0.0.0', '35060', '0', '', '2024-01-08 22:14:35', '', null, null);
+INSERT INTO `sip_config` VALUES ('42', '131', '', '0', '0', null, '3402000000', '34020000002000000001', '12345678', '0.0.0.0', '35060', '0', '', '2025-03-19 16:26:04', '', null, null);
 
 -- ----------------------------
 -- Table structure for sip_device
@@ -1581,7 +1581,7 @@ CREATE TABLE `sip_device` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb3 COLLATE utf8_general_ci DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`device_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='监控设备';
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb3 ROW_FORMAT=DYNAMIC COMMENT='监控设备';
 
 -- ----------------------------
 -- Records of sip_device
@@ -1592,6 +1592,7 @@ INSERT INTO `sip_device` VALUES ('13', '0', '', '11010200001320000017', '', '', 
 INSERT INTO `sip_device` VALUES ('16', '0', '', '12010100001320000003', 'IP DOME', 'Hikvision', 'iDS-2DE2402IX-D3/W/XM', 'V5.7.4', 'UDP', 'UDP', '', '2023-04-11 21:08:07', '2023-04-11 21:13:16', null, '192.168.2.119', '5060', '192.168.2.119:5060', '0', '', null, '', null, null);
 INSERT INTO `sip_device` VALUES ('18', '0', '', '13030100001320000001', '', 'ABCD', 'TEST001', 'V1.0', 'UDP', 'UDP', '', '2023-03-28 16:06:45', '2023-03-28 16:09:52', null, '192.168.205.250', '5063', '192.168.205.250:5063', '0', '', null, '', null, null);
 INSERT INTO `sip_device` VALUES ('19', '0', '', '11010200001320000001', '海康威视摄像头', 'Hikvision', 'iDS-2DE2402IX-D3/W/XM', 'V5.7.4', 'UDP', 'UDP', '', '2024-01-08 22:08:27', '2024-01-08 22:16:32', null, '192.168.2.119', '5065', '192.168.2.119:5065', '0', '', null, '', null, null);
+INSERT INTO `sip_device` VALUES ('20', '0', '', '32061200001180000006', '', '', '', '', 'UDP', 'UDP', '', '2025-09-26 14:09:15', '2025-09-26 14:23:15', null, '192.168.1.254', '5060', '192.168.1.254:5060', '0', '', null, '', null, null);
 
 -- ----------------------------
 -- Table structure for sip_device_channel
@@ -2175,13 +2176,35 @@ CREATE TABLE `sys_job_log` (
   `exception_info` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '异常信息',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_log_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='定时任务调度日志表';
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='定时任务调度日志表';
 
 -- ----------------------------
 -- Records of sys_job_log
 -- ----------------------------
 INSERT INTO `sys_job_log` VALUES ('1', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：35毫秒', '0', '', '2025-03-26 17:52:59');
 INSERT INTO `sys_job_log` VALUES ('2', '设备定时任务', 'SYSTEM', 'deviceJob.timingUpdateDeviceStatusStatus', '设备定时任务 总共耗时：0毫秒', '1', 'java.lang.NoSuchMethodException: com.gyjiot.data.service.impl.DeviceJob.timingUpdateDeviceStatusStatus()\n	at java.lang.Class.getMethod(Class.java:1786)\n	at com.gyjiot.quartz.util.JobInvokeUtil.invokeMethod(JobInvokeUtil.java:60)\n	at com.gyjiot.quartz.util.JobInvokeUtil.invokeMethod(JobInvokeUtil.java:33)\n	at com.gyjiot.quartz.util.QuartzDisallowConcurrentExecution.doExecute(QuartzDisallowConcurrentExecution.java:19)\n	at com.gyjiot.quartz.util.AbstractQuartzJob.execute(AbstractQuartzJob.java:43)\n	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)\n	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)\n', '2025-03-26 17:53:00');
+INSERT INTO `sys_job_log` VALUES ('3', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：24毫秒', '0', '', '2025-09-26 14:09:00');
+INSERT INTO `sys_job_log` VALUES ('4', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 14:10:00');
+INSERT INTO `sys_job_log` VALUES ('5', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：80毫秒', '0', '', '2025-09-26 14:10:00');
+INSERT INTO `sys_job_log` VALUES ('6', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：4毫秒', '0', '', '2025-09-26 14:11:00');
+INSERT INTO `sys_job_log` VALUES ('7', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：2毫秒', '0', '', '2025-09-26 14:12:00');
+INSERT INTO `sys_job_log` VALUES ('8', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：58毫秒', '0', '', '2025-09-26 14:12:00');
+INSERT INTO `sys_job_log` VALUES ('9', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：4毫秒', '0', '', '2025-09-26 14:13:00');
+INSERT INTO `sys_job_log` VALUES ('10', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 14:14:00');
+INSERT INTO `sys_job_log` VALUES ('11', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：47毫秒', '0', '', '2025-09-26 14:14:00');
+INSERT INTO `sys_job_log` VALUES ('12', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：4毫秒', '0', '', '2025-09-26 14:15:00');
+INSERT INTO `sys_job_log` VALUES ('13', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 14:16:00');
+INSERT INTO `sys_job_log` VALUES ('14', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：44毫秒', '0', '', '2025-09-26 14:16:00');
+INSERT INTO `sys_job_log` VALUES ('15', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 14:17:00');
+INSERT INTO `sys_job_log` VALUES ('16', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：8毫秒', '0', '', '2025-09-26 14:18:00');
+INSERT INTO `sys_job_log` VALUES ('17', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：84毫秒', '0', '', '2025-09-26 14:18:00');
+INSERT INTO `sys_job_log` VALUES ('18', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：7毫秒', '0', '', '2025-09-26 14:19:00');
+INSERT INTO `sys_job_log` VALUES ('19', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 14:20:00');
+INSERT INTO `sys_job_log` VALUES ('20', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：53毫秒', '0', '', '2025-09-26 14:20:00');
+INSERT INTO `sys_job_log` VALUES ('21', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：6毫秒', '0', '', '2025-09-26 14:21:00');
+INSERT INTO `sys_job_log` VALUES ('22', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：2毫秒', '0', '', '2025-09-26 14:22:00');
+INSERT INTO `sys_job_log` VALUES ('23', '监控在线状态更新', 'SYSTEM', 'deviceJob.updateSipDeviceOnlineStatus(90)', '监控在线状态更新 总共耗时：51毫秒', '0', '', '2025-09-26 14:22:00');
+INSERT INTO `sys_job_log` VALUES ('24', '设备定时同步', 'SYSTEM', 'deviceJob.syncDeviceStatus', '设备定时同步 总共耗时：3毫秒', '0', '', '2025-09-26 14:23:00');
 
 -- ----------------------------
 -- Table structure for sys_logininfor
@@ -2198,11 +2221,12 @@ CREATE TABLE `sys_logininfor` (
   `msg` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '提示消息',
   `login_time` datetime DEFAULT NULL COMMENT '访问时间',
   PRIMARY KEY (`info_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='系统访问记录';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='系统访问记录';
 
 -- ----------------------------
 -- Records of sys_logininfor
 -- ----------------------------
+INSERT INTO `sys_logininfor` VALUES ('1', 'admin', '127.0.0.1', '内网IP', 'Chrome 14', 'Windows 10', '0', '登录成功', '2025-09-26 14:09:07');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -2229,14 +2253,14 @@ CREATE TABLE `sys_menu` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `remark` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT '' COMMENT '备注',
   PRIMARY KEY (`menu_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=3063 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='菜单权限表';
+) ENGINE=InnoDB AUTO_INCREMENT=3064 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='菜单权限表';
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '4', 'system', null, '', '1', '0', 'M', '0', '0', '', 'system', 'admin', '2021-12-15 21:36:18', 'admin', '2023-09-16 16:42:52', '系统管理目录');
-INSERT INTO `sys_menu` VALUES ('2', '系统监控', '0', '5', 'monitor', null, '', '1', '0', 'M', '0', '0', '', 'monitor', 'admin', '2021-12-15 21:36:18', 'admin', '2023-08-24 17:21:20', '系统监控目录');
-INSERT INTO `sys_menu` VALUES ('3', '系统工具', '0', '6', 'tool', null, '', '1', '0', 'M', '0', '0', '', 'tool', 'admin', '2021-12-15 21:36:18', 'admin', '2023-08-24 17:21:28', '系统工具目录');
+INSERT INTO `sys_menu` VALUES ('1', '系统管理', '0', '5', 'system', null, '', '1', '0', 'M', '0', '0', '', 'system', 'admin', '2021-12-15 21:36:18', 'admin', '2025-09-26 14:21:24', '系统管理目录');
+INSERT INTO `sys_menu` VALUES ('2', '系统监控', '0', '6', 'monitor', null, '', '1', '0', 'M', '0', '0', '', 'monitor', 'admin', '2021-12-15 21:36:18', 'admin', '2025-09-26 14:21:19', '系统监控目录');
+INSERT INTO `sys_menu` VALUES ('3', '系统工具', '0', '7', 'tool', null, '', '1', '0', 'M', '0', '0', '', 'tool', 'admin', '2021-12-15 21:36:18', 'admin', '2025-09-26 14:21:13', '系统工具目录');
 INSERT INTO `sys_menu` VALUES ('4', '管伊佳物联', '0', '10', 'http://gyjiot.cn', null, '', '0', '0', 'M', '0', '0', '', 'guide', 'admin', '2021-12-15 21:36:18', 'admin', '2025-03-19 15:14:02', '若依官网地址');
 INSERT INTO `sys_menu` VALUES ('100', '用户管理', '1', '1', 'user', 'system/user/index', '', '1', '0', 'C', '0', '0', 'system:user:list', 'user', 'admin', '2021-12-15 21:36:18', '', null, '用户管理菜单');
 INSERT INTO `sys_menu` VALUES ('101', '角色管理', '1', '2', 'role', 'system/role/index', '', '1', '0', 'C', '0', '0', 'system:role:list', 'peoples', 'admin', '2021-12-15 21:36:18', '', null, '角色管理菜单');
@@ -2319,14 +2343,14 @@ INSERT INTO `sys_menu` VALUES ('1058', '导入代码', '115', '2', '#', '', '', 
 INSERT INTO `sys_menu` VALUES ('1059', '预览代码', '115', '4', '#', '', '', '1', '0', 'F', '0', '0', 'tool:gen:preview', '#', 'admin', '2021-12-15 21:36:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1060', '生成代码', '115', '5', '#', '', '', '1', '0', 'F', '0', '0', 'tool:gen:code', '#', 'admin', '2021-12-15 21:36:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('1065', '账户解锁', '501', '4', '#', '', '', '1', '0', 'F', '0', '0', 'monitor:logininfor:unlock', '#', 'admin', '2023-03-10 23:23:04', '', null, '');
-INSERT INTO `sys_menu` VALUES ('2000', '设备管理', '0', '0', 'iot', null, null, '1', '0', 'M', '0', '0', '', 'iot', 'admin', '2021-12-15 23:57:06', 'admin', '2021-12-26 23:55:54', '');
-INSERT INTO `sys_menu` VALUES ('2001', '产品分类', '2000', '2', 'category', 'iot/category/index', null, '1', '0', 'C', '0', '0', 'iot:category:list', 'category', 'admin', '2021-12-16 00:40:02', 'admin', '2021-12-26 23:56:20', '产品分类菜单');
+INSERT INTO `sys_menu` VALUES ('2000', '设备管理', '0', '1', 'iot', null, null, '1', '0', 'M', '0', '0', '', 'device', 'admin', '2021-12-15 23:57:06', 'admin', '2025-09-26 14:22:43', '');
+INSERT INTO `sys_menu` VALUES ('2001', '产品分类', '3063', '2', 'category', 'iot/category/index', null, '1', '0', 'C', '0', '0', 'iot:category:list', 'category', 'admin', '2021-12-16 00:40:02', 'admin', '2025-09-26 14:20:30', '产品分类菜单');
 INSERT INTO `sys_menu` VALUES ('2002', '产品分类查询', '2001', '1', '#', '', null, '1', '0', 'F', '0', '0', 'iot:category:query', '#', 'admin', '2021-12-16 00:40:02', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2003', '产品分类新增', '2001', '2', '#', '', null, '1', '0', 'F', '0', '0', 'iot:category:add', '#', 'admin', '2021-12-16 00:40:02', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2004', '产品分类修改', '2001', '3', '#', '', null, '1', '0', 'F', '0', '0', 'iot:category:edit', '#', 'admin', '2021-12-16 00:40:02', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2005', '产品分类删除', '2001', '4', '#', '', null, '1', '0', 'F', '0', '0', 'iot:category:remove', '#', 'admin', '2021-12-16 00:40:02', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2006', '产品分类导出', '2001', '5', '#', '', null, '1', '0', 'F', '0', '0', 'iot:category:export', '#', 'admin', '2021-12-16 00:40:02', '', null, '');
-INSERT INTO `sys_menu` VALUES ('2007', '设备管理', '2000', '5', 'device', 'iot/device/index', null, '1', '0', 'C', '0', '0', 'iot:device:list', 'device', 'admin', '2021-12-16 00:40:12', 'admin', '2022-01-08 15:47:14', '设备菜单');
+INSERT INTO `sys_menu` VALUES ('2007', '设备管理', '2000', '5', 'device', 'iot/device/index', null, '1', '0', 'C', '0', '0', 'iot:device:list', 'iot', 'admin', '2021-12-16 00:40:12', 'admin', '2025-09-26 14:23:07', '设备菜单');
 INSERT INTO `sys_menu` VALUES ('2008', '设备查询', '2007', '1', '#', '', null, '1', '0', 'F', '0', '0', 'iot:device:query', '#', 'admin', '2021-12-16 00:40:12', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2009', '设备新增', '2007', '2', '#', '', null, '1', '0', 'F', '0', '0', 'iot:device:add', '#', 'admin', '2021-12-16 00:40:12', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2010', '设备修改', '2007', '3', '#', '', null, '1', '0', 'F', '0', '0', 'iot:device:edit', '#', 'admin', '2021-12-16 00:40:12', '', null, '');
@@ -2338,13 +2362,13 @@ INSERT INTO `sys_menu` VALUES ('2021', '设备分组新增', '2019', '2', '#', '
 INSERT INTO `sys_menu` VALUES ('2022', '设备分组修改', '2019', '3', '#', '', null, '1', '0', 'F', '0', '0', 'iot:group:edit', '#', 'admin', '2021-12-16 00:40:31', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2023', '设备分组删除', '2019', '4', '#', '', null, '1', '0', 'F', '0', '0', 'iot:group:remove', '#', 'admin', '2021-12-16 00:40:31', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2024', '设备分组导出', '2019', '5', '#', '', null, '1', '0', 'F', '0', '0', 'iot:group:export', '#', 'admin', '2021-12-16 00:40:31', '', null, '');
-INSERT INTO `sys_menu` VALUES ('2043', '产品管理', '2000', '3', 'product', 'iot/product/index', null, '1', '0', 'C', '0', '0', 'iot:product:list', 'product', 'admin', '2021-12-16 00:41:18', 'admin', '2021-12-26 23:58:44', '产品菜单');
+INSERT INTO `sys_menu` VALUES ('2043', '产品管理', '3063', '3', 'product', 'iot/product/index', null, '1', '0', 'C', '0', '0', 'iot:product:list', 'product', 'admin', '2021-12-16 00:41:18', 'admin', '2025-09-26 14:20:37', '产品菜单');
 INSERT INTO `sys_menu` VALUES ('2044', '产品查询', '2043', '1', '#', '', null, '1', '0', 'F', '0', '0', 'iot:product:query', '#', 'admin', '2021-12-16 00:41:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2045', '产品新增', '2043', '2', '#', '', null, '1', '0', 'F', '0', '0', 'iot:product:add', '#', 'admin', '2021-12-16 00:41:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2046', '产品修改', '2043', '3', '#', '', null, '1', '0', 'F', '0', '0', 'iot:product:edit', '#', 'admin', '2021-12-16 00:41:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2047', '产品删除', '2043', '4', '#', '', null, '1', '0', 'F', '0', '0', 'iot:product:remove', '#', 'admin', '2021-12-16 00:41:18', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2048', '产品导出', '2043', '5', '#', '', null, '1', '0', 'F', '0', '0', 'iot:product:export', '#', 'admin', '2021-12-16 00:41:18', '', null, '');
-INSERT INTO `sys_menu` VALUES ('2049', '通用物模型', '2000', '1', 'template', 'iot/template/index', null, '1', '0', 'C', '0', '0', 'iot:template:list', 'model', 'admin', '2021-12-16 00:41:28', 'admin', '2021-12-26 23:56:09', '通用物模型菜单');
+INSERT INTO `sys_menu` VALUES ('2049', '通用物模型', '3063', '1', 'template', 'iot/template/index', null, '1', '0', 'C', '0', '0', 'iot:template:list', 'model', 'admin', '2021-12-16 00:41:28', 'admin', '2025-09-26 14:20:18', '通用物模型菜单');
 INSERT INTO `sys_menu` VALUES ('2050', '通用物模型查询', '2049', '1', '#', '', null, '1', '0', 'F', '0', '0', 'iot:template:query', '#', 'admin', '2021-12-16 00:41:28', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2051', '通用物模型新增', '2049', '2', '#', '', null, '1', '0', 'F', '0', '0', 'iot:template:add', '#', 'admin', '2021-12-16 00:41:28', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2052', '通用物模型修改', '2049', '3', '#', '', null, '1', '0', 'F', '0', '0', 'iot:template:edit', '#', 'admin', '2021-12-16 00:41:28', '', null, '');
@@ -2370,7 +2394,7 @@ INSERT INTO `sys_menu` VALUES ('2140', '产品授权码导出', '2043', '5', '#'
 INSERT INTO `sys_menu` VALUES ('2142', '平台查询', '2142', '1', '', null, null, '1', '0', 'F', '0', '0', 'iot:platform:query', '#', 'admin', '2022-04-11 19:10:28', '', null, '');
 INSERT INTO `sys_menu` VALUES ('2147', '设备分享', '2007', '6', '', null, null, '1', '0', 'F', '0', '0', 'iot:device:share', '#', 'admin', '2022-06-10 01:08:40', 'admin', '2022-06-10 01:10:46', '');
 INSERT INTO `sys_menu` VALUES ('2148', '设备定时', '2007', '7', '', null, null, '1', '0', 'F', '0', '0', 'iot:device:timer', '#', 'admin', '2022-06-10 01:10:30', '', null, '');
-INSERT INTO `sys_menu` VALUES ('3031', 'Netty管理', '0', '3', 'netty', null, null, '1', '0', 'M', '0', '0', '', 'mq', 'admin', '2022-02-26 00:42:12', 'admin', '2023-09-26 00:11:57', '');
+INSERT INTO `sys_menu` VALUES ('3031', 'Netty管理', '0', '4', 'netty', null, null, '1', '0', 'M', '0', '0', '', 'mq', 'admin', '2022-02-26 00:42:12', 'admin', '2025-09-26 14:21:29', '');
 INSERT INTO `sys_menu` VALUES ('3032', '客户端', '3031', '1', 'client', 'iot/netty/clients', null, '1', '0', 'C', '0', '0', 'monitor:server:list', 'client', 'admin', '2022-02-26 00:45:39', 'admin', '2023-08-23 23:38:08', '');
 INSERT INTO `sys_menu` VALUES ('3033', '事件日志', '2000', '1', 'log', 'iot/log/index', null, '1', '0', 'F', '0', '0', 'iot:event:list', '#', 'admin', '2023-03-28 14:23:52', '', null, '事件日志菜单');
 INSERT INTO `sys_menu` VALUES ('3034', '事件日志查询', '3033', '1', '#', '', null, '1', '0', 'F', '0', '0', 'iot:event:query', '#', 'admin', '2023-03-28 14:23:52', '', null, '');
@@ -2379,17 +2403,18 @@ INSERT INTO `sys_menu` VALUES ('3036', '事件日志修改', '3033', '3', '#', '
 INSERT INTO `sys_menu` VALUES ('3037', '事件日志删除', '3033', '4', '#', '', null, '1', '0', 'F', '0', '0', 'iot:event:remove', '#', 'admin', '2023-03-28 14:23:52', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3038', '事件日志导出', '3033', '5', '#', '', null, '1', '0', 'F', '0', '0', 'iot:event:export', '#', 'admin', '2023-03-28 14:23:52', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3048', 'Mqtt统计', '3031', '2', 'mqtt', 'iot/netty/mqtt', null, '1', '0', 'C', '0', '0', 'monitor:server:list', 'monitor', 'admin', '2023-08-23 23:40:28', 'admin', '2023-08-23 23:40:38', '');
-INSERT INTO `sys_menu` VALUES ('3050', '规则引擎', '0', '2', 'ruleengine', null, null, '1', '0', 'M', '0', '0', '', 'channel', 'admin', '2024-04-22 16:28:15', 'admin', '2025-03-19 15:13:50', '');
+INSERT INTO `sys_menu` VALUES ('3050', '规则引擎', '0', '3', 'ruleengine', null, null, '1', '0', 'M', '0', '0', '', 'channel', 'admin', '2024-04-22 16:28:15', 'admin', '2025-09-26 14:21:40', '');
 INSERT INTO `sys_menu` VALUES ('3051', '规则脚本', '3050', '2', 'script', 'iot/scene/script', null, '1', '0', 'C', '0', '0', 'iot:script:list', 'code', 'admin', '2024-04-22 16:30:00', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3052', '规则脚本查询', '3051', '1', '', null, null, '1', '0', 'F', '0', '0', 'iot:script:query', '#', 'admin', '2024-04-22 16:30:53', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3053', '规则脚本新增', '3051', '2', '', null, null, '1', '0', 'F', '0', '0', 'iot:script:add', '#', 'admin', '2024-04-22 16:31:28', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3054', '规则脚本修改', '3051', '3', '', null, null, '1', '0', 'F', '0', '0', 'iot:script:edit', '#', 'admin', '2024-04-22 16:32:04', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3056', '规则脚本导出', '3051', '5', '', null, null, '1', '0', 'F', '0', '0', 'iot:script:export', '#', 'admin', '2024-04-22 16:33:25', 'admin', '2024-04-22 16:33:49', '');
 INSERT INTO `sys_menu` VALUES ('3057', '规则脚本删除', '3051', '4', '', null, null, '1', '0', 'F', '0', '0', 'iot:script:remove', '#', 'admin', '2024-04-22 16:35:01', '', null, '');
-INSERT INTO `sys_menu` VALUES ('3058', '视频中心', '0', '1', 'video', null, null, '1', '0', 'M', '0', '0', '', 'live', 'admin', '2024-07-15 14:42:13', 'admin', '2025-03-19 15:13:43', '');
+INSERT INTO `sys_menu` VALUES ('3058', '视频中心', '0', '2', 'video', null, null, '1', '0', 'M', '0', '0', '', 'live', 'admin', '2024-07-15 14:42:13', 'admin', '2025-09-26 14:21:47', '');
 INSERT INTO `sys_menu` VALUES ('3059', '通道管理', '3058', '1', 'sip', 'iot/sip/index', null, '1', '0', 'C', '0', '0', 'iot:video:list', 'swagger', 'admin', '2024-07-15 14:43:22', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3060', '视频配置', '3058', '2', 'mediaServer', 'iot/sip/mediaServer', null, '1', '0', 'C', '0', '0', null, 'edit', 'admin', '2024-07-15 14:48:52', '', null, '');
 INSERT INTO `sys_menu` VALUES ('3062', '大屏展示', '2000', '6', 'http://localhost/bigScreen', null, null, '0', '0', 'M', '0', '0', '', 'monitor-a', 'admin', '2025-03-19 15:07:39', 'admin', '2025-03-20 22:18:42', '');
+INSERT INTO `sys_menu` VALUES ('3063', '产品管理', '0', '0', 'prod', null, null, '1', '0', 'M', '0', '0', null, 'example', 'admin', '2025-09-26 14:19:54', '', null, '');
 
 -- ----------------------------
 -- Table structure for sys_notice
@@ -2441,11 +2466,24 @@ CREATE TABLE `sys_oper_log` (
   KEY `idx_sys_oper_log_bt` (`business_type`),
   KEY `idx_sys_oper_log_s` (`status`),
   KEY `idx_sys_oper_log_ot` (`oper_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='操作日志记录';
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC COMMENT='操作日志记录';
 
 -- ----------------------------
 -- Records of sys_oper_log
 -- ----------------------------
+INSERT INTO `sys_oper_log` VALUES ('1', '菜单管理', '1', 'com.gyjiot.web.controller.system.SysMenuController.add()', 'POST', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createBy\":\"admin\",\"icon\":\"example\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuName\":\"产品管理\",\"menuType\":\"M\",\"orderNum\":0,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"prod\",\"status\":\"0\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:19:54', '0');
+INSERT INTO `sys_oper_log` VALUES ('2', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"iot/template/index\",\"createTime\":\"2021-12-16 00:41:28\",\"icon\":\"model\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2049,\"menuName\":\"通用物模型\",\"menuType\":\"C\",\"orderNum\":1,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":3063,\"path\":\"template\",\"perms\":\"iot:template:list\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:20:18', '0');
+INSERT INTO `sys_oper_log` VALUES ('3', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"iot/category/index\",\"createTime\":\"2021-12-16 00:40:02\",\"icon\":\"category\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2001,\"menuName\":\"产品分类\",\"menuType\":\"C\",\"orderNum\":2,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":3063,\"path\":\"category\",\"perms\":\"iot:category:list\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:20:30', '0');
+INSERT INTO `sys_oper_log` VALUES ('4', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"iot/product/index\",\"createTime\":\"2021-12-16 00:41:18\",\"icon\":\"product\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2043,\"menuName\":\"产品管理\",\"menuType\":\"C\",\"orderNum\":3,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":3063,\"path\":\"product\",\"perms\":\"iot:product:list\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:20:37', '0');
+INSERT INTO `sys_oper_log` VALUES ('5', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2021-12-15 21:36:18\",\"icon\":\"tool\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":3,\"menuName\":\"系统工具\",\"menuType\":\"M\",\"orderNum\":7,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"tool\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:13', '0');
+INSERT INTO `sys_oper_log` VALUES ('6', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2021-12-15 21:36:18\",\"icon\":\"monitor\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2,\"menuName\":\"系统监控\",\"menuType\":\"M\",\"orderNum\":6,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"monitor\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:19', '0');
+INSERT INTO `sys_oper_log` VALUES ('7', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2021-12-15 21:36:18\",\"icon\":\"system\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":1,\"menuName\":\"系统管理\",\"menuType\":\"M\",\"orderNum\":5,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"system\",\"perms\":\"\",\"query\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:24', '0');
+INSERT INTO `sys_oper_log` VALUES ('8', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2022-02-26 00:42:12\",\"icon\":\"mq\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":3031,\"menuName\":\"Netty管理\",\"menuType\":\"M\",\"orderNum\":4,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"netty\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:29', '0');
+INSERT INTO `sys_oper_log` VALUES ('9', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2024-04-22 16:28:15\",\"icon\":\"channel\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":3050,\"menuName\":\"规则引擎\",\"menuType\":\"M\",\"orderNum\":3,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"ruleengine\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:40', '0');
+INSERT INTO `sys_oper_log` VALUES ('10', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2024-07-15 14:42:13\",\"icon\":\"live\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":3058,\"menuName\":\"视频中心\",\"menuType\":\"M\",\"orderNum\":2,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"video\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:47', '0');
+INSERT INTO `sys_oper_log` VALUES ('11', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2021-12-15 23:57:06\",\"icon\":\"iot\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2000,\"menuName\":\"设备管理\",\"menuType\":\"M\",\"orderNum\":1,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"iot\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:21:57', '0');
+INSERT INTO `sys_oper_log` VALUES ('12', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"createTime\":\"2021-12-15 23:57:06\",\"icon\":\"device\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2000,\"menuName\":\"设备管理\",\"menuType\":\"M\",\"orderNum\":1,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":0,\"path\":\"iot\",\"perms\":\"\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:22:43', '0');
+INSERT INTO `sys_oper_log` VALUES ('13', '菜单管理', '2', 'com.gyjiot.web.controller.system.SysMenuController.edit()', 'PUT', '1', 'admin', '研发部门', '/system/menu', '127.0.0.1', '内网IP', '{\"children\":[],\"component\":\"iot/device/index\",\"createTime\":\"2021-12-16 00:40:12\",\"icon\":\"iot\",\"isCache\":\"0\",\"isFrame\":\"1\",\"menuId\":2007,\"menuName\":\"设备管理\",\"menuType\":\"C\",\"orderNum\":5,\"pageNum\":1,\"pageSize\":2147483647,\"params\":{},\"parentId\":2000,\"path\":\"device\",\"perms\":\"iot:device:list\",\"status\":\"0\",\"updateBy\":\"admin\",\"visible\":\"0\"}', '{\"msg\":\"操作成功\",\"code\":200}', '0', null, '2025-09-26 14:23:07', '0');
 
 -- ----------------------------
 -- Table structure for sys_post
@@ -2850,7 +2888,7 @@ CREATE TABLE `sys_user` (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '管伊佳管理员', '00', '', '15888888888', '0', '', '$2a$10$QAow7ybs74fkSWJDJkVTNeogF7mhnihF7STErt78PxDhHiNno4IUu', '0', '0', '183.225.40.49', '2025-03-26 11:18:01', 'admin', '2021-12-15 21:36:18', '', '2025-03-26 11:18:01', '管理员');
+INSERT INTO `sys_user` VALUES ('1', '103', 'admin', '管伊佳管理员', '00', '', '15888888888', '0', '', '$2a$10$QAow7ybs74fkSWJDJkVTNeogF7mhnihF7STErt78PxDhHiNno4IUu', '0', '0', '127.0.0.1', '2025-09-26 14:09:08', 'admin', '2021-12-15 21:36:18', '', '2025-09-26 14:09:07', '管理员');
 INSERT INTO `sys_user` VALUES ('2', '100', 'gyjiot-t1', '管伊佳租户壹', '00', '', '15888888880', '0', '', '$2a$10$BAWId9C2Nrcwklzl1Ikoau4iqL8XRGvfRjq6Wl.PXWpzwAw0sXMdK', '0', '0', '61.145.97.26', '2023-08-29 14:52:27', 'admin', '2022-04-15 16:21:25', 'admin', '2023-08-29 14:52:26', null);
 INSERT INTO `sys_user` VALUES ('3', '100', 'gyjiot-t2', '管伊佳租户贰', '00', '', '15888888881', '0', '', '$2a$10$1zMlbW7hGpzA59gpzWGO/ObeASziQ296evjMjHrYdZnxKBLU4WUum', '0', '0', '127.0.0.1', '2022-06-12 00:54:28', 'admin', '2022-04-15 16:22:08', 'admin', '2022-06-12 00:54:30', null);
 INSERT INTO `sys_user` VALUES ('4', '100', 'gyjiot-u1', '管伊佳用户壹', '00', '', '15888888882', '0', '', '$2a$10$691RJMXZ9HM4sgNTExLPfO5Nw6J6cWgCvcoF9V.jKMnPk5o/8c9VS', '0', '0', '127.0.0.1', '2023-04-12 22:26:39', 'admin', '2022-04-15 16:22:37', 'admin', '2023-04-12 22:26:39', null);
