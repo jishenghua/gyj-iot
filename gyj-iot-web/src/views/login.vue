@@ -53,8 +53,8 @@
           <span v-else>登 录 中...</span>
         </el-button>
         <div style="float: right; padding-top: 10px;">
-          <el-link href="http://www.gyjerp.com/" :underline="false" target="_blank" style="float: left">返回官网</el-link>
-          <el-link href="http://www.gyjerp.com/" :underline="false" target="_blank" style="float: left; margin-left: 20px">查看文档</el-link>
+          <el-link href="https://www.gyjerp.com/" :underline="false" target="_blank" style="float: left">返回官网</el-link>
+          <el-link href="https://www.gyjerp.com/iot" :underline="false" target="_blank" style="float: left; margin-left: 20px">查看文档</el-link>
           <router-link v-if="register" class="link-type" :to="'/register'" style="float: left; margin-left: 20px">立即注册</router-link>
         </div>
       </el-form-item>
