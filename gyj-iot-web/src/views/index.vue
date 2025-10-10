@@ -147,7 +147,7 @@
       <br />
       <span>
         项目文档
-        <a href="http://www.gyjerp.com/" target="_blank">http://www.gyjerp.com/</a>
+        <a href="http://www.gyjerp.com/iot/" target="_blank">http://www.gyjerp.com/iot/</a>
       </span>
     </div>
   </div>
