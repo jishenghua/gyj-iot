@@ -356,7 +356,7 @@ function getmap() {
     var res = [];
     for (var i = 0; i < data.length; i++) {
       var geoCoord = [data[i].longitude, data[i].latitude];
-      if (geoCoord && data[i].status == status) {
+      if (geoCoord && data[i].status === status) {
         res.push({
           name: data[i].deviceName,
           value: geoCoord,
@@ -368,7 +368,6 @@ function getmap() {
           productName: data[i].productName,
           activeTime: data[i].activeTime == null ? '' : data[i].activeTime,
           deviceId: data[i].deviceId,
-          serialNumber: data[i].serialNumber,
           locationWay: data[i].locationWay,
         });
       }
