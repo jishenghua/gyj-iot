@@ -107,129 +107,27 @@ function getmap() {
             zoom: 5,
             // 大屏用zomm缩放，导致地图缩放中心点会偏移
             roam: 'move',
-            mapStyle: {
+            mapOptions: {
+              // 禁用百度地图自带的底图可点功能
+              enableMapClick: false
+            },
+            // 百度地图3.0之后的新版自定义样式
+            mapStyleV2: {
                 styleJson: [{
-                    featureType: 'water',
-                    elementType: 'all',
-                    stylers: {
-                        color: '#3863db'
-                    }
-                },
-                    {
-                        featureType: 'land',
-                        elementType: 'all',
-                        stylers: {
-                            color: '#0e2e87'
-                        }
-                    },
-                    {
-                        featureType: 'railway',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off'
-                        }
-                    },
-                    {
-                        featureType: 'highway',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off',
-                            color: '#fdfdfd'
-                        }
-                    },
-                    {
-                        featureType: 'highway',
-                        elementType: 'labels',
-                        stylers: {
-                            visibility: 'off',
-                            visibility: 'off'
-                        }
-                    },
-                    {
-                        featureType: 'arterial',
-                        elementType: 'geometry',
-                        stylers: {
-                            visibility: 'off',
-                            color: '#fefefe'
-                        }
-                    },
-                    {
-                        featureType: 'arterial',
-                        elementType: 'geometry.fill',
-                        stylers: {
-                            visibility: 'off',
-                            color: '#fefefe'
-                        }
-                    },
-                    {
-                        featureType: 'poi',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off',
-                            visibility: 'off'
-                        }
-                    },
-                    {
-                        featureType: 'green',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off'
-                        }
-                    },
-                    {
-                        featureType: 'subway',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off'
-                        }
-                    },
-                    {
-                        featureType: 'manmade',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off',
-                            color: '#d1d1d1'
-                        }
-                    },
-                    {
-                        featureType: 'local',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off',
-                            color: '#d1d1d1'
-                        }
-                    },
-                    {
-                        featureType: 'arterial',
-                        elementType: 'labels',
-                        stylers: {
-                            visibility: 'off'
-                        }
-                    },
-                    {
-                        featureType: 'boundary',
-                        elementType: 'all',
-                        stylers: {
-                            color: '#23cdd8'
-                        }
-                    },
-                    {
-                        featureType: 'building',
-                        elementType: 'all',
-                        stylers: {
-                            visibility: 'off',
-                            color: '#d1d1d1'
-                        }
-                    },
-                    {
-                        featureType: 'label',
-                        elementType: 'labels.text.fill',
-                        stylers: {
-                            color: '#264194',
-                            visibility: 'off'
-                        }
-                    }
-                ]
+                  "featureType": "background",
+                  "elementType": "geometry",
+                  "stylers": {
+                    "color": "#0e2e87ff"
+                  },
+                  "styleType": "background"
+                }, {
+                  "featureType": "districtlabel",
+                  "elementType": "labels",
+                  "stylers": {
+                    "visibility": "off"
+                  },
+                  "styleType": "districtlabel"
+                }]
             }
         },
         series: [{
@@ -282,7 +180,6 @@ function getmap() {
         ]
     };
     option && myChart.setOption(option, true);
-
 }
 
 // 格式化数据
@@ -302,7 +199,6 @@ function convertData(data, status) {
                 productName: data[i].productName,
                 activeTime: data[i].activeTime == null ? '' : data[i].activeTime,
                 deviceId: data[i].deviceId,
-                serialNumber: data[i].serialNumber,
                 locationWay: data[i].locationWay,
             });
         }
