@@ -1,5 +1,6 @@
 package com.gyjiot.sip.handler.req;
 
+import com.gyjiot.sip.conf.SysSipConfig;
 import gov.nist.javax.sip.SipStackImpl;
 import gov.nist.javax.sip.message.SIPRequest;
 import gov.nist.javax.sip.message.SIPResponse;
@@ -14,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 import javax.sip.*;
+import javax.sip.address.Address;
 import javax.sip.header.FromHeader;
 import javax.sip.header.HeaderFactory;
 import javax.sip.header.ToHeader;
@@ -32,6 +34,12 @@ public abstract class ReqAbstractHandler {
     @Autowired
     @Qualifier(value = "udpSipServer")
     private SipProvider udpSipServer;
+
+    @Autowired
+    private SysSipConfig sysSipConfig;
+
+    @Autowired
+    private SipFactory sipFactory;
 
     public ServerTransaction getServerTransaction(RequestEvent evt) {
         Request request = evt.getRequest();
@@ -80,6 +88,11 @@ public abstract class ReqAbstractHandler {
 
     public void responseAck(RequestEvent evt) throws SipException, InvalidArgumentException, ParseException {
         Response response = getMessageFactory().createResponse(Response.OK, evt.getRequest());
+        // 必须设置Contact头
+        Address contactAddress = sipFactory.createAddressFactory().createAddress("sip:" + sysSipConfig.getIp() + ":" + sysSipConfig.getPort());
+        response.addHeader(getHeaderFactory().createContactHeader(contactAddress));
+        // 添加其他必要头域
+        response.addHeader(getHeaderFactory().createContentTypeHeader("APPLICATION", "SDP"));
         getServerTransaction(evt).sendResponse(response);
     }
 
