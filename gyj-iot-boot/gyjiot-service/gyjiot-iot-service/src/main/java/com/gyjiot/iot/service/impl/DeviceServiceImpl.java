@@ -220,73 +220,75 @@ public class DeviceServiceImpl implements IDeviceService {
         String key = RedisKeyBuilder.buildTSLVCacheKey(input.getProductId(), input.getDeviceNumber());
         Map<String, String> maps = new HashMap<String, String>();
         List<ThingsModelSimpleItem> list = new ArrayList<>();
-        for (ThingsModelSimpleItem item : input.getThingsModelValueRemarkItem()) {
-            String identity = item.getId();
-            Integer slaveId = input.getSlaveId() == null ? item.getSlaveId() : input.getSlaveId();
-            String serialNumber = slaveId == null ? input.getDeviceNumber() : input.getDeviceNumber()+"_"+ slaveId;
-            if (identity.startsWith("array_")) {
-                identity = identity.substring(9);
-            }
-            // 查询redis中物模型
-            identity = identity + (slaveId != null ? "#" + slaveId : "");
-            PropertyDto dto = thingsModelService.getSingleThingModels(input.getProductId(), identity);
-            if (null == dto) {
-                continue;
-            }
-            String id = item.getId();
-            String value = item.getValue();
-
-
-            /* ★★★★★★★★★★★★★★★★★★★★★★  处理数据 - 开始 ★★★★★★★★★★★★★★★★★★★★★★*/
-            String cacheValue = redisCache.getCacheMapValue(key, identity);
-            ValueItem valueItem = JSON.parseObject(cacheValue, ValueItem.class);
-            if (null == valueItem) {
-                valueItem = new ValueItem(id,dto.getTempSlaveId(),id);
-            }
-            if (id.startsWith("array_")) {
-                // 查询是否有缓存，如果没有先进行缓存
-                if (!redisCache.containsKey(key)) {
-                    Device device = this.selectDeviceBySerialNumber(input.getDeviceNumber());
-                    this.selectDeviceByDeviceId(device.getDeviceId());
+        if(input.getThingsModelValueRemarkItem()!=null) {
+            for (ThingsModelSimpleItem item : input.getThingsModelValueRemarkItem()) {
+                String identity = item.getId();
+                Integer slaveId = input.getSlaveId() == null ? item.getSlaveId() : input.getSlaveId();
+                String serialNumber = slaveId == null ? input.getDeviceNumber() : input.getDeviceNumber() + "_" + slaveId;
+                if (identity.startsWith("array_")) {
+                    identity = identity.substring(9);
                 }
+                // 查询redis中物模型
+                identity = identity + (slaveId != null ? "#" + slaveId : "");
+                PropertyDto dto = thingsModelService.getSingleThingModels(input.getProductId(), identity);
+                if (null == dto) {
+                    continue;
+                }
+                String id = item.getId();
+                String value = item.getValue();
 
-                int index = Integer.parseInt(id.substring(6, 8));
-                if (isShadow) {
-                    String[] shadows = valueItem.getShadow().split(",");
-                    shadows[index] = value;
-                    valueItem.setShadow(String.join(",", shadows));
+
+                /* ★★★★★★★★★★★★★★★★★★★★★★  处理数据 - 开始 ★★★★★★★★★★★★★★★★★★★★★★*/
+                String cacheValue = redisCache.getCacheMapValue(key, identity);
+                ValueItem valueItem = JSON.parseObject(cacheValue, ValueItem.class);
+                if (null == valueItem) {
+                    valueItem = new ValueItem(id, dto.getTempSlaveId(), id);
+                }
+                if (id.startsWith("array_")) {
+                    // 查询是否有缓存，如果没有先进行缓存
+                    if (!redisCache.containsKey(key)) {
+                        Device device = this.selectDeviceBySerialNumber(input.getDeviceNumber());
+                        this.selectDeviceByDeviceId(device.getDeviceId());
+                    }
+
+                    int index = Integer.parseInt(id.substring(6, 8));
+                    if (isShadow) {
+                        String[] shadows = valueItem.getShadow().split(",");
+                        shadows[index] = value;
+                        valueItem.setShadow(String.join(",", shadows));
+                    } else {
+                        // 设置值，获取数组值，然后替换其中元素
+                        valueItem.setTs(DateUtils.getNowDate());
+                        String[] values = valueItem.getValue().split(",");
+                        values[index] = value;
+                        valueItem.setValue(String.join(",", values));
+
+                        String[] shadows = valueItem.getShadow().split(",");
+                        shadows[index] = value;
+                        valueItem.setShadow(String.join(",", shadows));
+                    }
+                    redisCache.setCacheMapValue(key, identity, JSONObject.toJSONString(valueItem));
+                    //maps.put(identity, JSONObject.toJSONString(valueItem));
                 } else {
-                    // 设置值，获取数组值，然后替换其中元素
-                    valueItem.setTs(DateUtils.getNowDate());
-                    String[] values = valueItem.getValue().split(",");
-                    values[index] = value;
-                    valueItem.setValue(String.join(",", values));
-
-                    String[] shadows = valueItem.getShadow().split(",");
-                    shadows[index] = value;
-                    valueItem.setShadow(String.join(",", shadows));
+                    if (isShadow) {
+                        valueItem.setShadow(value);
+                    } else {
+                        valueItem.setValue(value);
+                        valueItem.setShadow(value);
+                        valueItem.setTs(DateUtils.getNowDate());
+                    }
+                    maps.put(identity, JSONObject.toJSONString(valueItem));
                 }
-                redisCache.setCacheMapValue(key,identity,JSONObject.toJSONString(valueItem));
-                //maps.put(identity, JSONObject.toJSONString(valueItem));
-            } else {
-                if (isShadow) {
-                    valueItem.setShadow(value);
-                } else {
-                    valueItem.setValue(value);
-                    valueItem.setShadow(value);
-                    valueItem.setTs(DateUtils.getNowDate());
+                /* ★★★★★★★★★★★★★★★★★★★★★★  处理数据 - 结束 ★★★★★★★★★★★★★★★★★★★★★★*/
+
+                /*★★★★★★★★★★★★★★★★★★★★★★  存储数据 - 开始 ★★★★★★★★★★★★★★★★★★★★★★*/
+                if (null != dto.getIsHistory()) {
+
                 }
-                maps.put(identity, JSONObject.toJSONString(valueItem));
+                list.add(item);
             }
-            /* ★★★★★★★★★★★★★★★★★★★★★★  处理数据 - 结束 ★★★★★★★★★★★★★★★★★★★★★★*/
-
-            /*★★★★★★★★★★★★★★★★★★★★★★  存储数据 - 开始 ★★★★★★★★★★★★★★★★★★★★★★*/
-            if (null != dto.getIsHistory()) {
-
-            }
-            list.add(item);
+            redisCache.hashPutAll(key, maps);
         }
-        redisCache.hashPutAll(key, maps);
         /* ★★★★★★★★★★★★★★★★★★★★★★  存储数据 - 结束 ★★★★★★★★★★★★★★★★★★★★★★*/
         return list;
     }

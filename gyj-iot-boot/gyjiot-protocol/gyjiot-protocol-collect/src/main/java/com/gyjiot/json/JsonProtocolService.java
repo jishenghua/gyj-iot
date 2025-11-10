@@ -10,6 +10,7 @@ import com.gyjiot.common.core.thingsModel.ThingsModelSimpleItem;
 import com.gyjiot.common.core.thingsModel.ThingsModelValuesInput;
 import com.gyjiot.common.exception.ServiceException;
 import com.gyjiot.common.utils.DateUtils;
+import com.gyjiot.common.utils.json.JSONValidator;
 import com.gyjiot.iot.model.ThingsModels.ValueItem;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -33,14 +34,16 @@ public class JsonProtocolService   {
             DeviceReport reportMessage = new DeviceReport();
             // bytep[] 转String
             String data = new String(deviceData.getData(),StandardCharsets.UTF_8);
-            List<ThingsModelSimpleItem> values = JSON.parseArray(data, ThingsModelSimpleItem.class);
-            //上报数据时间
-            for (ThingsModelSimpleItem value : values) {
-                value.setTs(DateUtils.getNowDate());
+            if (JSONValidator.isValidJSONArray(data)) {
+                List<ThingsModelSimpleItem> values = JSON.parseArray(data, ThingsModelSimpleItem.class);
+                //上报数据时间
+                for (ThingsModelSimpleItem value : values) {
+                    value.setTs(DateUtils.getNowDate());
+                }
+                ThingsModelValuesInput valuesInput = new ThingsModelValuesInput();
+                valuesInput.setThingsModelValueRemarkItem(values);
+                reportMessage.setValuesInput(valuesInput);
             }
-            ThingsModelValuesInput valuesInput = new ThingsModelValuesInput();
-            valuesInput.setThingsModelValueRemarkItem(values);
-            reportMessage.setValuesInput(valuesInput);
             reportMessage.setClientId(clientId);
             reportMessage.setSerialNumber(clientId);
             return reportMessage;

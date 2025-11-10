@@ -127,7 +127,9 @@ public class DeviceReportMessageServiceImpl implements IDeviceReportMessageServi
         ReportDataBo report = new ReportDataBo();
         report.setSerialNumber(message.getSerialNumber());
         report.setProductId(message.getProductId());
-        report.setDataList(message.getValuesInput().getThingsModelValueRemarkItem());
+        if(null!=message.getValuesInput()) {
+            report.setDataList(message.getValuesInput().getThingsModelValueRemarkItem());
+        }
         report.setType(1);
         report.setSlaveId(message.getSlaveId());
         report.setUserId(message.getUserId());
