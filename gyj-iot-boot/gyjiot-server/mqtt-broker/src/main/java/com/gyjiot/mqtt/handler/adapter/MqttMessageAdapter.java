@@ -47,7 +47,7 @@ public class MqttMessageAdapter extends SimpleChannelInboundHandler<MqttMessage>
         try {
             /*校验消息*/
             if (message.decoderResult().isFailure()) {
-                exceptionCaught(context, message.decoderResult().cause());
+                log.error("=>mqtt连接异常", message.decoderResult().cause());
                 return;
             }
             messageDelegate.process(context, message);
@@ -83,7 +83,6 @@ public class MqttMessageAdapter extends SimpleChannelInboundHandler<MqttMessage>
      */
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
-        log.error("=>mqtt连接异常",cause);
     }
 
 }
