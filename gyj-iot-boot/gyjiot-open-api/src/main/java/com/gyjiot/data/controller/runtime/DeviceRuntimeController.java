@@ -5,7 +5,6 @@ import com.gyjiot.common.core.controller.BaseController;
 import com.gyjiot.common.core.domain.AjaxResult;
 import com.gyjiot.common.core.mq.InvokeReqDto;
 import com.gyjiot.common.core.page.TableDataInfo;
-import com.gyjiot.common.core.redis.RedisCache;
 import com.gyjiot.common.enums.ThingsModelType;
 import com.gyjiot.common.exception.ServiceException;
 import com.gyjiot.common.utils.StringUtils;
@@ -16,13 +15,11 @@ import com.gyjiot.mq.service.IFunctionInvoke;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 设备运行时数据controller

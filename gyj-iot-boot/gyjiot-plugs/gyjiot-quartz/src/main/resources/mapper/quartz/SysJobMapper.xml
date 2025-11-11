@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gyjiot.quartz.mapper.SysJobMapper">
 
-	<resultMap type="SysJob" id="SysJobResult">
+	<resultMap type="com.gyjiot.quartz.domain.SysJob" id="SysJobResult">
 		<id     property="jobId"          column="job_id"          />
 		<result property="jobName"        column="job_name"        />
 		<result property="jobGroup"       column="job_group"       />
@@ -19,13 +19,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="updateTime"     column="update_time"     />
 		<result property="remark"         column="remark"          />
 	</resultMap>
-	
+
 	<sql id="selectJobVo">
-        select job_id, job_name, job_group, invoke_target, cron_expression, misfire_policy, concurrent, status, create_by, create_time, remark 
+        select job_id, job_name, job_group, invoke_target, cron_expression, misfire_policy, concurrent, status, create_by, create_time, remark
 		from sys_job
     </sql>
-	
-	<select id="selectJobList" parameterType="SysJob" resultMap="SysJobResult">
+
+	<select id="selectJobList" parameterType="com.gyjiot.quartz.domain.SysJob" resultMap="SysJobResult">
 		<include refid="selectJobVo"/>
 		<where>
 			<if test="jobName != null and jobName != ''">
@@ -42,28 +42,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
-	
+
 	<select id="selectJobAll" resultMap="SysJobResult">
 		<include refid="selectJobVo"/>
 	</select>
-	
+
 	<select id="selectJobById" parameterType="Long" resultMap="SysJobResult">
 		<include refid="selectJobVo"/>
 		where job_id = #{jobId}
 	</select>
-	
+
 	<delete id="deleteJobById" parameterType="Long">
  		delete from sys_job where job_id = #{jobId}
  	</delete>
- 	
+
  	<delete id="deleteJobByIds" parameterType="Long">
  		delete from sys_job where job_id in
  		<foreach collection="array" item="jobId" open="(" separator="," close=")">
  			#{jobId}
-        </foreach> 
+        </foreach>
  	</delete>
- 	
- 	<update id="updateJob" parameterType="SysJob">
+
+ 	<update id="updateJob" parameterType="com.gyjiot.quartz.domain.SysJob">
  		update sys_job
  		<set>
  			<if test="jobName != null and jobName != ''">job_name = #{jobName},</if>
@@ -79,8 +79,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		</set>
  		where job_id = #{jobId}
 	</update>
- 	
- 	<insert id="insertJob" parameterType="SysJob" useGeneratedKeys="true" keyProperty="jobId">
+
+ 	<insert id="insertJob" parameterType="com.gyjiot.quartz.domain.SysJob" useGeneratedKeys="true" keyProperty="jobId">
  		insert into sys_job(
  			<if test="jobId != null and jobId != 0">job_id,</if>
  			<if test="jobName != null and jobName != ''">job_name,</if>
@@ -108,4 +108,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		)
 	</insert>
 
-</mapper> 
+</mapper>

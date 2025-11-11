@@ -9,7 +9,6 @@ import com.gyjiot.mqtt.model.PushMessageBo;
 import com.gyjiot.mqttclient.PubMqttClient;
 import io.netty.buffer.Unpooled;
 import io.netty.handler.codec.mqtt.*;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
