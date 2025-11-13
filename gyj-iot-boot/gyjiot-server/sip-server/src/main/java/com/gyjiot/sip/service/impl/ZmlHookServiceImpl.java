@@ -303,8 +303,7 @@ public class ZmlHookServiceImpl implements IZmlHookService {
         MediaServer mediaInfo = mediaServerService.selectMediaServerBydeviceSipId(sInfo.getDeviceId());
         Stream streamUrl = new Stream(sInfo.getDeviceId(), sInfo.getChannelId(), streamId, ssrc);
         String server = Objects.equals(mediaInfo.getDomain(), "") ? mediaInfo.getIp() : mediaInfo.getDomain();
-        streamUrl.setFlv(String.format("http://%s:%s/rtp/%s.live.flv", mediaInfo.getIp(),
-                mediaInfo.getPortHttp(), streamId));
+        streamUrl.setFlv(String.format("http://%s:%s/rtp/%s.live.flv", server, mediaInfo.getPortHttp(), streamId));
         streamUrl.setHttps_flv(String.format("https://%s:%s/rtp/%s.live.flv", server, mediaInfo.getPortHttps(), streamId));
         streamUrl.setWs_flv(String.format("ws://%s:%s/rtp/%s.live.flv", mediaInfo.getIp(),
                 mediaInfo.getPortHttps(), streamId));
