@@ -76,14 +76,14 @@
                             <el-form-item label="设备经度" prop="longitude">
                                 <el-input v-model="form.longitude" placeholder="请输入设备经度" type="number" :disabled="form.locationWay != 3">
                                     <template #append>
-                                        <el-link :underline="false" href="https://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank" :disabled="form.locationWay != 3">坐标拾取</el-link>
+                                        <el-link :underline="false" href="https://lbs.amap.com/tools/picker" target="_blank" :disabled="form.locationWay != 3">坐标拾取</el-link>
                                     </template>
                                 </el-input>
                             </el-form-item>
                             <el-form-item label="设备纬度" prop="latitude">
                                 <el-input v-model="form.latitude" placeholder="请输入设备纬度" type="number" :disabled="form.locationWay != 3">
                                     <template #append>
-                                        <el-link :underline="false" href="https://api.map.baidu.com/lbsapi/getpoint/index.html" target="_blank" :disabled="form.locationWay != 3">坐标拾取</el-link>
+                                        <el-link :underline="false" href="https://lbs.amap.com/tools/picker" target="_blank" :disabled="form.locationWay != 3">坐标拾取</el-link>
                                     </template>
                                 </el-input>
                             </el-form-item>
@@ -233,7 +233,6 @@ import runningStatus from './running-status';
 import deviceTimer from './device-timer';
 import DeviceFunc from './device-functionlog';
 import vueQr from 'vue-qr/src/packages/vue-qr.vue'
-import { loadBMap } from '@/utils/map.js';
 import { deviceSynchronization, getDevice, addDevice, updateDevice, generatorDeviceNum, getMqttConnect } from '@/api/iot/device';
 import { getDeviceRunningStatus } from '@/api/iot/device';
 import { cacheJsonThingsModel } from '@/api/iot/model';
@@ -692,9 +691,7 @@ function formatThingsModel(data) {
 /**加载地图*/
 function loadMap() {
     proxy.$nextTick(() => {
-        loadBMap().then(() => {
-            getmap();
-        });
+      getmap();
     });
 }
 /** 返回按钮 */
@@ -894,21 +891,25 @@ function openCodeDialog() {
 }
 // 地图定位
 function getmap() {
-    map.value = new BMap.Map('map');
-    let point = null;
-    if (form.value.longitude != null && form.value.longitude != '' && form.value.latitude != null && form.value.latitude != '') {
-        point = new BMap.Point(form.value.longitude, form.value.latitude);
-    } else {
-        point = new BMap.Point(116.404, 39.915);
-    }
-    map.value.centerAndZoom(point, 19);
-    map.value.enableScrollWheelZoom(true); // 开启鼠标滚轮缩放
-    map.value.addControl(new BMap.NavigationControl());
-
-    // 标注设备位置
-    mk.value = new BMap.Marker(point);
-    map.value.addOverlay(mk.value);
-    map.value.panTo(point);
+  let center = [ form.value.longitude, form.value.latitude]
+    let map = new AMap.Map('map', {
+      zoom: 11,
+      center: center
+    })
+    let circleMarker = new AMap.CircleMarker({
+      center:center,
+      radius: 10,
+      strokeColor:'white',
+      strokeWeight:2,
+      strokeOpacity:0.5,
+      fillColor:'rgba(0,0,255,1)',
+      fillOpacity:0.5,
+      zIndex:10,
+      bubble:true,
+      cursor:'pointer',
+      clickable: true
+    })
+    circleMarker.setMap(map)
 }
 // 生成随机字母和数字
 function generateNum() {

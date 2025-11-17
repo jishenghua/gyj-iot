@@ -100,7 +100,7 @@
           <div class="map-title">
             <h2>设备分布（在线数 {{ onlineCount }}）</h2>
           </div>
-          <div id="mapGaode" style="height: 650px"></div>
+          <div id="map" style="height: 650px"></div>
         </div>
       </el-col>
     </el-row>
@@ -288,7 +288,7 @@ function loadMap() {
 /** 高德地图 */
 function getmap() {
   // 创建地图实例
-  let map = new AMap.Map('mapGaode', {
+  let map = new AMap.Map('map', {
     zoom: 4,
     center: [ 108, 34]
   })
