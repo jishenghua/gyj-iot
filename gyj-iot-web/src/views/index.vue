@@ -97,7 +97,7 @@
 
       <el-col :xs="24" :sm="24" :md="24" :lg="14" :xl="14">
         <div style="overflow: hidden; border: 1px solid #ccc">
-          <div ref="map" style="height: 650px"></div>
+          <div id="mapGaode" style="height: 650px"></div>
         </div>
       </el-col>
     </el-row>
@@ -157,10 +157,6 @@
 import { getDeviceStatistic } from '@/api/iot/device';
 import { listNotice, getNotice } from '@/api/system/notice';
 import CountTo from '@/components/CountTo/CountTo';
-import { loadBMap } from '@/utils/map.js';
-//安装的是echarts完整包，里面包含百度地图扩展，路径为 echarts/extension/bmap/bmap.js，将其引入
-//ECharts的百度地图扩展，可以在百度地图上展现点图，线图，热力图等可视化
-import 'echarts/extension/bmap/bmap';
 import { getServer } from '@/api/monitor/server';
 import { listAllDeviceShort } from '@/api/iot/device';
 import * as echarts from 'echarts';
@@ -235,7 +231,6 @@ function flushIframe() {
 /** 查询设备统计信息 */
 function searchDeviceStatistic() {
   getDeviceStatistic().then((response) => {
-    console.log(response.data)
     deviceStatistic.value = response.data;
   });
 }
@@ -279,9 +274,7 @@ function getAllDevice() {
 /**加载地图*/
 function loadMap() {
   proxy.$nextTick(() => {
-    loadBMap().then(() => {
-      getmap();
-    });
+    getmap1();
   });
 }
 /** 查询服务器信息 */
@@ -432,120 +425,6 @@ function getmap() {
       zoom: 5,
       roam: true,
       mapStyle: {
-        // styleJson: [
-        //   {
-        //     featureType: 'water',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#a0cfff',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'land',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#fafafa', // #fffff8 淡黄色
-        //     },
-        //   },
-        //   {
-        //     featureType: 'railway',
-        //     elementType: 'all',
-        //     stylers: {
-        //       visibility: 'off',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'highway',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#fdfdfd',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'highway',
-        //     elementType: 'labels',
-        //     stylers: {
-        //       visibility: 'off',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'arterial',
-        //     elementType: 'geometry',
-        //     stylers: {
-        //       color: '#fefefe',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'arterial',
-        //     elementType: 'geometry.fill',
-        //     stylers: {
-        //       color: '#fefefe',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'poi',
-        //     elementType: 'all',
-        //     stylers: {
-        //       visibility: 'off',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'green',
-        //     elementType: 'all',
-        //     stylers: {
-        //       visibility: 'off',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'subway',
-        //     elementType: 'all',
-        //     stylers: {
-        //       visibility: 'off',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'manmade',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#d1d1d1',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'local',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#d1d1d1',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'arterial',
-        //     elementType: 'labels',
-        //     stylers: {
-        //       visibility: 'off',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'boundary',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#999999',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'building',
-        //     elementType: 'all',
-        //     stylers: {
-        //       color: '#d1d1d1',
-        //     },
-        //   },
-        //   {
-        //     featureType: 'label',
-        //     elementType: 'labels.text.fill',
-        //     stylers: {
-        //       color: '#999999',
-        //     },
-        //   },
-        // ],
       },
     },
     series: [
@@ -601,6 +480,95 @@ function getmap() {
     ],
   };
   option && myChart.setOption(option);
+}
+
+/** 高德地图 */
+function getmap1() {
+  // 创建地图实例
+  let map = new AMap.Map('mapGaode', {
+    zoom: 4,
+    center: [ 108, 34]
+  })
+  for(var i=0;i<deviceList.value.length;i+=1) {
+    let currentInfo = deviceList.value[i]
+    if (currentInfo.longitude && currentInfo.latitude) {
+      let fillStr = ''
+      let htmlStr = '<div style="padding:5px;line-height:28px;">';
+      htmlStr += "设备名称： <span style='color:#409EFF'>" + currentInfo.deviceName + '</span><br />';
+      htmlStr += '设备编号： ' + currentInfo.serialNumber + '<br />';
+      htmlStr += '设备状态： ';
+      if (currentInfo.status == 1) {
+        fillStr = '%23E6A23C'
+        htmlStr += "<span style='color:#E6A23C'>未激活</span>" + '<br />';
+      } else if (currentInfo.status == 2) {
+        fillStr = '%23F56C6C'
+        htmlStr += "<span style='color:#F56C6C'>禁用</span>" + '<br />';
+      } else if (currentInfo.status == 3) {
+        fillStr = '%2367C23A'
+        htmlStr += "<span style='color:#67C23A'>在线</span>" + '<br />';
+      } else if (currentInfo.status == 4) {
+        fillStr = '%23909399'
+        htmlStr += "<span style='color:#909399'>离线</span>" + '<br />';
+      }
+      if (currentInfo.isShadow == 1) {
+        htmlStr += '设备影子： ' + "<span style='color:#67C23A'>启用</span>" + '<br />';
+      } else {
+        htmlStr += '设备影子： ' + "<span style='color:#909399'>未启用</span>" + '<br />';
+      }
+      htmlStr += '产品名称： ' + currentInfo.productName + '<br />';
+      htmlStr += '固件版本： Version ' + currentInfo.firmwareVersion + '<br />';
+      htmlStr += '激活时间： ' + currentInfo.activeTime + '<br />';
+      htmlStr += '定位方式： ';
+      if (currentInfo.locationWay == 1) {
+        htmlStr += '自动定位' + '<br />';
+      } else if (currentInfo.locationWay == 2) {
+        htmlStr += '设备定位' + '<br />';
+      } else if (currentInfo.locationWay == 3) {
+        htmlStr += '自定义位置' + '<br />';
+      } else {
+        htmlStr += '未知' + '<br />';
+      }
+      let networkAddress = currentInfo.networkAddress || '未知';
+      htmlStr += '所在地址： ' + networkAddress + '<br />';
+      htmlStr += '</div>';
+
+      // 创建标记点
+      let marker = new AMap.Marker({
+        position: new AMap.LngLat(currentInfo.longitude, currentInfo.latitude),
+        // 自定义图标
+        icon: new AMap.Icon({
+          image: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" fill="' + fillStr + '" fill-opacity="0.5" /></svg>',
+          size: new AMap.Size(15, 15), // 图标大小
+          imageSize: new AMap.Size(15, 15) // 实际显示大小
+        }),
+        map: map
+      })
+
+      // 创建信息窗口（Tooltip）
+      let infoWindow = new AMap.InfoWindow({
+        content: htmlStr,
+        offset: new AMap.Pixel(8, 0)
+      })
+
+      // 添加事件监听
+      marker.on('mouseover', () => infoWindow.open(map, marker.getPosition()))
+      marker.on('mouseout', () => infoWindow.close())
+
+      // 点击事件
+      let deviceId = deviceList.value[i].deviceId
+      marker.on('click', () => {
+        if (deviceId) {
+          proxy.$router.push({
+            path: '/iot/device-edit',
+            query: {
+              t: Date.now(),
+              deviceId: deviceId,
+            },
+          });
+        }
+      })
+    }
+  }
 }
 function drawPieCpu() {
   // 基于准备好的dom，初始化echarts实例
