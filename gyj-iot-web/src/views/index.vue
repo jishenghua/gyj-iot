@@ -96,7 +96,10 @@
       </el-col>
 
       <el-col :xs="24" :sm="24" :md="24" :lg="14" :xl="14">
-        <div style="overflow: hidden; border: 1px solid #ccc">
+        <div class="map-wrapper" style="overflow: hidden; border: 1px solid #ccc">
+          <div class="map-title">
+            <h2>设备分布（在线数 {{ onlineCount }}）</h2>
+          </div>
           <div id="mapGaode" style="height: 650px"></div>
         </div>
       </el-col>
@@ -186,6 +189,8 @@ const deviceList = ref([]);
 const deviceStatistic = ref({});
 // 设备总数
 const deviceCount = ref(0);
+// 在线数
+const onlineCount = ref(0);
 // 版本号
 const version = ref('3.8.0');
 const tableData = ref([]);
@@ -268,222 +273,20 @@ function getAllDevice() {
   listAllDeviceShort(queryParams).then((response) => {
     deviceList.value = response.rows;
     deviceCount.value = response.total;
+    onlineCount.value = deviceList.value.filter((x) => x.status == 3).length
     loadMap();
   });
 }
+
 /**加载地图*/
 function loadMap() {
   proxy.$nextTick(() => {
-    getmap1();
+    getmap();
   });
-}
-/** 查询服务器信息 */
-function searchServer() {
-  getServer().then((response) => {
-    server.value = response.data;
-    tableData.value = [
-      {
-        server: '服务器名',
-        serverContent: server.value.sys.computerName,
-        java: 'Java名称',
-        javaContent: server.value.jvm.name,
-      },
-      {
-        server: '服务器IP',
-        serverContent: server.value.sys.computerIp,
-        java: '启动时间',
-        javaContent: server.value.jvm.startTime,
-      },
-      {
-        server: '操作系统',
-        serverContent: server.value.sys.osName,
-        java: 'Java版本',
-        javaContent: server.value.jvm.version,
-      },
-      {
-        server: '系统架构',
-        serverContent: server.value.sys.osArch,
-        java: '运行时长',
-        javaContent: server.value.jvm.runTime,
-      },
-      {
-        server: 'CPU核心',
-        serverContent: server.value.cpu.cpuNum,
-        java: '占用内存',
-        javaContent: server.value.jvm.used,
-      },
-      {
-        server: '内存大小',
-        serverContent: server.value.mem.total,
-        java: 'JVM总内存',
-        javaContent: server.value.jvm.total,
-      },
-    ];
-    proxy.$nextTick(() => {
-      drawPieCpu();
-      drawPieMemery();
-      drawPieDisk();
-    });
-  });
-}
-/** 地图 */
-function getmap() {
-  const myChart = echarts.init(map.value);
-  var option;
-
-  // 单击事件
-  myChart.on('click', (params) => {
-    if (params.data.deviceId) {
-      proxy.$router.push({
-        path: '/iot/device-edit',
-        query: {
-          t: Date.now(),
-          deviceId: params.data.deviceId,
-        },
-      });
-    }
-  });
-
-  // 格式化数据
-  let convertData = function (data, status) {
-    var res = [];
-    for (var i = 0; i < data.length; i++) {
-      var geoCoord = [data[i].longitude, data[i].latitude];
-      if (geoCoord && data[i].status === status) {
-        res.push({
-          name: data[i].deviceName,
-          value: geoCoord,
-          serialNumber: data[i].serialNumber,
-          status: data[i].status,
-          isShadow: data[i].isShadow,
-          firmwareVersion: data[i].firmwareVersion,
-          networkAddress: data[i].networkAddress,
-          productName: data[i].productName,
-          activeTime: data[i].activeTime == null ? '' : data[i].activeTime,
-          deviceId: data[i].deviceId,
-          locationWay: data[i].locationWay,
-        });
-      }
-    }
-    return res;
-  };
-  option = {
-    title: {
-      text: '设备分布（在线数 ' + deviceList.value.filter((x) => x.status == 3).length + '）',
-      subtext: 'gyjiot open source iot platform',
-      sublink: 'http://iot.gyjerp.com',
-      target: '_blank',
-      textStyle: {
-        color: '#333',
-        textBorderColor: '#fff',
-        textBorderWidth: 10,
-      },
-      top: 10,
-      left: 'center',
-    },
-    tooltip: {
-      trigger: 'item',
-      formatter: function (params) {
-        var htmlStr = '<div style="padding:5px;line-height:28px;">';
-        htmlStr += "设备名称： <span style='color:#409EFF'>" + params.data.name + '</span><br />';
-        htmlStr += '设备编号： ' + params.data.serialNumber + '<br />';
-        htmlStr += '设备状态： ';
-        if (params.data.status == 1) {
-          htmlStr += "<span style='color:#E6A23C'>未激活</span>" + '<br />';
-        } else if (params.data.status == 2) {
-          htmlStr += "<span style='color:#F56C6C'>禁用</span>" + '<br />';
-        } else if (params.data.status == 3) {
-          htmlStr += "<span style='color:#67C23A'>在线</span>" + '<br />';
-        } else if (params.data.status == 4) {
-          htmlStr += "<span style='color:#909399'>离线</span>" + '<br />';
-        }
-        if (params.data.isShadow == 1) {
-          htmlStr += '设备影子： ' + "<span style='color:#67C23A'>启用</span>" + '<br />';
-        } else {
-          htmlStr += '设备影子： ' + "<span style='color:#909399'>未启用</span>" + '<br />';
-        }
-        htmlStr += '产品名称： ' + params.data.productName + '<br />';
-        htmlStr += '固件版本： Version ' + params.data.firmwareVersion + '<br />';
-        htmlStr += '激活时间： ' + params.data.activeTime + '<br />';
-        htmlStr += '定位方式： ';
-        if (params.data.locationWay == 1) {
-          htmlStr += '自动定位' + '<br />';
-        } else if (params.data.locationWay == 2) {
-          htmlStr += '设备定位' + '<br />';
-        } else if (params.data.locationWay == 3) {
-          htmlStr += '自定义位置' + '<br />';
-        } else {
-          htmlStr += '未知' + '<br />';
-        }
-        htmlStr += '所在地址： ' + params.data.networkAddress + '<br />';
-        htmlStr += '</div>';
-        return htmlStr;
-      },
-    },
-    bmap: {
-      center: [133, 38],
-      zoom: 5,
-      roam: true,
-      mapStyle: {
-      },
-    },
-    series: [
-      {
-        type: 'scatter',
-        coordinateSystem: 'bmap',
-        data: convertData(deviceList.value, 1),
-        symbolSize: 15,
-        itemStyle: {
-          color: '#E6A23C',
-        },
-      },
-      {
-        type: 'scatter',
-        coordinateSystem: 'bmap',
-        data: convertData(deviceList.value, 2),
-        symbolSize: 15,
-        itemStyle: {
-          color: '#F56C6C',
-        },
-      },
-      {
-        type: 'scatter',
-        coordinateSystem: 'bmap',
-        data: convertData(deviceList.value, 4),
-        symbolSize: 15,
-        itemStyle: {
-          color: '#909399',
-        },
-      },
-      {
-        type: 'effectScatter',
-        coordinateSystem: 'bmap',
-        data: convertData(deviceList.value, 3),
-        symbolSize: 15,
-        showEffectOn: 'render',
-        rippleEffect: {
-          brushType: 'stroke',
-          scale: 5,
-        },
-        label: {
-          formatter: '{b}',
-          position: 'right',
-          show: false,
-        },
-        itemStyle: {
-          color: '#67C23A',
-          shadowBlur: 100,
-          shadowColor: '#333',
-        },
-        zlevel: 1,
-      },
-    ],
-  };
-  option && myChart.setOption(option);
 }
 
 /** 高德地图 */
-function getmap1() {
+function getmap() {
   // 创建地图实例
   let map = new AMap.Map('mapGaode', {
     zoom: 4,
@@ -570,6 +373,57 @@ function getmap1() {
     }
   }
 }
+
+/** 查询服务器信息 */
+function searchServer() {
+  getServer().then((response) => {
+    server.value = response.data;
+    tableData.value = [
+      {
+        server: '服务器名',
+        serverContent: server.value.sys.computerName,
+        java: 'Java名称',
+        javaContent: server.value.jvm.name,
+      },
+      {
+        server: '服务器IP',
+        serverContent: server.value.sys.computerIp,
+        java: '启动时间',
+        javaContent: server.value.jvm.startTime,
+      },
+      {
+        server: '操作系统',
+        serverContent: server.value.sys.osName,
+        java: 'Java版本',
+        javaContent: server.value.jvm.version,
+      },
+      {
+        server: '系统架构',
+        serverContent: server.value.sys.osArch,
+        java: '运行时长',
+        javaContent: server.value.jvm.runTime,
+      },
+      {
+        server: 'CPU核心',
+        serverContent: server.value.cpu.cpuNum,
+        java: '占用内存',
+        javaContent: server.value.jvm.used,
+      },
+      {
+        server: '内存大小',
+        serverContent: server.value.mem.total,
+        java: 'JVM总内存',
+        javaContent: server.value.jvm.total,
+      },
+    ];
+    proxy.$nextTick(() => {
+      drawPieCpu();
+      drawPieMemery();
+      drawPieDisk();
+    });
+  });
+}
+
 function drawPieCpu() {
   // 基于准备好的dom，初始化echarts实例
   const myChart = echarts.init(pieCpu.value);
@@ -729,6 +583,45 @@ getAllDevice();
 getNoticeList();
 searchDeviceStatistic();
 </script>
+
+<style>
+.map-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map-title {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* 确保标题在地图上方 */
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.map-title h2 {
+  color: #333;
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.map-title .subtitle {
+  margin: 5px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.map-title a {
+  color: #1890ff;
+  text-decoration: none;
+}
+</style>
 
 <style lang="scss" scoped>
   .phone {
