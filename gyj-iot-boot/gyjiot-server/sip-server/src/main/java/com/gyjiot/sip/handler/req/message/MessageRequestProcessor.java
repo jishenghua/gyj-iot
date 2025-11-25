@@ -13,6 +13,7 @@ import org.dom4j.Element;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.xml.sax.SAXException;
 
 import javax.sip.InvalidArgumentException;
 import javax.sip.RequestEvent;
@@ -85,7 +86,7 @@ public class MessageRequestProcessor extends ReqAbstractHandler implements Initi
             log.warn("SIP 回复错误", e);
         } catch (InvalidArgumentException e) {
             log.warn("参数无效", e);
-        } catch (ParseException e) {
+        } catch (ParseException | SAXException e) {
             log.warn("SIP回复时解析异常", e);
         }
     }

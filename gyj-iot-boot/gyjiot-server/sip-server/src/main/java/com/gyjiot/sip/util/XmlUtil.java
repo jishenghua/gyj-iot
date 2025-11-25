@@ -6,6 +6,7 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.xml.sax.SAXException;
 
 import javax.sip.RequestEvent;
 import javax.sip.message.Request;
@@ -28,13 +29,13 @@ public class XmlUtil {
         Document document = null;
         //
         StringReader sr = new StringReader(xml);
-        SAXReader saxReader = new SAXReader();
-        try
-        {
-            document = saxReader.read(sr);
-        }
-        catch (DocumentException e)
-        {
+        SAXReader reader = new SAXReader();
+        try {
+            reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+            reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
+            reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+            document = reader.read(sr);
+        } catch (DocumentException | SAXException e) {
             log.error("解析失败", e);
         }
         return null == document ? null : document.getRootElement();
@@ -107,9 +108,12 @@ public class XmlUtil {
         return listMap;
     }
 
-    public static Element getRootElement(RequestEvent evt) throws DocumentException {
+    public static Element getRootElement(RequestEvent evt) throws DocumentException, SAXException {
         Request request = evt.getRequest();
         SAXReader reader = new SAXReader();
+        reader.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+        reader.setFeature("http://xml.org/sax/features/external-general-entities", false);
+        reader.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
         reader.setEncoding("gbk");
         Document xml = reader.read(new ByteArrayInputStream(request.getRawContent()));
         return xml.getRootElement();
