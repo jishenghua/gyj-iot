@@ -1,7 +1,7 @@
 <template>
   <div class="register">
     <el-form ref="registerRef" :model="registerForm" :rules="registerRules" class="register-form">
-      <h3 class="title">管伊佳物联系统</h3>
+      <h3 class="title">{{ title }}</h3>
       <el-form-item prop="username">
         <el-input
           v-model="registerForm.username"
@@ -78,6 +78,7 @@
 <script setup>
 import { ElMessageBox } from "element-plus";
 import { getCodeImg } from "@/api/login";
+import { getPlatformName } from '@/api/index'
 import { register } from '@/api/iot/tool';
 
 const router = useRouter();
@@ -115,9 +116,14 @@ const registerRules = {
   code: [{ required: true, trigger: "change", message: "请输入验证码" }]
 };
 
+const title = ref("");
 const codeUrl = ref("");
 const loading = ref(false);
 const captchaEnabled = ref(true);
+
+getPlatformName().then(res => {
+  title.value = res.platformName
+})
 
 function handleRegister() {
   proxy.$refs.registerRef.validate(valid => {

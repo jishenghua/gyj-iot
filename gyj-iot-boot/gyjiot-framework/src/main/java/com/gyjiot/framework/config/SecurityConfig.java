@@ -114,7 +114,7 @@ public class SecurityConfig
                 permitAllUrl.getUrls().forEach(url -> requests.antMatchers(url).permitAll());
                 // 对于登录login 注册register 验证码captchaImage 允许匿名访问
                 // 静态资源，可匿名访问
-                requests.antMatchers("/login", "/register", "/registerFlag", "/captchaImage","/iot/tool/register",
+                requests.antMatchers("/login", "/register", "/registerFlag", "/captchaImage","/platformName","/iot/tool/register",
                         "/iot/tool/ntp", "/iot/tool/download", "/iot/tool/mqtt/auth","/iot/tool/mqtt/authv5","/iot/tool/mqtt/webhook",
                         "/iot/tool/mqtt/webhookv5","/auth/**/**", "/wechat/mobileLogin", "/wechat/miniLogin", "/wechat/wxBind/callback").permitAll()
                     .antMatchers("/zlmhook/**").permitAll()

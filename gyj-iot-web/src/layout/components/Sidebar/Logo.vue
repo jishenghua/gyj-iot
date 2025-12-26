@@ -17,6 +17,7 @@
 import variables from '@/assets/styles/variables.module.scss'
 import logo from '@/assets/logo/logo.png'
 import useSettingsStore from '@/store/modules/settings'
+import { getPlatformName } from '@/api/index'
 
 defineProps({
   collapse: {
@@ -25,9 +26,12 @@ defineProps({
   }
 })
 
-const title = import.meta.env.VITE_APP_TITLE;
+const title = ref("");
 const settingsStore = useSettingsStore();
 const sideTheme = computed(() => settingsStore.sideTheme);
+getPlatformName().then(res => {
+  title.value = res.platformName
+})
 </script>
 
 <style lang="scss" scoped>

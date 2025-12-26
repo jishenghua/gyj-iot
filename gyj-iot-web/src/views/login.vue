@@ -1,15 +1,14 @@
 <template>
   <div class="login">
     <el-form ref="loginRef" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">管伊佳物联系统</h3>
+      <h3 class="title">{{ title }}</h3>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
           type="text"
           size="large"
           auto-complete="off"
-          placeholder="账号"
-        >
+          placeholder="账号">
           <template #prefix><svg-icon icon-class="user" class="el-input__icon input-icon" /></template>
         </el-input>
       </el-form-item>
@@ -68,6 +67,7 @@
 
 <script setup>
 import { getCodeImg, getRegisterFlag } from "@/api/login";
+import { getPlatformName } from '@/api/index'
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
 import useUserStore from '@/store/modules/user'
@@ -91,6 +91,7 @@ const loginRules = {
   code: [{ required: true, trigger: "change", message: "请输入验证码" }]
 };
 
+const title = ref("");
 const codeUrl = ref("");
 const loading = ref(false);
 // 验证码开关
@@ -98,6 +99,10 @@ const captchaEnabled = ref(true);
 // 注册开关
 const register = ref(false);
 const redirect = ref(undefined);
+
+getPlatformName().then(res => {
+  title.value = res.platformName
+})
 
 watch(route, (newRoute) => {
     redirect.value = newRoute.query && newRoute.query.redirect;

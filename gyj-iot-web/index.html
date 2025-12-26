@@ -12,8 +12,8 @@
   <script type="text/javascript" src="/js/EasyWasmPlayer.js"></script>
   <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=2cd74056ead5ced85589e398b621c955"></script>
   <script>var _hmt = _hmt || [];(function() {var hm = document.createElement("script");hm.src = "https://hm.baidu.com/hm.js?2742bc99fd6c8a9569359b4d583cf507";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(hm, s);   })();</script>
-  <title>管伊佳物联</title>
-  <meta name="description" content="管伊佳物联-让连接更稳定，简单易用，更适合中小企业和个人学习使用。 适用于智能家居、智慧办公、智慧社区、工业控制、农业监测、水利监测等。" />
+  <title></title>
+  <meta name="description" content="让连接更稳定，简单易用，更适合中小企业和个人学习使用。 适用于智能家居、智慧办公、智慧社区、工业控制、农业监测、水利监测等。" />
   <meta name="keywords" content="物联网,工业物联,IOT,modbus,GB28181" />
   <!--[if lt IE 11]><script>window.location.href='/html/ie.html';</script><![endif]-->
   <style>
@@ -205,6 +205,33 @@
       opacity: 0.5;
     }
   </style>
+  <script>
+    function getPlatform(type) {
+      let res = '';
+      let ajax = new XMLHttpRequest();
+      let url = ''
+      if(window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost' || window.location.hostname.concat('192.168')) {
+          // 开发环境
+          url = '/dev-api/' + type
+      } else {
+          // 生产环境
+          url = '/prod-api/' + type
+      }
+      ajax.onreadystatechange = function () {
+          if (ajax.readyState===4 &&ajax.status===200) {
+              let obj = JSON.parse(ajax.responseText)
+              res = obj.platformName;
+          } else {
+              res = '物联网系统';
+          }
+      }
+      ajax.open('get', url, false);
+      ajax.send(null);
+      return res;
+    }
+    window.SYS_TITLE = getPlatform("platformName");
+    document.title = window.SYS_TITLE;
+  </script>
 </head>
 
 <body>

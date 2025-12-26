@@ -10,7 +10,7 @@
                 <div class="guang"></div>
                 <div class="d-flex jc-center">
                     <div class="title">
-                        <span class="title-text">管伊佳物联网平台</span>
+                        <span class="title-text">{{ title }}</span>
                     </div>
                 </div>
                 <div class="timers ">
@@ -29,9 +29,8 @@
 </template>
 
 <script setup name="bigScreen-home">
-import {
-    formatTime
-} from "../../utils/bigScreen/index.js";
+import { formatTime } from "../../utils/bigScreen/index.js";
+import { getPlatformName } from '@/api/index'
 import Setting from './setting.vue'
 import index from './indexs/index.vue'
 import {onMounted} from "vue";
@@ -44,7 +43,7 @@ const dateYear = ref(null);
 const dateWeek = ref(null);
 const weekday = ref(["周日", "周一", "周二", "周三", "周四", "周五", "周六"]);
 
-
+const title = ref("");
 const drawTiming = ref(null);
 
 // * 默认缩放值
@@ -64,6 +63,9 @@ const isScale = computed(() => {
     return proxy.$store.state.settings.isScale
 })
 
+getPlatformName().then(res => {
+  title.value = res.platformName
+})
 
 // const { drawMixin } = drawMixin();
 

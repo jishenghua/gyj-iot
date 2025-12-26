@@ -30,7 +30,7 @@ const useSettingsStore = defineStore(
       // 设置网页标题
       setTitle(title) {
         this.title = title
-        useDynamicTitle();
+        // useDynamicTitle();
       }
     }
   })

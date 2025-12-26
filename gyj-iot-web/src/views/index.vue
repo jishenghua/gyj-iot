@@ -145,7 +145,7 @@
     <div style="width: 100%; text-align: center; font-size: 14px; color: #666; line-height: 32px; margin-top: 150px">
       <span>
         Copyright © 2025-2035
-        <a href="http://iot.gyjerp.com/" target="_blank">管伊佳物联</a> | Apache License
+        <a href="http://iot.gyjerp.com/" target="_blank">{{ title }}</a> | Apache License
       </span>
       <br />
       <span>
@@ -162,12 +162,14 @@ import { listNotice, getNotice } from '@/api/system/notice';
 import CountTo from '@/components/CountTo/CountTo';
 import { getServer } from '@/api/monitor/server';
 import { listAllDeviceShort } from '@/api/iot/device';
+import { getPlatformName } from '@/api/index'
 import * as echarts from 'echarts';
 import useUserStore from '@/store/modules/user'
 
 const userStore = useUserStore()
 const { proxy } = getCurrentInstance();
 
+const title = ref("");
 const map = ref(null);
 const pieCpu = ref(null);
 const pieMemery = ref(null);
@@ -221,6 +223,10 @@ const data = reactive({
   },
 });
 const { server } = toRefs(data);
+
+getPlatformName().then(res => {
+  title.value = res.platformName
+})
 
 function init() {
   if (userStore.roles.indexOf("tenant") === -1 && userStore.roles.indexOf('general') === -1) {
