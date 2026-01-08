@@ -303,12 +303,13 @@ onActivated(() => {
 // 连接 MQTT 并处理回调
 const connectMqtt = async () => {
     try {
-        if (!mqttTool.client) {
+        getList();
+      // 先查询列表再连接mqtt
+      if (!mqttTool.client) {
             await mqttTool.connect();
         }
         mqttTool.client?.on('connect', () => {
-            mqttCallback(); // 连接成功后再执行回调
-            getList();
+            mqttCallback();
         });
     } catch (error) {
         console.error('MQTT 连接失败:', error);
