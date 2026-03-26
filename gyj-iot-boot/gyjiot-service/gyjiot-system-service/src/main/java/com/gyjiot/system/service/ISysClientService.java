@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 系统授权Service接口
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2024-07-26
  */
 public interface ISysClientService extends IService<SysClient>

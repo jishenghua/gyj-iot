@@ -7,7 +7,7 @@ import com.gyjiot.iot.model.ProductAuthorizeVO;
 /**
  * 产品授权码Service接口
  *
- * @author kami
+ * @author shenghua.ji
  * @date 2022-04-11
  */
 public interface IProductAuthorizeService

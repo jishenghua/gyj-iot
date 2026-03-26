@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 /**
  * 产品授权码Mapper接口
  *
- * @author kami
+ * @author shenghua.ji
  * @date 2022-04-11
  */
 @Repository

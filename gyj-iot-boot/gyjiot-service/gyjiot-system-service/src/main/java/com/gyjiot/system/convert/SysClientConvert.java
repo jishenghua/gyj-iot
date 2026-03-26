@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 系统授权Convert转换类
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2024-12-12
  */
 @Mapper

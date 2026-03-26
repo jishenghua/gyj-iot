@@ -10,7 +10,7 @@ import com.gyjiot.common.core.domain.BaseEntity;
 /**
  * 产品授权码对象 iot_product_authorize
  * 
- * @author kami
+ * @author shenghua.ji
  * @date 2022-04-11
  */
 @ApiModel(value = "ProductAuthorize", description = "产品授权码对象 iot_product_authorize")

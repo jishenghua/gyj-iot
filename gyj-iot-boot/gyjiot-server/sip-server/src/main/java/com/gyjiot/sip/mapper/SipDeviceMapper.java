@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * 监控设备Mapper接口
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2022-10-07
  */
 @Repository

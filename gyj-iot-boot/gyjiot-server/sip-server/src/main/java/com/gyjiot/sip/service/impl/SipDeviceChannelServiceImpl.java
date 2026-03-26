@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * 监控设备通道信息Service业务层处理
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2022-10-07
  */
 @Service

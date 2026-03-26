@@ -29,7 +29,7 @@ import static com.gyjiot.common.utils.SecurityUtils.isAdmin;
 /**
  * 流媒体服务器配置Service业务层处理
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2022-11-30
  */
 @Slf4j

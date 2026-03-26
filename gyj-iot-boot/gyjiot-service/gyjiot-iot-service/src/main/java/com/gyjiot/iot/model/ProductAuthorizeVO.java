@@ -3,7 +3,7 @@ package com.gyjiot.iot.model;
 /**
  * 批量新增产品授权码VO
  *
- * @author Venus Zhang
+ * @author shenghua.ji
  * @create 2022-04-11 15:04
  */
 

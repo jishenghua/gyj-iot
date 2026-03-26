@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * 流媒体服务器配置对象 media_server
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2022-11-30
  */
 @ApiModel(value = "MediaServer", description = "流媒体服务器配置对象 media_server")

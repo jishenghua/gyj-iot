@@ -15,7 +15,7 @@ import java.util.Date;
 /**
  * 监控设备对象 sip_device
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2023-02-24
  */
 @EqualsAndHashCode(callSuper = true)

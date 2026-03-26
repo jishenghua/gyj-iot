@@ -22,7 +22,7 @@ import java.util.Objects;
 /**
  * 系统授权Service业务层处理
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2024-07-26
  */
 @Service

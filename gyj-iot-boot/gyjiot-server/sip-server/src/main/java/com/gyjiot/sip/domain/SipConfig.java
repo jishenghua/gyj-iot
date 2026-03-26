@@ -9,7 +9,7 @@ import lombok.Data;
 /**
  * sip系统配置对象 sip_config
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2023-02-21
  */
 @ApiModel(value = "SipConfig", description = "sip系统配置对象 sip_config")

@@ -22,7 +22,7 @@ import com.gyjiot.common.core.page.TableDataInfo;
 /**
  * 产品授权码Controller
  * 
- * @author kami
+ * @author shenghua.ji
  * @date 2022-04-11
  */
 @Api(tags = "产品授权码")

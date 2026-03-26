@@ -15,7 +15,7 @@ import java.util.Date;
 /**
  * 监控设备通道信息对象 sip_device_channel
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2023-02-23
  */
 @ApiModel(value = "SipDeviceChannel", description = "监控设备通道信息对象 sip_device_channel")

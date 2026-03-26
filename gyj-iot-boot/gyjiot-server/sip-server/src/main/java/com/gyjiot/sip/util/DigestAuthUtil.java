@@ -18,8 +18,7 @@ import java.util.Random;
 /**
  * Implements the HTTP digest authentication method server side functionality.
  *
- * @author M. Ranganathan
- * @author Marc Bednarek
+ * @author yuli.cao
  */
 
 @Slf4j

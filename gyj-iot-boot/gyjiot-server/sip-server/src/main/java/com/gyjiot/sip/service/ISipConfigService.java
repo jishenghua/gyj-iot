@@ -6,7 +6,7 @@ import com.gyjiot.sip.domain.SipConfig;
 /**
  * sip系统配置Service接口
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2022-11-30
  */
 public interface ISipConfigService

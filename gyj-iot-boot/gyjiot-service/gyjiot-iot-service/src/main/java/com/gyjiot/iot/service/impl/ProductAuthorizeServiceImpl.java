@@ -22,7 +22,7 @@ import static com.gyjiot.common.utils.SecurityUtils.getLoginUser;
 /**
  * 产品授权码Service业务层处理
  *
- * @author kami
+ * @author shenghua.ji
  * @date 2022-04-11
  */
 @Service

@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 系统授权对象 sys_client
  *
- * @author zhuangpeng.li
+ * @author shenghua.ji
  * @date 2024-12-12
  */
 
