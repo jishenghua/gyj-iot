@@ -67,7 +67,7 @@ gyj-iot-web/                          # 管伊佳物联网平台前端项目
 ├── package.json                      # 项目依赖与脚本配置
 └── vite.config.js                    # Vite构建配置文件
 
-gyj-iot-boot/
+gyj-iot-boot/                  # 管伊佳物联网平台后端项目
 ├── gyjiot-admin/              # 管理后台模块 - Web应用入口，提供系统管理界面和API接口
 ├── gyjiot-common/             # 通用工具模块 - 公共常量、工具类、异常处理、注解等基础组件
 ├── gyjiot-framework/          # 框架核心模块 - Spring Security、AOP切面、数据源配置等框架级功能
