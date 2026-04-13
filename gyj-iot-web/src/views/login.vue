@@ -156,7 +156,11 @@ function getCode() {
 
 function getRegisterUserFlag() {
   getRegisterFlag().then(res => {
-    register.value = res.registerUser === undefined ? true : res.registerUser;
+    if(res.registerUser === undefined) {
+      register.value = true
+    } else {
+      register.value = res.registerUser==='true'
+    }
   });
 }
 
