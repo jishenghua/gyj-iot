@@ -67,31 +67,31 @@ gyj-iot-web/                          # 管伊佳物联网平台前端项目
 ├── package.json                      # 项目依赖与脚本配置
 └── vite.config.js                    # Vite构建配置文件
 
-gyj-iot-boot/                  # 管伊佳物联网平台后端项目
-├── gyjiot-admin/              # 管理后台模块 - Web应用入口，提供系统管理界面和API接口
-├── gyjiot-common/             # 通用工具模块 - 公共常量、工具类、异常处理、注解等基础组件
-├── gyjiot-framework/          # 框架核心模块 - Spring Security、AOP切面、数据源配置等框架级功能
-├── gyjiot-open-api/           # 开放API模块 - 对外提供的数据接口控制器和定时任务
-├── gyjiot-gateway/            # 网关模块
-│   ├── gateway-boot/          # 网关启动模块 - API网关服务入口
-│   └── gyjiot-mq/             # 消息队列模块 - MQTT消息处理相关功能
-├── gyjiot-plugs/              # 插件模块集合
-│   ├── gyjiot-generator/      # 代码生成器 - 自动生成CRUD代码的工具
-│   ├── gyjiot-http/           # HTTP客户端 - HTTP请求封装和处理
-│   ├── gyjiot-mqtt-client/    # MQTT客户端 - MQTT协议客户端实现
-│   ├── gyjiot-quartz/         # 定时任务 - Quartz调度器集成
-│   └── gyjiot-ruleEngine/     # 规则引擎 - IoT设备数据处理规则引擎
-├── gyjiot-protocol/           # 协议解析模块
-│   └── gyjiot-protocol-collect/ # 协议采集 - 多协议数据采集和解析
-├── gyjiot-server/             # IoT服务器模块
-│   ├── base-server/           # 基础服务 - IoT设备管理基础功能
-│   ├── boot-strap/            # 启动引导 - MQTT服务启动引导
-│   ├── iot-server-core/       # 核心服务 - IoT服务器核心逻辑
-│   ├── mqtt-broker/           # MQTT代理 - MQTT消息代理服务
-│   └── sip-server/            # SIP服务 - 视频流SIP协议支持
-└── gyjiot-service/            # 业务服务模块
-    ├── gyjiot-iot-service/    # IoT业务服务 - 设备管理、数据采集等业务逻辑
-    └── gyjiot-system-service/ # 系统管理服务 - 用户、角色、权限等系统管理
+gyj-iot-boot/                         # 管伊佳物联网平台后端项目
+├── gyjiot-admin/                     # 管理后台模块 - Web应用入口，提供系统管理界面和API接口
+├── gyjiot-common/                    # 通用工具模块 - 公共常量、工具类、异常处理、注解等基础组件
+├── gyjiot-framework/                 # 框架核心模块 - Spring Security、AOP切面、数据源配置等框架级功能
+├── gyjiot-open-api/                  # 开放API模块 - 对外提供的数据接口控制器和定时任务
+├── gyjiot-gateway/                   # 网关模块
+│   ├── gateway-boot/                 # 网关启动模块 - API网关服务入口
+│   └── gyjiot-mq/                    # 消息队列模块 - MQTT消息处理相关功能
+├── gyjiot-plugs/                     # 插件模块集合
+│   ├── gyjiot-generator/             # 代码生成器 - 自动生成CRUD代码的工具
+│   ├── gyjiot-http/                  # HTTP客户端 - HTTP请求封装和处理
+│   ├── gyjiot-mqtt-client/           # MQTT客户端 - MQTT协议客户端实现
+│   ├── gyjiot-quartz/                # 定时任务 - Quartz调度器集成
+│   └── gyjiot-ruleEngine/            # 规则引擎 - IoT设备数据处理规则引擎
+├── gyjiot-protocol/                  # 协议解析模块
+│   └── gyjiot-protocol-collect/      # 协议采集 - 多协议数据采集和解析
+├── gyjiot-server/                    # IoT服务器模块
+│   ├── base-server/                  # 基础服务 - IoT设备管理基础功能
+│   ├── boot-strap/                   # 启动引导 - MQTT服务启动引导
+│   ├── iot-server-core/              # 核心服务 - IoT服务器核心逻辑
+│   ├── mqtt-broker/                  # MQTT代理 - MQTT消息代理服务
+│   └── sip-server/                   # SIP服务 - 视频流SIP协议支持
+└── gyjiot-service/                   # 业务服务模块
+    ├── gyjiot-iot-service/           # IoT业务服务 - 设备管理、数据采集等业务逻辑
+    └── gyjiot-system-service/        # 系统管理服务 - 用户、角色、权限等系统管理
 ```
 
 #### 系统截图
