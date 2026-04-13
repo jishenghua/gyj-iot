@@ -20,7 +20,7 @@ mqttTool.connect = function () {
   if (url == '') {
     console.log('自动获取mqtt连接地址');
     if (window.location.protocol === 'http:') {
-      url = 'ws://' + window.location.hostname + ':8083/mqtt';
+      url = 'ws://' + window.location.hostname + ':38083/mqtt';
     } else {
       url = 'wss://' + window.location.hostname + '/mqtt';
     }

@@ -11,7 +11,7 @@ gyjiot:
 
 # 开发环境配置
 server:
-  port: 8080                # 服务器的HTTP端口，默认为8080
+  port: 38080                # 服务器的HTTP端口，默认为38080
   servlet:
     context-path: /         # 应用的访问路径
   tomcat:
@@ -23,8 +23,8 @@ server:
   # 基于netty的服务器
   broker:
     broker-node: node1
-    port: 1883
-    websocket-port: 8083
+    port: 31883
+    websocket-port: 38083
     websocket-path: /mqtt
     keep-alive: 70           # 默认的全部客户端心跳上传时间
 

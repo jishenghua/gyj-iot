@@ -250,7 +250,7 @@ function checkServer() {
           mediaServerForm.value.tenantId = tempTenantId.value;
           mediaServerForm.value.tenantName = tempTenantName.value;
           mediaServerForm.value.serverId = 'gyjiot';
-          mediaServerForm.value.hookurl = 'java:8080';
+          mediaServerForm.value.hookurl = 'java:38080';
           mediaServerForm.value.portHttps = 8443;
           mediaServerForm.value.recordPort = 18081;
           mediaServerForm.value.portRtmp = 1935;
