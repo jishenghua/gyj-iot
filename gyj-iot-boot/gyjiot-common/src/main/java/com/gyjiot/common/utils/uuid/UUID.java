@@ -10,7 +10,7 @@ import com.gyjiot.common.exception.UtilException;
 /**
  * 提供通用唯一识别码（universally unique identifier）（UUID）实现
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public final class UUID implements java.io.Serializable, Comparable<UUID>
 {
@@ -33,7 +33,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
 
     /**
      * 私有构造
-     * 
+     *
      * @param data 数据
      */
     private UUID(byte[] data)
@@ -67,7 +67,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
 
     /**
      * 获取类型 4（伪随机生成的）UUID 的静态工厂。 使用加密的本地线程伪随机数生成器生成该 UUID。
-     * 
+     *
      * @return 随机生成的 {@code UUID}
      */
     public static UUID fastUUID()
@@ -77,7 +77,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
 
     /**
      * 获取类型 4（伪随机生成的）UUID 的静态工厂。 使用加密的强伪随机数生成器生成该 UUID。
-     * 
+     *
      * @return 随机生成的 {@code UUID}
      */
     public static UUID randomUUID()
@@ -87,7 +87,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
 
     /**
      * 获取类型 4（伪随机生成的）UUID 的静态工厂。 使用加密的强伪随机数生成器生成该 UUID。
-     * 
+     *
      * @param isSecure 是否使用{@link SecureRandom}如果是可以获得更安全的随机码，否则可以得到更好的性能
      * @return 随机生成的 {@code UUID}
      */
@@ -289,7 +289,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
      *
      * <p>
      * UUID 的字符串表示形式由此 BNF 描述：
-     * 
+     *
      * <pre>
      * {@code
      * UUID                   = <time_low>-<time_mid>-<time_high_and_version>-<variant_and_sequence>-<node>
@@ -302,7 +302,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
      * hexDigit               = [0-9a-fA-F]
      * }
      * </pre>
-     * 
+     *
      * </blockquote>
      *
      * @return 此{@code UUID} 的字符串表现形式
@@ -319,7 +319,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
      *
      * <p>
      * UUID 的字符串表示形式由此 BNF 描述：
-     * 
+     *
      * <pre>
      * {@code
      * UUID                   = <time_low>-<time_mid>-<time_high_and_version>-<variant_and_sequence>-<node>
@@ -332,7 +332,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
      * hexDigit               = [0-9a-fA-F]
      * }
      * </pre>
-     * 
+     *
      * </blockquote>
      *
      * @param isSimple 是否简单模式，简单模式为不带'-'的UUID字符串
@@ -432,7 +432,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
     // Private method start
     /**
      * 返回指定数字对应的hex值
-     * 
+     *
      * @param val 值
      * @param digits 位
      * @return 值
@@ -456,7 +456,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
 
     /**
      * 获取{@link SecureRandom}，类提供加密的强随机数生成器 (RNG)
-     * 
+     *
      * @return {@link SecureRandom}
      */
     public static SecureRandom getSecureRandom()
@@ -474,7 +474,7 @@ public final class UUID implements java.io.Serializable, Comparable<UUID>
     /**
      * 获取随机数生成器对象<br>
      * ThreadLocalRandom是JDK 7之后提供并发产生随机数，能够解决多个线程发生的竞争争夺。
-     * 
+     *
      * @return {@link ThreadLocalRandom}
      */
     public static ThreadLocalRandom getRandom()

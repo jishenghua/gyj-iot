@@ -2,8 +2,8 @@ package com.gyjiot.common.exception;
 
 /**
  * 全局异常
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class GlobalException extends RuntimeException
 {

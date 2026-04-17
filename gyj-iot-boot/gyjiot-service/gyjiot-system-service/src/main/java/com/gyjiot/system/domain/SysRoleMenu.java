@@ -7,8 +7,8 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  * 角色和菜单关联 sys_role_menu
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysRoleMenu", description = "角色和菜单关联 sys_role_menu")
 public class SysRoleMenu
@@ -16,7 +16,7 @@ public class SysRoleMenu
     /** 角色ID */
     @ApiModelProperty("角色ID")
     private Long roleId;
-    
+
     /** 菜单ID */
     @ApiModelProperty("菜单ID")
     private Long menuId;

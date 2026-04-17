@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 启动程序
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @SpringBootApplication
 public class GyjiotApplication

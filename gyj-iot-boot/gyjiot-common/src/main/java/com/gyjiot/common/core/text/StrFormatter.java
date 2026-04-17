@@ -4,8 +4,8 @@ import com.gyjiot.common.utils.StringUtils;
 
 /**
  * 字符串格式化
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class StrFormatter
 {
@@ -22,7 +22,7 @@ public class StrFormatter
      * 通常使用：format("this is {} for {}", "a", "b") -> this is a for b<br>
      * 转义{}： format("this is \\{} for {}", "a", "b") -> this is \{} for a<br>
      * 转义\： format("this is \\\\{} for {}", "a", "b") -> this is \a for b<br>
-     * 
+     *
      * @param strPattern 字符串模板
      * @param argArray 参数列表
      * @return 结果

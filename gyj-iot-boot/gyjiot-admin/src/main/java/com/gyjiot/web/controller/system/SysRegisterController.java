@@ -20,7 +20,7 @@ import java.io.IOException;
 /**
  * 注册验证
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "注册账号")
 @RestController

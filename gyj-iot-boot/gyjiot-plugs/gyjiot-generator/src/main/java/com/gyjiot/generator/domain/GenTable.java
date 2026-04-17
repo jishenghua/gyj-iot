@@ -16,8 +16,8 @@ import com.gyjiot.common.utils.StringUtils;
 
 /**
  * 业务表 gen_table
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "GenTable", description = "业务表 gen_table")
 @TableName("gen_table")

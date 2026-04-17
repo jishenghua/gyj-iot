@@ -11,7 +11,7 @@ import com.gyjiot.common.enums.LimitType;
 /**
  * 限流注解
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

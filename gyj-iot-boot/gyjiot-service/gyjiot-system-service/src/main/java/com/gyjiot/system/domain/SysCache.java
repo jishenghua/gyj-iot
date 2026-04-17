@@ -4,8 +4,8 @@ import com.gyjiot.common.utils.StringUtils;
 
 /**
  * 缓存信息
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class SysCache
 {

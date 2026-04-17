@@ -3,7 +3,7 @@ package com.gyjiot.common.exception.user;
 /**
  * 用户不存在异常类
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class UserNotExistsException extends UserException
 {

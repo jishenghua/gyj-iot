@@ -11,8 +11,8 @@ import com.gyjiot.common.core.domain.BaseEntity;
 
 /**
  * 定时任务调度日志表 sys_job_log
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysJobLog", description = "定时任务调度日志表 sys_job_log")
 public class SysJobLog extends BaseEntity
@@ -141,7 +141,7 @@ public class SysJobLog extends BaseEntity
     {
         this.startTime = startTime;
     }
-    
+
     public Date getStopTime()
     {
         return stopTime;

@@ -16,7 +16,7 @@ import com.gyjiot.common.core.domain.BaseEntity;
 /**
  * 角色表 sys_role
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @ApiModel(value = "SysRole", description = "角色表 sys_role")
 public class SysRole extends BaseEntity

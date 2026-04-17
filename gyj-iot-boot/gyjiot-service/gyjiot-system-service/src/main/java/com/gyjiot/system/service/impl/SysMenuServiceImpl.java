@@ -28,7 +28,7 @@ import com.gyjiot.system.service.ISysMenuService;
 /**
  * 菜单 业务层处理
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Service
 public class SysMenuServiceImpl implements ISysMenuService

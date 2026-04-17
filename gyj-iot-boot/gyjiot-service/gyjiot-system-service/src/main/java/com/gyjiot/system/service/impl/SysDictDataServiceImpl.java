@@ -11,7 +11,7 @@ import com.gyjiot.system.service.ISysDictDataService;
 /**
  * 字典 业务层处理
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @Service
 public class SysDictDataServiceImpl implements ISysDictDataService

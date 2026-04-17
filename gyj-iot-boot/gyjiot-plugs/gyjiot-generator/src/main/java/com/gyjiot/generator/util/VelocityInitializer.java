@@ -6,8 +6,8 @@ import com.gyjiot.common.constant.Constants;
 
 /**
  * VelocityEngine工厂
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class VelocityInitializer
 {

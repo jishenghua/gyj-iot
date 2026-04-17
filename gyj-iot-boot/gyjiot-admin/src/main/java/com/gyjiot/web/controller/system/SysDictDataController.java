@@ -27,8 +27,8 @@ import com.gyjiot.system.service.ISysDictTypeService;
 
 /**
  * 数据字典信息
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @RestController
 @RequestMapping("/system/dict/data")

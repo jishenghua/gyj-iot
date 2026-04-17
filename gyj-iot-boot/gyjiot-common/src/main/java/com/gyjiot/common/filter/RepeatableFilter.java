@@ -13,8 +13,8 @@ import com.gyjiot.common.utils.StringUtils;
 
 /**
  * Repeatable 过滤器
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class RepeatableFilter implements Filter
 {

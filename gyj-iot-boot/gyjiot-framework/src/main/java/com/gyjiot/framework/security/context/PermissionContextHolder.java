@@ -7,7 +7,7 @@ import com.gyjiot.common.core.text.Convert;
 /**
  * 权限信息
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class PermissionContextHolder
 {

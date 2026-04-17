@@ -26,7 +26,7 @@ import org.apache.commons.io.FilenameUtils;
 /**
  * 文件处理工具类
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class FileUtils
 {

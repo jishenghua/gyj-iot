@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 分页数据
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class PageDomain
 {

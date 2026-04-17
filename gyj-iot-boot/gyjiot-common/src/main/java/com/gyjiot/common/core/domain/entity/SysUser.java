@@ -18,7 +18,7 @@ import com.gyjiot.common.xss.Xss;
 /**
  * 用户对象 sys_user
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @ApiModel(value = "SysUser", description = "用户对象 sys_user")
 public class SysUser extends BaseEntity

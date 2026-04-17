@@ -5,7 +5,7 @@ import com.gyjiot.common.utils.StringUtils;
 /**
  * 路由显示信息
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class MetaVo
 {

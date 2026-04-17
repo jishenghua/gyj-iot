@@ -2,8 +2,8 @@ package com.gyjiot.common.enums;
 
 /**
  * 操作人类别
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public enum OperatorType
 {

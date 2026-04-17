@@ -15,8 +15,8 @@ import com.gyjiot.common.core.domain.BaseEntity;
 
 /**
  * 部门表 sys_dept
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysDept", description = "部门表 sys_dept")
 public class SysDept extends BaseEntity
@@ -66,7 +66,7 @@ public class SysDept extends BaseEntity
     /** 父部门名称 */
     @ApiModelProperty("父部门名称")
     private String parentName;
-    
+
     /** 子部门 */
     @ApiModelProperty("子部门")
     private List<SysDept> children = new ArrayList<SysDept>();

@@ -2,8 +2,8 @@ package com.gyjiot.common.utils.sign;
 
 /**
  * Base64工具类
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public final class Base64
 {

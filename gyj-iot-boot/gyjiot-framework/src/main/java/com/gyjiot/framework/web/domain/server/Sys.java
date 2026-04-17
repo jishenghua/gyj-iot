@@ -3,7 +3,7 @@ package com.gyjiot.framework.web.domain.server;
 /**
  * 系统相关信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class Sys
 {

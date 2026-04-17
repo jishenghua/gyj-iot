@@ -6,7 +6,7 @@ import com.gyjiot.common.constant.HttpStatus;
 /**
  * 响应信息主体
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class R<T> implements Serializable
 {

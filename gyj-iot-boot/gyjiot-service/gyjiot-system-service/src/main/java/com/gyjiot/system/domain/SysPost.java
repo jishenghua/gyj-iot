@@ -15,7 +15,7 @@ import com.gyjiot.common.core.domain.BaseEntity;
 /**
  * 岗位表 sys_post
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @ApiModel(value = "SysPost", description = "岗位表 sys_post")
 public class SysPost extends BaseEntity

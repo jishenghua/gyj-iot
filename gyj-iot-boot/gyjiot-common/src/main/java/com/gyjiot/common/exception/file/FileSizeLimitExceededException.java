@@ -2,8 +2,8 @@ package com.gyjiot.common.exception.file;
 
 /**
  * 文件名大小限制异常类
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class FileSizeLimitExceededException extends FileException
 {

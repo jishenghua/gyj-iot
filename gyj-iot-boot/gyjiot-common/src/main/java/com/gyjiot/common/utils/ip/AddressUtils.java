@@ -12,7 +12,7 @@ import com.gyjiot.common.utils.http.HttpUtils;
 /**
  * 获取地址类
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class AddressUtils
 {

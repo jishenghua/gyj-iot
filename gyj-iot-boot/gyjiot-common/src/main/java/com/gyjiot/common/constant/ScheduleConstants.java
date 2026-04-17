@@ -2,8 +2,8 @@ package com.gyjiot.common.constant;
 
 /**
  * 任务调度通用常量
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class ScheduleConstants
 {

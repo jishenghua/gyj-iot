@@ -27,7 +27,7 @@ import javax.annotation.Resource;
 /**
  * swagger 用户测试方法
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api("swagger 用户测试方法")
 @RestController

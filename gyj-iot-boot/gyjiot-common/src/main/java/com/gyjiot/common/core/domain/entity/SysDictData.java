@@ -14,8 +14,8 @@ import com.gyjiot.common.core.domain.BaseEntity;
 
 /**
  * 字典数据表 sys_dict_data
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysDictData", description = "字典数据表 sys_dict_data")
 public class SysDictData extends BaseEntity
@@ -166,7 +166,7 @@ public class SysDictData extends BaseEntity
     {
         this.status = status;
     }
-    
+
     @Override
     public String toString() {
         return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)

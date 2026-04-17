@@ -18,8 +18,8 @@ import com.gyjiot.quartz.util.CronUtils;
 
 /**
  * 定时任务调度表 sys_job
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysJob", description = "定时任务调度表 sys_job")
 public class SysJob extends BaseEntity

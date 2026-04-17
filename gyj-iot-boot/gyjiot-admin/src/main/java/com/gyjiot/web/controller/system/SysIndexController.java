@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * 首页
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @RestController
 public class SysIndexController

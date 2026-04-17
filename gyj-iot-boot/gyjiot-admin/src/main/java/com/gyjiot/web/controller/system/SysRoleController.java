@@ -38,7 +38,7 @@ import com.gyjiot.system.service.ISysUserService;
 /**
  * 角色信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "角色管理")
 @RestController

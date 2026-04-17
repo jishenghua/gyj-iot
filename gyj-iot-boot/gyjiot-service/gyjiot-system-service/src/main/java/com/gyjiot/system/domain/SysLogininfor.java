@@ -10,8 +10,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 系统访问记录表 sys_logininfor
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysLogininfor", description = "系统访问记录表 sys_logininfor")
 public class SysLogininfor extends BaseEntity

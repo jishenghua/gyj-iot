@@ -16,7 +16,7 @@ import com.gyjiot.system.service.ISysRoleService;
 /**
  * 用户权限处理
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Component
 public class SysPermissionService

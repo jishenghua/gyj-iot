@@ -3,7 +3,7 @@ package com.gyjiot.common.constant;
 /**
  * 用户常量信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class UserConstants
 {

@@ -5,7 +5,7 @@ import com.gyjiot.common.exception.base.BaseException;
 /**
  * 用户信息异常类
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class UserException extends BaseException
 {

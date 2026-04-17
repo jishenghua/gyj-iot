@@ -3,7 +3,7 @@ package com.gyjiot.common.constant;
 /**
  * 代码生成通用常量
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class GenConstants
 {

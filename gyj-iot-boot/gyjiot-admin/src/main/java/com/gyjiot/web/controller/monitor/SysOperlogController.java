@@ -24,8 +24,8 @@ import com.gyjiot.system.service.ISysOperLogService;
 
 /**
  * 操作日志记录
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @Api(tags = "日志管理：操作日志")
 @RestController

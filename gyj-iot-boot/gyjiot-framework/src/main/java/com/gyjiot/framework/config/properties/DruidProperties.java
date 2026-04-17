@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * druid 配置属性
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Data
 @Configuration

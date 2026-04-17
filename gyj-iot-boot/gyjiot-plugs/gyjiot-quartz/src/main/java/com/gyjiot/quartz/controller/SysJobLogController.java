@@ -25,7 +25,7 @@ import com.gyjiot.quartz.service.ISysJobLogService;
 /**
  * 调度日志操作处理
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "调度日志操作处理")
 @RestController

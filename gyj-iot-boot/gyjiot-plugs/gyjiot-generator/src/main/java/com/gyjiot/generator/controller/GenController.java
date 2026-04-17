@@ -36,8 +36,8 @@ import com.gyjiot.generator.service.IGenTableService;
 
 /**
  * 代码生成 操作处理
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @Api(tags = "代码生成模块")
 @RestController

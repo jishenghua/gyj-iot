@@ -3,7 +3,7 @@ package com.gyjiot.common.enums;
 /**
  * 数据源
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public enum DataSourceType
 {

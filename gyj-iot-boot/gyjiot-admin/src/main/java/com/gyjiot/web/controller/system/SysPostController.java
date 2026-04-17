@@ -29,7 +29,7 @@ import com.gyjiot.system.service.ISysPostService;
 /**
  * 岗位信息操作处理
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "岗位管理")
 @RestController

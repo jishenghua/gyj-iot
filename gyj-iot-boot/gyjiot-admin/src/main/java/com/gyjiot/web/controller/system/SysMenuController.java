@@ -27,7 +27,7 @@ import com.gyjiot.system.service.ISysMenuService;
 /**
  * 菜单信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "菜单管理")
 @RestController

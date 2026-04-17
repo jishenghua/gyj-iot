@@ -22,7 +22,7 @@ import com.gyjiot.common.utils.html.EscapeUtil;
 /**
  * 全局异常处理器
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler

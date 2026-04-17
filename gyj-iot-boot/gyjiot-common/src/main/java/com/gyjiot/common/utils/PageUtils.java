@@ -8,7 +8,7 @@ import com.gyjiot.common.utils.sql.SqlUtil;
 /**
  * 分页工具类
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class PageUtils extends PageHelper
 {

@@ -12,7 +12,7 @@ import com.gyjiot.common.constant.Constants;
 /**
  * 资源文件配置加载
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Configuration
 public class I18nConfig implements WebMvcConfigurer

@@ -18,7 +18,7 @@ import com.gyjiot.common.utils.uuid.Seq;
 /**
  * 文件上传工具类
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class FileUploadUtils
 {

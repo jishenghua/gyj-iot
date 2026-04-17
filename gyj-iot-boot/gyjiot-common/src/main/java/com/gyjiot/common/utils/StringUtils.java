@@ -9,7 +9,7 @@ import java.util.*;
 /**
  * 字符串工具类
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class StringUtils extends org.apache.commons.lang3.StringUtils
 {

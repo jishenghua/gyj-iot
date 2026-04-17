@@ -23,7 +23,7 @@ import com.gyjiot.common.utils.ip.IpUtils;
 /**
  * 限流处理
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Aspect
 @Component

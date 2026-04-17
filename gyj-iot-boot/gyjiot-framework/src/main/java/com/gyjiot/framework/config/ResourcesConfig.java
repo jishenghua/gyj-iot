@@ -18,7 +18,7 @@ import com.gyjiot.framework.interceptor.RepeatSubmitInterceptor;
 /**
  * 通用配置
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Configuration
 public class ResourcesConfig implements WebMvcConfigurer

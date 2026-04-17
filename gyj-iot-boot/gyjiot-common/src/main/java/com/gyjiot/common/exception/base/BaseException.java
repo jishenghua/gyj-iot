@@ -5,8 +5,8 @@ import com.gyjiot.common.utils.StringUtils;
 
 /**
  * 基础异常
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class BaseException extends RuntimeException
 {

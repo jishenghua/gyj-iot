@@ -33,7 +33,7 @@ import static java.util.regex.Pattern.compile;
 /**
  * spring redis 工具类
  *
- * @author ruoyi
+ * @author jishenghua
  **/
 @SuppressWarnings(value = {"unchecked", "rawtypes"})
 @Component

@@ -2,8 +2,8 @@ package com.gyjiot.common.core.domain.model;
 
 /**
  * 用户登录对象
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class BindLoginBody extends LoginBody
 {

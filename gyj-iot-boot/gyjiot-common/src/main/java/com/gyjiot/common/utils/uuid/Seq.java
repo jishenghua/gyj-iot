@@ -5,7 +5,7 @@ import com.gyjiot.common.utils.DateUtils;
 import com.gyjiot.common.utils.StringUtils;
 
 /**
- * @author ruoyi 序列生成类
+ * @author jishenghua 序列生成类
  */
 public class Seq
 {

@@ -2,8 +2,8 @@ package com.gyjiot.common.enums;
 
 /**
  * 操作状态
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  *
  */
 public enum BusinessStatus

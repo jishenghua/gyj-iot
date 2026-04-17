@@ -36,7 +36,7 @@ import java.util.Map;
 /**
  * 个人信息 业务处理
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "个人中心")
 @RestController

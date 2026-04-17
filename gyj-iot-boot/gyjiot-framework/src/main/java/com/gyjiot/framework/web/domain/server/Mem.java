@@ -6,7 +6,7 @@ import com.gyjiot.common.utils.Arith;
 /**
  * 內存相关信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class Mem
 {

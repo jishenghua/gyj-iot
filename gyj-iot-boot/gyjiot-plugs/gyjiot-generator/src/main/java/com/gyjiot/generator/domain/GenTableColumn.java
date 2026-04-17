@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 /**
  * 代码生成业务字段表 gen_table_column
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @ApiModel(value = "GenTableColumn", description = "代码生成业务字段表 gen_table_column")
 public class GenTableColumn extends BaseEntity

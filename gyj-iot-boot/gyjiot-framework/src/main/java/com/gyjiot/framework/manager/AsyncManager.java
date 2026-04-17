@@ -8,8 +8,8 @@ import com.gyjiot.common.utils.spring.SpringUtils;
 
 /**
  * 异步任务管理器
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class AsyncManager
 {
@@ -37,7 +37,7 @@ public class AsyncManager
 
     /**
      * 执行任务
-     * 
+     *
      * @param task 任务
      */
     public void execute(TimerTask task)

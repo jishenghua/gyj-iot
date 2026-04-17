@@ -6,7 +6,7 @@ import com.gyjiot.common.utils.Arith;
 /**
  * CPU相关信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 public class Cpu
 {

@@ -28,7 +28,7 @@ import com.gyjiot.system.service.ISysDeptService;
 /**
  * 部门信息
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "部门管理")
 @RestController

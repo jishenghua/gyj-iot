@@ -6,7 +6,7 @@ import com.gyjiot.common.utils.StringUtils;
 /**
  * 定时任务调度测试
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @Component("ryTask")
 public class RyTask

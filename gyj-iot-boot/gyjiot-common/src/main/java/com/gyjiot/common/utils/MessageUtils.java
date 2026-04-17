@@ -6,8 +6,8 @@ import com.gyjiot.common.utils.spring.SpringUtils;
 
 /**
  * 获取i18n资源文件
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 public class MessageUtils
 {

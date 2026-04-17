@@ -8,7 +8,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 /**
  * 用户和岗位关联 sys_user_post
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 @ApiModel(value = "SysUserPost", description = "用户和岗位关联 sys_user_post")
 public class SysUserPost

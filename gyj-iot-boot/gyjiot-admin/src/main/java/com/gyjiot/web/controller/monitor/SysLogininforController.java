@@ -25,8 +25,8 @@ import com.gyjiot.system.service.ISysLogininforService;
 
 /**
  * 系统访问记录
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @Api(tags = "日志管理：登录日志")
 @RestController

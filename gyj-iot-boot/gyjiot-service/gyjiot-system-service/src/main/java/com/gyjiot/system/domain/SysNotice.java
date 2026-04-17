@@ -12,8 +12,8 @@ import com.gyjiot.common.xss.Xss;
 
 /**
  * 通知公告表 sys_notice
- * 
- * @author ruoyi
+ *
+ * @author jishenghua
  */
 @ApiModel(value = "SysNotice", description = "通知公告表 sys_notice")
 public class SysNotice extends BaseEntity

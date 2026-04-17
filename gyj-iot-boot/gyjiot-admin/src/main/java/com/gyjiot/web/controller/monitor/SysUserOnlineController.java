@@ -29,7 +29,7 @@ import com.gyjiot.system.service.ISysUserOnlineService;
 /**
  * 在线用户监控
  *
- * @author ruoyi
+ * @author jishenghua
  */
 @Api(tags = "在线用户监控")
 @RestController

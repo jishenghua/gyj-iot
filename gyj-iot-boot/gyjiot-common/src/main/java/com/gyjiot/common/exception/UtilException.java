@@ -3,7 +3,7 @@ package com.gyjiot.common.exception;
 /**
  * 工具类异常
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public class UtilException extends RuntimeException
 {

@@ -11,7 +11,7 @@ import com.gyjiot.generator.domain.GenTableColumn;
 /**
  * 业务 服务层
  * 
- * @author ruoyi
+ * @author jishenghua
  */
 public interface IGenTableService
 {
