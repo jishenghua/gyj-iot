@@ -70,11 +70,13 @@
         <dependency>
             <groupId>com.gyjiot</groupId>
             <artifactId>boot-strap</artifactId>
+            <version>${gyjiot.version}</version>
         </dependency>
         <!--网关集成启动模块-->
         <dependency>
             <groupId>com.gyjiot</groupId>
-            <artifactId>gateway-boot</artifactId>
+            <artifactId>gyjiot-gateway</artifactId>
+            <version>${gyjiot.version}</version>
         </dependency>
 
     </dependencies>

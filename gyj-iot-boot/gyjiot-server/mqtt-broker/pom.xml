@@ -19,14 +19,18 @@
 
 		<dependency>
 			<groupId>com.gyjiot</groupId>
-			<artifactId>gyjiot-mq</artifactId>
+			<artifactId>gyjiot-gateway</artifactId>
 		</dependency>
         <dependency>
             <groupId>com.gyjiot</groupId>
             <artifactId>gyjiot-mqtt-client</artifactId>
         </dependency>
+		<dependency>
+			<groupId>com.gyjiot</groupId>
+			<artifactId>gyjiot-protocol</artifactId>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 
 </project>

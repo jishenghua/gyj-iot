@@ -397,23 +397,10 @@
                 <artifactId>base-server</artifactId>
                 <version>${gyjiot.version}</version>
             </dependency>
-            <!--mq模块-->
-            <dependency>
-                <groupId>com.gyjiot</groupId>
-                <artifactId>gyjiot-mq</artifactId>
-                <version>${gyjiot.version}</version>
-            </dependency>
-            <!--服务启动模块-->
-            <dependency>
-                <groupId>com.gyjiot</groupId>
-                <artifactId>boot-strap</artifactId>
-                <version>${gyjiot.version}</version>
-            </dependency>
-
             <!--网关启动模块-->
             <dependency>
                 <groupId>com.gyjiot</groupId>
-                <artifactId>gateway-boot</artifactId>
+                <artifactId>gyjiot-gateway</artifactId>
                 <version>${gyjiot.version}</version>
             </dependency>
 

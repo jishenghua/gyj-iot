@@ -8,13 +8,6 @@
         <version>${gyjiot.version}</version>
     </parent>
 
-    <packaging>pom</packaging>
-
-    <modules>
-        <module>gateway-boot</module>
-        <module>gyjiot-mq</module>
-    </modules>
-
     <artifactId>gyjiot-gateway</artifactId>
     <name>gyjiot-gateway</name>
 
@@ -29,6 +22,15 @@
             <artifactId>gyjiot-iot-service</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.gyjiot</groupId>
+            <artifactId>gyjiot-mqtt-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.gyjiot</groupId>
+            <artifactId>gyjiot-ruleEngine</artifactId>
+        </dependency>
 
     </dependencies>
 
