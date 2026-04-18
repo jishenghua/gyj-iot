@@ -385,12 +385,6 @@
                 <artifactId>gyjiot-open-api</artifactId>
                 <version>${gyjiot.version}</version>
             </dependency>
-            <!--modbus协议模块-->
-            <dependency>
-                <groupId>com.gyjiot</groupId>
-                <artifactId>gyjiot-protocol-collect</artifactId>
-                <version>${gyjiot.version}</version>
-            </dependency>
             <!--服务核心模块-->
             <dependency>
                 <groupId>com.gyjiot</groupId>

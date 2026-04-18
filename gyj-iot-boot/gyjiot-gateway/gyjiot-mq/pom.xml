@@ -13,7 +13,7 @@
 
 		<dependency>
 			<groupId>com.gyjiot</groupId>
-			<artifactId>gyjiot-protocol-collect</artifactId>
+			<artifactId>gyjiot-protocol</artifactId>
 		</dependency>
 
 		<dependency>
