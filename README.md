@@ -82,7 +82,6 @@ gyj-iot-boot/                         # 管伊佳物联网平台后端项目
 │   ├── gyjiot-quartz/                # 定时任务 - Quartz调度器集成
 │   └── gyjiot-ruleEngine/            # 规则引擎 - IoT设备数据处理规则引擎
 ├── gyjiot-protocol/                  # 协议解析模块
-│   └── gyjiot-protocol-collect/      # 协议采集 - 多协议数据采集和解析
 ├── gyjiot-server/                    # IoT服务器模块
 │   ├── base-server/                  # 基础服务 - IoT设备管理基础功能
 │   ├── boot-strap/                   # 启动引导 - MQTT服务启动引导
