@@ -72,9 +72,7 @@ gyj-iot-boot/                         # 管伊佳物联网平台后端项目
 ├── gyjiot-common/                    # 通用工具模块 - 公共常量、工具类、异常处理、注解等基础组件
 ├── gyjiot-framework/                 # 框架核心模块 - Spring Security、AOP切面、数据源配置等框架级功能
 ├── gyjiot-open-api/                  # 开放API模块 - 对外提供的数据接口控制器和定时任务
-├── gyjiot-gateway/                   # 网关模块
-│   ├── gateway-boot/                 # 网关启动模块 - API网关服务入口
-│   └── gyjiot-mq/                    # 消息队列模块 - MQTT消息处理相关功能
+├── gyjiot-gateway/                   # 网关模块 - API网关服务入口和MQTT消息处理相关功能
 ├── gyjiot-plugs/                     # 插件模块集合
 │   ├── gyjiot-generator/             # 代码生成器 - 自动生成CRUD代码的工具
 │   ├── gyjiot-http/                  # HTTP客户端 - HTTP请求封装和处理
