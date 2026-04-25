@@ -121,8 +121,8 @@ const props = defineProps({
 watch(() => props.device, (newVal, oldVal) => {
   deviceInfo.value = newVal;
   if (deviceInfo.value && deviceInfo.value.deviceId != 0) {
-    this.isSubDev = deviceInfo.value.subDeviceList && deviceInfo.value.subDeviceList.length > 0;
-    this.showName = this.isSubDev ? '寄存器地址' : '标识符';
+    isSubDev.value = deviceInfo.value.subDeviceList && deviceInfo.value.subDeviceList.length > 0;
+    showName.value = isSubDev.value ? '寄存器地址' : '标识符';
     queryParams.value.deviceId = deviceInfo.value.deviceId;
     queryParams.value.slaveId = deviceInfo.value.slaveId;
     queryParams.value.serialNumber = deviceInfo.value.serialNumber;
