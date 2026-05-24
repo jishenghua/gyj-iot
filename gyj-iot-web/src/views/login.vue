@@ -8,7 +8,9 @@
           type="text"
           size="large"
           auto-complete="off"
-          placeholder="账号">
+          placeholder="账号"
+          @keyup.enter="handleLogin"
+        >
           <template #prefix><svg-icon icon-class="user" class="el-input__icon input-icon" /></template>
         </el-input>
       </el-form-item>
@@ -32,11 +34,12 @@
           placeholder="验证码"
           style="width: 63%"
           @keyup.enter="handleLogin"
+          @keyup.esc="clearCode"
         >
           <template #prefix><svg-icon icon-class="validCode" class="el-input__icon input-icon" /></template>
         </el-input>
         <div class="login-code">
-          <img :src="codeUrl" @click="getCode" class="login-code-img"/>
+          <img :src="codeUrl" @click="getCode" class="login-code-img" alt="验证码"/>
         </div>
       </el-form-item>
       <el-checkbox v-model="loginForm.rememberMe" style="margin:0px 0px 25px 0px;">记住密码</el-checkbox>
@@ -100,84 +103,127 @@ const captchaEnabled = ref(true);
 const register = ref(false);
 const redirect = ref(undefined);
 
-getPlatformName().then(res => {
-  title.value = res.platformName
-})
+// 获取平台名称
+async function getPlatformInfo() {
+  try {
+    const res = await getPlatformName();
+    title.value = res.platformName || '物联网平台';
+  } catch (error) {
+    console.error('获取平台名称失败:', error);
+    title.value = '物联网平台'; // 默认标题
+  }
+}
 
 watch(route, (newRoute) => {
     redirect.value = newRoute.query && newRoute.query.redirect;
 }, { immediate: true });
 
-function handleLogin() {
-  proxy.$refs.loginRef.validate(valid => {
-    if (valid) {
-      loading.value = true;
-      // 勾选了需要记住密码设置在 cookie 中设置记住用户名和密码
-      if (loginForm.value.rememberMe) {
-        Cookies.set("username", loginForm.value.username, { expires: 30 });
-        Cookies.set("password", encrypt(loginForm.value.password), { expires: 30 });
-        Cookies.set("rememberMe", loginForm.value.rememberMe, { expires: 30 });
-      } else {
-        // 否则移除
-        Cookies.remove("username");
-        Cookies.remove("password");
-        Cookies.remove("rememberMe");
-      }
-      // 调用action的登录方法
-      userStore.login(loginForm.value).then(() => {
-        const query = route.query;
-        const otherQueryParams = Object.keys(query).reduce((acc, cur) => {
-          if (cur !== "redirect") {
-            acc[cur] = query[cur];
-          }
-          return acc;
-        }, {});
-        router.push({ path: redirect.value || "/", query: otherQueryParams });
-      }).catch(() => {
-        loading.value = false;
-        // 重新获取验证码
-        if (captchaEnabled.value) {
-          getCode();
-        }
-      });
+// 处理登录
+async function handleLogin() {
+  try {
+    const valid = await proxy.$refs.loginRef.validate();
+    if (!valid) return;
+
+    loading.value = true;
+
+    // 如果勾选了记住密码，保存到cookie
+    if (loginForm.value.rememberMe) {
+      saveCredentials();
+    } else {
+      clearCredentials();
     }
-  });
+
+    // 调用登录action
+    await userStore.login(loginForm.value);
+
+    // 登录成功后的路由跳转
+    const query = route.query;
+    const otherQueryParams = Object.keys(query).reduce((acc, cur) => {
+      if (cur !== "redirect") {
+        acc[cur] = query[cur];
+      }
+      return acc;
+    }, {});
+
+    proxy.$modal.msgSuccess("登录成功");
+    router.push({ path: redirect.value || "/", query: otherQueryParams });
+
+  } catch (error) {
+    loading.value = false;
+
+    // 重新获取验证码
+    if (captchaEnabled.value) {
+      getCode();
+    }
+  }
 }
 
-function getCode() {
-  getCodeImg().then(res => {
-    captchaEnabled.value = res.captchaEnabled === undefined ? true : res.captchaEnabled;
+// 保存凭证到cookie
+function saveCredentials() {
+  Cookies.set("username", loginForm.value.username, { expires: 30 });
+  Cookies.set("password", encrypt(loginForm.value.password), { expires: 30 });
+  Cookies.set("rememberMe", loginForm.value.rememberMe, { expires: 30 });
+}
+
+// 清除cookie中的凭证
+function clearCredentials() {
+  Cookies.remove("username");
+  Cookies.remove("password");
+  Cookies.remove("rememberMe");
+}
+
+// 获取验证码
+async function getCode() {
+  try {
+    const res = await getCodeImg();
+    captchaEnabled.value = res.captchaEnabled !== undefined ? res.captchaEnabled : true;
     if (captchaEnabled.value) {
       codeUrl.value = "data:image/gif;base64," + res.img;
       loginForm.value.uuid = res.uuid;
     }
-  });
+  } catch (error) {
+    console.error('获取验证码失败:', error);
+    proxy.$modal.msgError("获取验证码失败，请重试");
+  }
 }
 
-function getRegisterUserFlag() {
-  getRegisterFlag().then(res => {
-    if(res.registerUser === undefined) {
-      register.value = true
-    } else {
-      register.value = res.registerUser==='true'
-    }
-  });
+// 获取注册功能开关状态
+async function getRegisterUserFlag() {
+  try {
+    const res = await getRegisterFlag();
+    register.value = res.registerUser === undefined ? true : res.registerUser === 'true';
+  } catch (error) {
+    console.error('获取注册状态失败:', error);
+    register.value = true; // 默认允许注册
+  }
 }
 
+// 从cookie中读取保存的凭证
 function getCookie() {
   const username = Cookies.get("username");
   const password = Cookies.get("password");
   const rememberMe = Cookies.get("rememberMe");
+
   loginForm.value = {
-    username: username === undefined ? loginForm.value.username : username,
-    password: password === undefined ? loginForm.value.password : decrypt(password),
-    rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
+    ...loginForm.value,
+    username: username || loginForm.value.username,
+    password: password ? decrypt(password) : loginForm.value.password,
+    rememberMe: rememberMe ? Boolean(rememberMe) : false
   };
 }
 
-getCode();
-getRegisterUserFlag();
-getCookie();
+// 清除验证码输入
+function clearCode() {
+  loginForm.value.code = "";
+}
+
+// 初始化
+onMounted(() => {
+  getPlatformInfo();
+  getRegisterUserFlag();
+  getCookie();
+  getCode();
+});
 </script>
 
 <style lang='scss' scoped>
