@@ -3,9 +3,9 @@
     <el-row :gutter="20" style="margin: 10px 0px 20px 0px">
       <el-col :xs="24" :sm="24" :md="24" :lg="10" :xl="10">
         <el-card shadow="none" style="">
-          <h3 style="font-weight: bold">
+          <h3 class="card-title">
             <el-icon><Histogram /></el-icon>
-            设备统计
+            <span>设备统计</span>
           </h3>
           <el-row :gutter="40" class="panel-group">
             <el-col :span="12" class="card-panel-col">
@@ -77,9 +77,9 @@
           </el-row>
         </el-card>
         <el-card shadow="none" style="margin-top: 22px; height: 302px">
-          <h3 style="font-weight: bold; margin-bottom: 10px">
+          <h3 class="card-title">
             <el-icon><List /></el-icon>
-            信息栏
+            <span>信息栏</span>
           </h3>
           <div style="cursor: pointer; display: table; width: 100%; line-height: 36px" @click="openDetail(item.noticeId)" v-for="item in noticeList" :key="item.noticeId">
             <div style="display: table-cell; padding-right: 10px">
@@ -590,7 +590,13 @@ getNoticeList();
 searchDeviceStatistic();
 </script>
 
-<style>
+<style scoped>
+.card-title {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px
+}
 .map-wrapper {
   position: relative;
   width: 100%;
