@@ -1,8 +1,8 @@
 {
-  "name": "ruoyi",
+  "name": "gyj-iot",
   "version": "3.8.7",
   "description": "管伊佳物联",
-  "author": "若依",
+  "author": "jsh",
   "license": "MIT",
   "type": "module",
   "scripts": {
