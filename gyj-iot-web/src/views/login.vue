@@ -17,13 +17,18 @@
       <el-form-item prop="password">
         <el-input
           v-model="loginForm.password"
-          type="password"
+          :type="passwordVisible ? 'text' : 'password'"
           size="large"
           auto-complete="off"
           placeholder="密码"
           @keyup.enter="handleLogin"
         >
           <template #prefix><svg-icon icon-class="password" class="el-input__icon input-icon" /></template>
+          <template #suffix>
+            <el-icon class="eye-icon" @click="togglePasswordVisible">
+              <component :is="passwordVisible ? View : Hide" />
+            </el-icon>
+          </template>
         </el-input>
       </el-form-item>
       <el-form-item prop="code" v-if="captchaEnabled">
@@ -74,6 +79,7 @@ import { getPlatformName } from '@/api/index'
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
 import useUserStore from '@/store/modules/user'
+import { View, Hide } from '@element-plus/icons-vue'
 
 const userStore = useUserStore()
 const route = useRoute();
@@ -97,6 +103,11 @@ const loginRules = {
 const title = ref("");
 const codeUrl = ref("");
 const loading = ref(false);
+// 密码明文/密文切换
+const passwordVisible = ref(false);
+function togglePasswordVisible() {
+  passwordVisible.value = !passwordVisible.value;
+}
 // 验证码开关
 const captchaEnabled = ref(true);
 // 注册开关
@@ -256,6 +267,11 @@ onMounted(() => {
     height: 39px;
     width: 14px;
     margin-left: 0px;
+  }
+  .eye-icon {
+    cursor: pointer;
+    font-size: 16px;
+    color: #8c939d;
   }
 }
 .login-tip {
