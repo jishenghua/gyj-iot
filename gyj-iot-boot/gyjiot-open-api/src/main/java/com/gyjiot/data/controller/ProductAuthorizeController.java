@@ -1,27 +1,26 @@
 package com.gyjiot.data.controller;
 
-import java.util.List;
-import javax.servlet.http.HttpServletResponse;
-
-import com.gyjiot.iot.model.ProductAuthorizeVO;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import org.apache.poi.ss.formula.functions.T;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.gyjiot.common.annotation.Log;
 import com.gyjiot.common.core.controller.BaseController;
 import com.gyjiot.common.core.domain.AjaxResult;
-import com.gyjiot.common.enums.BusinessType;
-import com.gyjiot.iot.domain.ProductAuthorize;
-import com.gyjiot.iot.service.IProductAuthorizeService;
-import com.gyjiot.common.utils.poi.ExcelUtil;
 import com.gyjiot.common.core.page.TableDataInfo;
+import com.gyjiot.common.enums.BusinessType;
+import com.gyjiot.common.utils.poi.ExcelUtil;
+import com.gyjiot.iot.domain.ProductAuthorize;
+import com.gyjiot.iot.model.ProductAuthorizeVO;
+import com.gyjiot.iot.service.IProductAuthorizeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 产品授权码Controller
- * 
+ *
  * @author shenghua.ji
  * @date 2022-04-11
  */

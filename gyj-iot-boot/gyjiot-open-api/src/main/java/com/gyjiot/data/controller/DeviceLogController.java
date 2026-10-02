@@ -1,24 +1,19 @@
 package com.gyjiot.data.controller;
 
-import com.gyjiot.common.annotation.Log;
 import com.gyjiot.common.core.controller.BaseController;
-import com.gyjiot.common.core.domain.AjaxResult;
 import com.gyjiot.common.core.page.TableDataInfo;
-import com.gyjiot.common.enums.BusinessType;
-import com.gyjiot.common.utils.poi.ExcelUtil;
 import com.gyjiot.iot.domain.DeviceLog;
-import com.gyjiot.iot.model.HistoryModel;
 import com.gyjiot.iot.model.MonitorModel;
 import com.gyjiot.iot.service.IDeviceLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 设备日志Controller
